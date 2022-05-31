@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_31_144053) do
+ActiveRecord::Schema.define(version: 2022_05_31_182847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,4 +27,30 @@ ActiveRecord::Schema.define(version: 2022_05_31_144053) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "versions", force: :cascade do |t|
+    t.bigint "website_id", null: false
+    t.boolean "green_hosting"
+    t.float "bytes"
+    t.float "cleaner_than"
+    t.float "adjusted_bytes"
+    t.string "energy"
+    t.float "co2"
+    t.float "all_images_size"
+    t.float "fonts_file_size"
+    t.string "background_color"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["website_id"], name: "index_versions_on_website_id"
+  end
+
+  create_table "websites", force: :cascade do |t|
+    t.string "url"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_websites_on_user_id"
+  end
+
+  add_foreign_key "versions", "websites"
+  add_foreign_key "websites", "users"
 end

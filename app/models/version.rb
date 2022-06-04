@@ -1,3 +1,3 @@
 class Version < ApplicationRecord
-  belongs_to :website_id
+  belongs_to :website
 end

@@ -1,2 +1,6 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1>One degree Design</h1>
+
+<%= simple_form_for [@website] do |f| %>
+  <%= f.input :url %>
+  <%= f.submit "Submit review", class: "btn btn-primary" %>
+<% end %>

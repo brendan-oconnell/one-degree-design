@@ -24,3 +24,16 @@
   outline: none !important;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
+
+.testyoursite {
+  margin: 0 auto;
+  display: block;
+  background-color: #D8E1E9;
+  border-radius: 7px;
+  h2 {
+    padding-top: 9vh;
+  }
+  input {
+    border-radius: 7px;
+  }
+}

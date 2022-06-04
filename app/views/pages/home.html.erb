@@ -1,2 +1,20 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="banner">
+    <h1>Check your website carbon footprint</h1>
+    <p>How much energy does your site use? Take concrete steps today to make your site greener!</p>
+</div>
+
+<div class="testyoursite text-center">
+  <h2>Test your site now</h2>
+  <%= simple_form_for :search, url: root_path, method: :get do |f| %>
+    <div class="search-form-control form-group">
+      <input class="form-control string required" type="text" name="search[query]" id="search_query" />
+      <button name="button" type="submit" class="btn btn-flat">
+        <i class="fas fa-search"></i> Search
+      </button>
+    </div>
+  <% end %>
+</div>
+
+<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue.
+</p>

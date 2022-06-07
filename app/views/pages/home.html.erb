@@ -1,2 +1,42 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container">
+  <div class="banner box">
+      <h1>How much <span class="highlight">energy</span> does your site use?</h1>
+      <p> Take concrete steps to make your site greener!</p>
+  </div>
+
+  <div class="testyoursite text-center container">
+    <div class="row">
+      <div class="col-12">
+        <h2>Test your site now</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-xl-6 col-lg-6 mx-auto">
+        <%= simple_form_for :search, url: root_path, method: :get do |f| %>
+        <div class="search-form-control form-group">
+        <input class="form-control string required" type="text" name="search[query]" id="search_query" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-xl-6 col-lg-6 mx-auto mt-3 mb-2">
+        <button name="button" type="submit" class="btn btn-flat">
+          Calculate
+        </button>
+      </div>
+    </div>
+  </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="green-container">
+</div>
+
+<div class="footer sticky-bottom">
+  <div class="footer-copyright">
+    <a href="https://github.com/brendan-oconnell/one-degree-design">GitHub</a>
+  </div>
+  <div class="footer-copyright">
+    This project uses data from <a href="https://api.websitecarbon.com/">Website Carbon API</a>
+  </div>
+</div>

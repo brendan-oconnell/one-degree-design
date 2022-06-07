@@ -62,20 +62,40 @@ class WebsitesController < ApplicationController
 
     stylesheet_links = []
     html_doc.search("link").each do |link|
-      stylesheet_links << link.attributes["href"].value if link.attributes["type"].value == "text/css"
+      stylesheet_links << link.attributes["href"].value if link.attributes["rel"].value == "stylesheet"
     end
 
+    @font_families = []
+    @backgrounds = []
+
+    stylesheet_links.each do |stylesheet|
+      style_file = URI.open(stylesheet).read
+
+      @font_families << style_file.scan(/font-family:[",'](.{1,22})[",']/)
+      @backgrounds << style_file.scan(/background[-color]*:(\S{1,16});/)
+    end
+
+    @font_families.flatten!
+    @backgrounds.flatten!
+
+    # @font_families.sort_by! { |font| font. }
+
+    # @backgrounds.sort_by! { |color| color. }
+    # font family
+    colors = {}
+    @backgrounds.each do |color|
+      count = @backgrounds.select { |e| e == color }.count
+      colors.store(color, count)
+    end
+    colors.sort_by!{ |color| color.values }.reverse!
     raise
 
-    style_file = URI.open(stylesheet).read
+    # @font_families.flatten.each do |font|
+    #   font.chars.gsub( '\'' || "\"" , "")
+    # end
+    # raise
+    # backgrounds
 
-    style_file.scan(/font-family:[",'].{1,22}[",']/)
-    style_file.scan(/background:.{1,16};/)
-    raise
-
-    # window.getComputedStyle(document.querySelector("h1")).font
-
-    # :fonts_file_size, :background_color)
 
     # save
     # version.save

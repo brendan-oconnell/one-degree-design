@@ -15,8 +15,8 @@
   height: 3.5rem;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
   border: 1px solid #E7E7E7;
-  width: 50%;
-  margin-left: 25%;
+  //width: 50%;
+  //margin-left: 25%;
 }
 
 .search-form-control .form-control:focus {
@@ -30,10 +30,12 @@
   display: block;
   background-color: #D8E1E9;
   border-radius: 7px;
+  position: absolute;
   h2 {
     padding-top: 9vh;
   }
   input {
     border-radius: 7px;
+    font-size: 22px;
   }
 }

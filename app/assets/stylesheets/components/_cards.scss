@@ -9,7 +9,14 @@ body {
   display: inline-block;
   width: 240px;
   text-align: center;
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
 }
+
+
 
 .img-container {
     height: 230px;
@@ -46,10 +53,19 @@ body {
   margin: -120px 0px 0px 0px;
   line-height: 19px;
   font-size: 14px;
+  text-decoration: none;
 }
 
 .text-container h3 {
   margin: 20px 0px 10px 0px;
   color: #04bcff;
   font-size: 18px;
+  text-decoration: none;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: auto;
 }

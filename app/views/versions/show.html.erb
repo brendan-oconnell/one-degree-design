@@ -38,6 +38,7 @@
       <div class="card-title">
         Fonts
         <div class="card-category">
+
           <p>The top 3 most-used fonts on your site are <%= JSON.parse(@version.font_families)[0] %>, <%= JSON.parse(@version.font_families)[1] %>, and <%= JSON.parse(@version.font_families)[2] %>.</p>
           <p><strong>Recommendation:</strong>Reduce font file sizes or use browser standard fonts.</p>
           <div class="mt-4 mb-2">
@@ -66,6 +67,6 @@
 </div>
 
 
-
+<% raise %>
 
 <%#  adjusted_bytes: carbon_infos["statistics"]["adjustedBytes"], energy: carbon_infos["statistics"]["energy"], co2: carbon_infos["statistics"]["co2"]["grid"]["grams"], co2_renewable: carbon_infos["statistics"]["co2"]["renewable"]["grams"], all_images_size: @all_images_size, background_color: background_color, font_families: font_families ) %>

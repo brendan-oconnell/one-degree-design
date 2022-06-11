@@ -4,7 +4,6 @@ require "nokogiri"
 
 class WebsitesController < ApplicationController
   def create
-
     existing_website = Website.find_by_url("https://www.#{website_params[:url]}")
     if Website.find_by_url("https://www.#{website_params[:url]}") && existing_website.user == current_user
       @website = Website.find_by_url("https://www.#{website_params[:url]}")
@@ -18,6 +17,7 @@ class WebsitesController < ApplicationController
       @website.save
       create_version(@website)
       @version.save
+      CloudinaryCallJob.perform_later(@version)
       redirect_to version_path(@version)
     else
       render :websites
@@ -37,29 +37,29 @@ class WebsitesController < ApplicationController
     carbon_infos = JSON.parse(carbon)
   end
 
-  def compile_photos_with_cloudinary(html_doc)
-    @photos = []
-    html_doc.search("img").each do |image|
-      # @photos << image.attributes["src"].value unless image.attributes["alt"].nil?
-      unless image.attributes["alt"].nil?
-        src_value = image.attributes["data-src"] ? image.attributes["data-src"].value : image.attributes["src"].value
+  # def compile_photos_with_cloudinary(html_doc)
+  #   @photos = []
+  #   html_doc.search("img").each do |image|
+  #     # @photos << image.attributes["src"].value unless image.attributes["alt"].nil?
+  #     unless image.attributes["alt"].nil?
+  #       src_value = image.attributes["data-src"] ? image.attributes["data-src"].value : image.attributes["src"].value
 
-        query = Cloudinary::Uploader.upload(src_value)
-        @photos << {
-          width: query["width"],
-          height: query["height"],
-          bytes: query["bytes"],
-          url: query["url"]
-        }
-      end
-    end
-    @photos.sort_by! { |photo| photo[:bytes] }
-    @version.photos = @photos.reverse.first(3)
+  #       query = Cloudinary::Uploader.upload(src_value)
+  #       @photos << {
+  #         width: query["width"],
+  #         height: query["height"],
+  #         bytes: query["bytes"],
+  #         url: query["url"]
+  #       }
+  #     end
+  #   end
+  #   @photos.sort_by! { |photo| photo[:bytes] }
+  #   @version.photos = @photos.reverse.first(3)
 
-    # photos_size
-    @all_images_size = 0
-    @photos.each { |photo| @all_images_size += photo[:bytes] }
-  end
+  #   # photos_size
+  #   @all_images_size = 0
+  #   @photos.each { |photo| @all_images_size += photo[:bytes] }
+  # end
 
   def fonts_and_backgrounds_scraping(html_doc)
     stylesheet_links = []
@@ -67,8 +67,7 @@ class WebsitesController < ApplicationController
       stylesheet_links << link.attributes["href"].value if link.attributes["rel"].value == "stylesheet"
     end
 
-    @font_families = []
-    @backgrounds = []
+    @font_families = [], @backgrounds = []
 
     stylesheet_links.each do |stylesheet|
       style_file = URI.open(stylesheet).read
@@ -104,7 +103,8 @@ class WebsitesController < ApplicationController
       carbon_infos = nil
     end
 
-    compile_photos_with_cloudinary(html_doc)
+    # compile_photos_with_cloudinary(html_doc)
+
 
     fonts_and_backgrounds_scraping(html_doc)
 
@@ -117,13 +117,7 @@ class WebsitesController < ApplicationController
       @version.update(website_id: website.id, green_hosting: carbon_infos["green"], bytes: carbon_infos["bytes"], cleaner_than: carbon_infos["cleanerThan"], adjusted_bytes: carbon_infos["statistics"]["adjustedBytes"], energy: carbon_infos["statistics"]["energy"], co2: carbon_infos["statistics"]["co2"]["grid"]["grams"], co2_renewable: carbon_infos["statistics"]["co2"]["renewable"]["grams"], all_images_size: @all_images_size, background_color: background_color, font_families: font_families )
     end
 
-    # save
-    # modify if carbon infos == nil
-    @version.update(website_id: website.id, green_hosting: carbon_infos["green"], bytes: carbon_infos["bytes"], cleaner_than: carbon_infos["cleanerThan"], adjusted_bytes: carbon_infos["statistics"]["adjustedBytes"], energy: carbon_infos["statistics"]["energy"], co2: carbon_infos["statistics"]["co2"]["grid"]["grams"], co2_renewable: carbon_infos["statistics"]["co2"]["renewable"]["grams"], all_images_size: @all_images_size, background_color: background_color, font_families: font_families )
-
   end
-
-
   # def version_parVersion.alams
   #   params.require(:version).permit(:website_id, :green_hosting, :bytes, :cleaner_than, :adjusted_bytes, :energy, :co2, :all_images_size, :fonts_file_size, :background_color)
   # end

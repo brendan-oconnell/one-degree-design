@@ -32,9 +32,9 @@ class WebsitesController < ApplicationController
 
   def website_carbon_api(url)
     # make a new version only if last version has been made more than 24 horus ago
-      carbonurl = "https://api.websitecarbon.com/site?url=#{url}"
-      carbon = URI.open(carbonurl).read
-      carbon_infos = JSON.parse(carbon)
+    carbonurl = "https://api.websitecarbon.com/site?url=#{url}"
+    carbon = URI.open(carbonurl).read
+    carbon_infos = JSON.parse(carbon)
   end
 
   def compile_photos_with_cloudinary(html_doc)
@@ -93,8 +93,6 @@ class WebsitesController < ApplicationController
     html_file = URI.open(url).read
     html_doc = Nokogiri::HTML(html_file)
 
-    # what version?
-
     last_version = Version.find_by_website_id(@website.id)
     if last_version.nil?
       @version = Version.new
@@ -118,6 +116,11 @@ class WebsitesController < ApplicationController
     else
       @version.update(website_id: website.id, green_hosting: carbon_infos["green"], bytes: carbon_infos["bytes"], cleaner_than: carbon_infos["cleanerThan"], adjusted_bytes: carbon_infos["statistics"]["adjustedBytes"], energy: carbon_infos["statistics"]["energy"], co2: carbon_infos["statistics"]["co2"]["grid"]["grams"], co2_renewable: carbon_infos["statistics"]["co2"]["renewable"]["grams"], all_images_size: @all_images_size, background_color: background_color, font_families: font_families )
     end
+
+    # save
+    # modify if carbon infos == nil
+    @version.update(website_id: website.id, green_hosting: carbon_infos["green"], bytes: carbon_infos["bytes"], cleaner_than: carbon_infos["cleanerThan"], adjusted_bytes: carbon_infos["statistics"]["adjustedBytes"], energy: carbon_infos["statistics"]["energy"], co2: carbon_infos["statistics"]["co2"]["grid"]["grams"], co2_renewable: carbon_infos["statistics"]["co2"]["renewable"]["grams"], all_images_size: @all_images_size, background_color: background_color, font_families: font_families )
+
   end
 
 

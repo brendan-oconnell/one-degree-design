@@ -17,4 +17,10 @@ Rails.application.routes.draw do
   # dashboard
 
   resources :users, only: :show
+
+  # footer
+  get 'about', to: 'pages#about'
+  get 'howitworks', to: 'pages#howitworks', as: :howitworks
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
 end

@@ -1,1 +1,51 @@
-<h1><%= @version  %></h1>
+<div class="container text-start">
+  <div class="banner box">
+      <h1>Your <span class="highlight">results</span></h1>
+      <p> How's your carbon footprint?</p>
+  </div>
+  <div class="testyoursite text-center row">
+    <div class="col-12 mb-3">
+      <h2>Stats</h2>
+    </div>
+    <div class="col-12 col-xl-6 col-lg-6 mx-auto">
+      <% if @version.green_hosting %>
+        <p>Your site is using green hosting!</p>
+      <% else %>
+        <p>You're not using green hosting :(</p>
+      <% end %>
+      The size of your site is <%= @version.bytes/1000000 %> megabytes.
+      Your site is cleaner than <%= @version.cleaner_than*100 %> % of sites tested!
+
+    </div>
+  </div>
+</div>
+
+<div class="green-container-show">
+  <div class="container">
+    <div class="cards">
+      <div class="card-title">
+        Images
+        <div class="card-category">
+
+        </div>
+      </div>
+      <div class="card-title">
+        Fonts
+        <div class="card-category">
+
+        </div>
+      </div>
+      <div class="card-title">
+      Background Colors
+        <div class="card-category">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<%#  adjusted_bytes: carbon_infos["statistics"]["adjustedBytes"], energy: carbon_infos["statistics"]["energy"], co2: carbon_infos["statistics"]["co2"]["grid"]["grams"], co2_renewable: carbon_infos["statistics"]["co2"]["renewable"]["grams"], all_images_size: @all_images_size, background_color: background_color, font_families: font_families ) %>

@@ -3,10 +3,42 @@
   background: white;
 }
 
+.navbar-lewagon .h1 {
+  font-size: 24px;
+}
+
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 40px;
+  width: 52px;
+}
+
+.highlightnav {
+  font-weight: 1000;
+  color: #000000;
+  position: relative;
+  z-index: 0;
+  text-decoration: none;
+}
+.highlightnav::before {
+  background-color: #D8E1E9;
+  position: absolute;
+  content: "";
+  height: 21px;
+  width: 90%;
+  z-index: -1;
+  bottom: 0;
+  transform: translate(5px, 2px);
+}
+
+.container-fluid{
+  display: flex;
+  justify-content: flex-start !important;
+}
+
+.navbar-collapse{
+  display: flex;
+  justify-content: flex-end !important;
 }

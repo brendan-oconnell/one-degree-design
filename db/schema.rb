@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_09_182330) do
+ActiveRecord::Schema.define(version: 2022_06_11_101056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2022_06_09_182330) do
     t.text "photos"
     t.float "co2_renewable"
     t.string "font_families"
+    t.boolean "carbonapi_updated"
     t.index ["website_id"], name: "index_versions_on_website_id"
   end
 

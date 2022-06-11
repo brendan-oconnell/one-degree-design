@@ -26,19 +26,39 @@
       <div class="card-title">
         Images
         <div class="card-category">
-
+          <p>Your site has 30 total images, which have a combined size of 100mb. That’s a lot!</p>
+          <div class="mt-4 mb-2">
+            <button name="button" type="submit" class="btn btn-flat">
+              Learn More
+            </button>
+          </div>
         </div>
       </div>
+
       <div class="card-title">
         Fonts
         <div class="card-category">
-
+          <p>The top 3 most-used fonts on your site are <%= JSON.parse(@version.font_families)[0] %>, <%= JSON.parse(@version.font_families)[1] %>, and <%= JSON.parse(@version.font_families)[2] %>.</p>
+          <p><strong>Recommendation:</strong>Reduce font file sizes or use browser standard fonts.</p>
+          <div class="mt-4 mb-2">
+            <button name="button" type="submit" class="btn btn-flat">
+              Learn More
+            </button>
+          </div>
         </div>
       </div>
+
       <div class="card-title">
       Background Colors
         <div class="card-category">
-
+          <p>Most-used background colors on your site:</p>
+          <p><%= JSON.parse(@version.background_color)[0] %></p>
+          <p><strong>Recommendation:</strong>Use background colors that consume less energy on OLED screens.</p>
+          <div class="mt-4 mb-2">
+            <button name="button" type="submit" class="btn btn-flat">
+              Learn More
+            </button>
+          </div>
         </div>
       </div>
     </div>

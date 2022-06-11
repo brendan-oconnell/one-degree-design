@@ -1,3 +1,4 @@
 class Version < ApplicationRecord
-  belongs_to :website_id
+  belongs_to :website
+  # has_many_attached :photos, dependent: :destroy
 end

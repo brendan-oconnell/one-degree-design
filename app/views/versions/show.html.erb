@@ -26,7 +26,11 @@
       <div class="card-title">
         Images
         <div class="card-category">
-          <p>Lorem ipsum dolor</p>
+          <% @version.photos.each do |photo| %>
+            <% photo = eval(photo) %>
+            <%= photo[:url] %>
+          <% end %>
+          <p>Your site has 30 total images, which have a combined size of 100mb. That’s a lot!</p>
           <div class="mt-4 mb-2">
             <button name="button" type="submit" class="btn btn-flat">
               Learn More
@@ -38,11 +42,11 @@
       <div class="card-title">
         Fonts
         <div class="card-category">
-          <% if JSON.parse(@version.font_families) == [] %>
+          <% if @version.font_families == [] %>
             <h2>Nice work!</h2>
             <p> You're using low-energy browser standard fonts. Fonts like Open Sans, Times New Roman, Georgia, Arial or Helvetica, to name a few, don't add any extra weight to your site.</p>
           <% else %>
-            <p>The top 3 most-used fonts on your site are <%= JSON.parse(@version.font_families)[0] %>, <%= JSON.parse(@version.font_families)[1] %>, and <%= JSON.parse(@version.font_families)[2] %>.</p>
+            <p>The top 3 most-used fonts on your site are <%= @version.font_families[0] %>, <%= @version.font_families[1] %>, and <%= @version.font_families[2] %>.</p>
             <p><strong>Recommendation:</strong>Reduce font file sizes or use browser standard fonts.</p>
             <div class="mt-4 mb-2">
               <button name="button" type="submit" class="btn btn-flat">
@@ -58,14 +62,14 @@
         <div class="card-category">
           <p>Most-used background colors on your site:</p>
           <div class="background-colors">
-            <div class="background-color-display" style="background-color: <%= JSON.parse(@version.background_color)[0] %>">
-              <p><%= JSON.parse(@version.background_color)[0] %></p>
+            <div class="background-color-display" style="background-color: <%= @version.background_color[0] %>">
+              <p><%= @version.background_color[0] %></p>
             </div>
-            <div class="background-color-display" style="background-color: <%= JSON.parse(@version.background_color)[1] %>"
-              <p><%= JSON.parse(@version.background_color)[1] %></p>
+            <div class="background-color-display" style="background-color: <%= @version.background_color[1] %>"
+              <p><%= @version.background_color[1] %></p>
             </div>
-            <div class="background-color-display" style="background-color: <%= JSON.parse(@version.background_color)[2] %>"
-              <p><%= JSON.parse(@version.background_color)[2] %></p>
+            <div class="background-color-display" style="background-color: <%= @version.background_color[2] %>"
+              <p><%= @version.background_color[2] %></p>
             </div>
           </div>
           <p><strong>Recommendation:</strong>Use background colors that consume less energy on OLED screens.</p>

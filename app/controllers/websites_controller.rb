@@ -58,7 +58,7 @@ class WebsitesController < ApplicationController
   end
 
   def create_version(website)
-
+    @version = Version.new
     # scanned_url =  website.url.match(/w{3}*\.*(\w*\.\w{3,4})/)
     # url = "https://www.#{scanned_url[1]}/"
     url = website.url
@@ -66,8 +66,7 @@ class WebsitesController < ApplicationController
     html_doc = Nokogiri::HTML(html_file)
 
     carbon_infos = website_carbon_api(url)
-
-    compile_photos_with_cloudinary(html_doc)
+    # compile_photos_with_cloudinary(html_doc)
 
     # background and font scraping
 
@@ -102,9 +101,9 @@ class WebsitesController < ApplicationController
     background_color = @backgrounds.first(3)
     font_families = @font_families.first(3)
     # save
-
     # modify if carbon infos == nil
     @version.update(website_id: website.id, green_hosting: carbon_infos["green"], bytes: carbon_infos["bytes"], cleaner_than: carbon_infos["cleanerThan"], adjusted_bytes: carbon_infos["statistics"]["adjustedBytes"], energy: carbon_infos["statistics"]["energy"], co2: carbon_infos["statistics"]["co2"]["grid"]["grams"], co2_renewable: carbon_infos["statistics"]["co2"]["renewable"]["grams"], all_images_size: @all_images_size, background_color: background_color, font_families: font_families )
+
   end
 
 

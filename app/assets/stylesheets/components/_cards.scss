@@ -80,7 +80,7 @@
 .card-category {
   background-size: cover;
   background-position: center;
-  height: 180px;
+  height: 300px;
   // display: flex;
   justify-content: center;
   align-items: center;
@@ -91,6 +91,7 @@
   // text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  padding: 13px;
 }
 
 .cards {
@@ -100,7 +101,8 @@
   padding-top: 141px;
   right: 9%;
   left: 9%;
-  position: absolute;
+  // position: absolute;
+  margin: 0 4.3%;
 
 }
 

@@ -1,6 +1,6 @@
 <div class="container text-start">
   <div class="banner box">
-      <h1>Your <span class="highlight">results</span></h1>
+      <h1>Your <span class="highlight">results</span> for <%= @version.website.url[12..-1] %></h1>
       <p> How's your carbon footprint?</p>
   </div>
   <div class="testyoursite text-center row">
@@ -26,7 +26,7 @@
       <div class="card-title">
         Images
         <div class="card-category">
-          <p>Your site has 30 total images, which have a combined size of 100mb. That’s a lot!</p>
+          <p>Lorem ipsum dolor</p>
           <div class="mt-4 mb-2">
             <button name="button" type="submit" class="btn btn-flat">
               Learn More
@@ -77,10 +77,22 @@
         </div>
       </div>
     </div>
+
+
+    <div class="banner box">
+      <h1><span class="highlight">Image</span> analysis</h1>
+    </div>
+    <br>
+    <div class="banner box">
+      <h1><span class="highlight">Font</span> analysis</h1>
+    </div>
+    <br>
+    <div class="banner box">
+      <h1><span class="highlight">Background color</span> analysis</h1>
+    </div>
+
   </div>
 </div>
-
-
 
 
 <%#  adjusted_bytes: carbon_infos["statistics"]["adjustedBytes"], energy: carbon_infos["statistics"]["energy"], co2: carbon_infos["statistics"]["co2"]["grid"]["grams"], co2_renewable: carbon_infos["statistics"]["co2"]["renewable"]["grams"], all_images_size: @all_images_size, background_color: background_color, font_families: font_families ) %>

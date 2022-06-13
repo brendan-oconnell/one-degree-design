@@ -26,10 +26,10 @@
       <div class="card-title">
         Images
         <div class="card-category">
-          <% @version.photos.each do |photo| %>
-            <% photo = eval(photo) %>
-            <%= photo[:url] %>
-          <% end %>
+          <%# <% @version.photos.each do |photo| %>
+            <%# <% photo = eval(photo) %>
+            <%# <%= photo[:url] %>
+          <%# <% end %>
           <p>Your site has 30 total images, which have a combined size of 100mb. That’s a lot!</p>
           <div class="mt-4 mb-2">
             <button name="button" type="submit" class="btn btn-flat">
@@ -97,6 +97,7 @@
 
   </div>
 </div>
+
 
 
 <%#  adjusted_bytes: carbon_infos["statistics"]["adjustedBytes"], energy: carbon_infos["statistics"]["energy"], co2: carbon_infos["statistics"]["co2"]["grid"]["grams"], co2_renewable: carbon_infos["statistics"]["co2"]["renewable"]["grams"], all_images_size: @all_images_size, background_color: background_color, font_families: font_families ) %>

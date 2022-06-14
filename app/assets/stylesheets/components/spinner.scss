@@ -1,0 +1,53 @@
+.spinner {
+  // The height here is just for demo purposes
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  z-index: 10;
+  &::before {
+      border: solid 3px $cwhite;
+      border-bottom-color: $blue;
+      border-radius: 50%;
+      content: "";
+      height: 90px;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate3d(-50%, -50%, 0);
+      width: 90px;
+  }
+}
+
+
+
+
+@keyframes spinner {
+  0% {
+      transform: translate3d(-50%, -50%, 0) rotate(0deg);
+  }
+  100% {
+       transform: translate3d(-50%, -50%, 0) rotate(360deg);
+  }
+}
+.spinner {
+  // The height here is just for demo purposes
+  opacity: 1;
+  transition: opacity linear 0.1s;
+  &::before {
+      animation: 2s linear infinite spinner;
+      border: solid 3px $cwhite;
+      border-bottom-color: $cblue;
+      border-radius: 50%;
+      content: "";
+      height: 90px;
+      left: 50%;
+      opacity: inherit;
+      position: absolute;
+      top: 50%;
+      transform: translate3d(-50%, -50%, 0);
+      transform-origin: center;
+      width: 90px;
+      will-change: transform;
+  }
+}

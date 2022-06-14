@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 2022_06_11_124501) do
     t.float "co2"
     t.float "all_images_size"
     t.float "fonts_file_size"
-    t.string "background_color", array: true
+    t.string "background_color"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "photos", array: true

@@ -10,7 +10,7 @@ class CreateVersions < ActiveRecord::Migration[6.1]
       t.float :co2
       t.float :all_images_size
       t.float :fonts_file_size
-      t.string :background_color
+      t.string :background_color, array: true
 
       t.timestamps
     end

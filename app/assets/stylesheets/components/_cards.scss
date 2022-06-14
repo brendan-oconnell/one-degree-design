@@ -1,4 +1,4 @@
-body {
+/* body {
   text-align: center;
   padding: 30px;
   background: #f8f4f2;
@@ -68,4 +68,75 @@ body {
   justify-content: space-between;
   align-items: center;
   flex: auto;
+} */
+
+.card-title {
+  padding: 0 4%;
+  color: white;
+  font-size: 24px;
+  font-weight: 100;
+}
+
+.card-category {
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  // display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  font-size: 14px;
+  color: black;
+  // font-weight: bold;
+  // text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  padding: 13px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 16px;
+  padding-top: 141px;
+  right: 9%;
+  left: 9%;
+  // position: absolute;
+  margin: 0 4.3%;
+
+}
+
+// Smallest device
+@media (min-width: 100px) and (max-width: 575px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }

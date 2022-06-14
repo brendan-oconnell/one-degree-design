@@ -69,7 +69,7 @@ class WebsitesController < ApplicationController
     html_doc = Nokogiri::HTML(html_file)
 
     last_version = Version.find_by_website_id(@website.id)
-    if last_version.nil?
+    if last_version.nil? || (Time.now.utc - last_version.created_at) > 86_400
       @version = Version.new
       carbon_infos = website_carbon_api(url)
       @version[:carbonapi_updated] = true

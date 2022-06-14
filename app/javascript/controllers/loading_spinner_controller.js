@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["spinner", "form"]
+  static targets = ["main", "spinner", "form"]
 
   connect() {
     console.log(this.element)
@@ -13,7 +13,7 @@ export default class extends Controller {
     // make a validation for the input field?
     event.preventDefault()
     // launch the creation
-    this.spinnerTarget.classList.add("blur")
+    this.mainTarget.classList.add("blur")
     this.spinnerTarget.classList.add("spinner")
     // wait for 3sec
     // switch view

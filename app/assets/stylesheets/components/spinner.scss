@@ -6,7 +6,7 @@
   margin: auto;
   z-index: 10;
   &::before {
-      border: solid 3px $cwhite;
+      border: solid 3px rgba(0,0,0,.0);
       border-bottom-color: $blue;
       border-radius: 50%;
       content: "";
@@ -36,7 +36,7 @@
   transition: opacity linear 0.1s;
   &::before {
       animation: 2s linear infinite spinner;
-      border: solid 3px $cwhite;
+      border: solid 3px rgba(0,0,0,.0);
       border-bottom-color: $cblue;
       border-radius: 50%;
       content: "";

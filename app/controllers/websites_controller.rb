@@ -12,7 +12,6 @@ class WebsitesController < ApplicationController
       @website.url = "https://www.#{website_params[:url]}"
       @website.user = current_user unless current_user.nil?
     end
-
     if @website.valid?
       @website.save
       create_version(@website)

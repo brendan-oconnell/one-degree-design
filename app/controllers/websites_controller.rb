@@ -42,7 +42,8 @@ class WebsitesController < ApplicationController
       stylesheet_links << link.attributes["href"].value if link.attributes["rel"].value == "stylesheet"
     end
 
-    @font_families = [], @backgrounds = []
+    @font_families = []
+    @backgrounds = []
 
     stylesheet_links.each do |stylesheet|
       style_file = URI.open(stylesheet).read
@@ -84,7 +85,6 @@ class WebsitesController < ApplicationController
 
     background_color = @backgrounds.first(3)
     font_families = @font_families.first(3)
-
     if carbon_infos.nil?
       @version.update(all_images_size: @all_images_size, background_color: background_color, font_families: font_families )
     else

@@ -69,17 +69,15 @@ class WebsitesController < ApplicationController
     html_doc = Nokogiri::HTML(html_file)
 
     last_version = Version.find_by_website_id(@website.id)
-    if last_version.nil? || (Time.now.utc - last_version.created_at) > 86_400
-      @version = Version.new
-      carbon_infos = website_carbon_api(url)
-      @version[:carbonapi_updated] = true
-    elsif (Time.now.utc - last_version.created_at) < 86_400
+    if last_version && (Time.now.utc - last_version.created_at) < 86_400
       @version = last_version
       @version[:carbonapi_updated] = false
       carbon_infos = nil
+    else
+      @version = Version.new
+      carbon_infos = website_carbon_api(url)
+      @version[:carbonapi_updated] = true
     end
-
-    # compile_photos_with_cloudinary(html_doc)
 
     fonts_and_backgrounds_scraping(html_doc)
 

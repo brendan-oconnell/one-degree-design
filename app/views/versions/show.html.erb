@@ -26,9 +26,14 @@
       <div class="card-title">
         Images
         <div class="card-category">
-          <% @version.photos.each do |photo| %>
-            <% photo = eval(photo) %>
-            <%= photo[:url] %>
+          <p>Heaviest pictures on your site:</p>
+          <% if @version.photos %>
+          <div class="d-flex">
+            <% @version.photos.each do |photo| %>
+              <% photo = eval(photo) %>
+              <img class="website-photos" src="<%=photo[:url]%>" alt="website photos">
+            <% end %>
+          </div>
           <% end %>
           <p>Your site has 30 total images, which have a combined size of 100mb. That’s a lot!</p>
           <div class="mt-4 mb-2">

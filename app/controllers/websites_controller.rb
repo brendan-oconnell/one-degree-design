@@ -1,6 +1,7 @@
 require "json"
 require "open-uri"
 require "nokogiri"
+require "fastimage"
 
 class WebsitesController < ApplicationController
   def create
@@ -16,7 +17,7 @@ class WebsitesController < ApplicationController
       @website.save
       create_version(@website)
       @version.save
-      CloudinaryCallJob.perform_later(@version)
+      # CloudinaryCallJob.perform_later(@version)
       redirect_to version_path(@version)
     else
       render :websites
@@ -63,6 +64,34 @@ class WebsitesController < ApplicationController
     @backgrounds.sort_by! { |color| @backgrounds.count(color) }.reverse!.uniq!
   end
 
+  def image_scraping(html_doc)
+    @photos = []
+    html_doc.search("img").each do |image|
+      # @photos << image.attributes["src"].value unless image.attributes["alt"].nil?
+      unless image.attributes["alt"].nil?
+        src_value = image.attributes["data-src"] ? image.attributes["data-src"].value : image.attributes["src"].value
+        dimensions = FastImage.size(src_value)
+        type = FastImage.type(src_value)
+        size = dimensions[0] * dimensions[1]
+        @photos << {
+          url: src_value,
+          size: size,
+          type: type
+        }
+          # query = Cloudinary::Uploader.upload(src_value)
+          # @photos << {
+          #   width: query["width"],
+          #   height: query["height"],
+          #   bytes: query["bytes"],
+          #   url: query["url"]
+          # }
+      end
+    end
+    @photos.sort_by! { |photo| photo[:size] }
+    @version.photos = @photos.reverse.first(3)
+  end
+
+
   def create_version(website)
     url = website.url
     html_file = URI.open(url).read
@@ -80,6 +109,7 @@ class WebsitesController < ApplicationController
     end
 
     fonts_and_backgrounds_scraping(html_doc)
+    image_scraping(html_doc)
 
     background_color = @backgrounds.first(3)
     font_families = @font_families.first(3)

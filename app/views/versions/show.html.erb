@@ -26,7 +26,7 @@
       <div class="card-title">
         Images
         <div class="card-category">
-          <p>Heaviest pictures on your site:</p>
+          <p>Some of the largest image files on your site:</p>
           <% if @version.photos %>
           <div class="d-flex">
             <% @version.photos.each do |photo| %>
@@ -35,7 +35,8 @@
             <% end %>
           </div>
           <% end %>
-          <p>Your site has 30 total images, which have a combined size of 100mb. That’s a lot!</p>
+          <p><strong>Recommendation:</strong></p>
+          Compress image files and use the most efficient file formats possible.
           <div class="mt-4 mb-2">
             <button name="button" type="submit" class="btn btn-flat">
               Learn More

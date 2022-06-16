@@ -16,7 +16,7 @@ class WebsitesController < ApplicationController
       @website.save
       create_version(@website)
       @version.save
-      CloudinaryCallJob.perform_later(@version)
+     # CloudinaryCallJob.perform_later(@version)
       redirect_to version_path(@version)
     else
       render :websites

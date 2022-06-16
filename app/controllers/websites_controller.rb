@@ -91,6 +91,4 @@ class WebsitesController < ApplicationController
     end
   end
 end
-
-
 # make a stimulus with a loading screen that last three seconds and then use websocket to dynamically display fetched infos

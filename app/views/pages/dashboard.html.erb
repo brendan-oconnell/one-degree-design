@@ -1,0 +1,43 @@
+<div class="position-relative">
+  <div class="container text-start h-100">
+    <div class="banner box">
+        <h1><span class="highlight">Dashboard</span></h1>
+        <p> Compare all your website versions</p>
+    </div>
+    <div class="testyoursite text-center row">
+      <div class="col-12 mb-3">
+        <h2>Website search form</h2>
+      </div>
+        <div class="col-12 col-xl-6 col-lg-6 mx-auto">
+        <%# make a stimulus for the search %>
+          <%= simple_form_for([@websitenew]) do |f| %>
+            <div class="search-form-control form-group">
+              <div class="search-bar">
+                <div class="search-bar-http-www-text">
+                  https://www.
+                </div>
+                <div class="search-bar-content">
+                <%= f.input :url, placeholder: "onedegreedesign.com", label: false %>
+                </div>
+              </div>
+            <div class="mt-4 mb-2">
+              <%= f.submit "Find", class: "btn btn-flat"  %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="green-container-home"></div>
+<div class="container">
+  <h1 class="websites-urls"><%= @website.url %></h1>
+  <% @websites.each do |website| %>
+    <% @versions = Version.where(website_id: website) %>
+    <% @versions.each do |version| %>
+      <div class="version-stats"><%= version.green_hosting %></div>
+      <div class="version-misc"> <%= version.font_families %></div>
+    <% end %>
+  <% end %>
+  <%# erase versions that are the same or validations %>
+</div>

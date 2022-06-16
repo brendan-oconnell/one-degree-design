@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   # dashboard
 
-  resources :users, only: :show
+  get 'dashboard', to: 'pages#dashboard'
 
   # footer
   get 'about', to: 'pages#about'

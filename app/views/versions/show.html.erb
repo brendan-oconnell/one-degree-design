@@ -71,10 +71,10 @@
             <div class="background-color-display" style="background-color: <%= @version.background_color[0] %>">
               <p><%= @version.background_color[0] %></p>
             </div>
-            <div class="background-color-display" style="background-color: <%= @version.background_color[1] %>"
+            <div class="background-color-display" style="background-color: <%= @version.background_color[1] %>">
               <p><%= @version.background_color[1] %></p>
             </div>
-            <div class="background-color-display" style="background-color: <%= @version.background_color[2] %>"
+            <div class="background-color-display" style="background-color: <%= @version.background_color[2] %>">
               <p><%= @version.background_color[2] %></p>
             </div>
           </div>
@@ -87,11 +87,46 @@
         </div>
       </div>
     </div>
+    <div class="image-analysis">
+      <div class="banner box">
+        <h1><span class="highlight">Reducing</span> image file size</h1>
+      </div>
+      <div class="row">
+        <div class="analysis-card-left col-6">
+          <img src="<%= eval(@version.photos[0])[:url] %>" alt="">
+          <p><strong>Dimensions:</strong> <%= eval(@version.photos[0])[:dimensions][0] %> x <%= eval(@version.photos[0])[:dimensions][1] %></p>
+        </div>
+        <div class="tip-card-right col-6">
+          <h2>Use fewer pixels</h2>
+          <p>Are you displaying images on your site at the right resolution? If your div is 300 x 200px and your image is 3000 x 2000 px, the image resolution is too large - the user won’t see it, and it wastes energy on your site. Change the file size!</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="tip-card-left col-6">
+          <h2>Use  efficient file types</h2>
+          <p>Did you know some image file types are much more efficient than others? </p>
 
-
-    <div class="banner box">
-      <h1><span class="highlight">Image</span> analysis</h1>
+        </div>
+        <div class="analysis-card-right col-6">
+          <img src="<%= eval(@version.photos[1])[:url] %>" alt="">
+          <p><strong>File type:</strong> <%= eval(@version.photos[1])[:type] %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="analysis-card-left col-6">
+          <img src="<%= eval(@version.photos[2])[:url] %>" alt="">
+          <p><strong>Estimated file size:</strong> <%= eval(@version.photos[2])[:size] %></p>
+        </div>
+        <div class="tip-card-right col-6">
+          <h2>Compress images</h2>
+          <p>Compressed images take up much less space, and don't consume as much energy. We recommend the following sites:
+              Link
+                      Link
+                    Link</p>
+        </div>
+      </div>
     </div>
+
     <br>
     <div class="banner box">
       <h1><span class="highlight">Font</span> analysis</h1>

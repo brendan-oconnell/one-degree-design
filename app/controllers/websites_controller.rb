@@ -63,7 +63,6 @@ class WebsitesController < ApplicationController
     @font_families.sort_by! { |font| @font_families.count(font) }.reverse!.uniq!
     @backgrounds.sort_by! { |color| @backgrounds.count(color) }.reverse!.uniq!
   end
-
   def image_scraping(html_doc)
     @photos = []
     html_doc.search("img").each do |image|
@@ -76,6 +75,7 @@ class WebsitesController < ApplicationController
         @photos << {
           url: src_value,
           size: size,
+          dimensions: dimensions,
           type: type
         }
           # query = Cloudinary::Uploader.upload(src_value)

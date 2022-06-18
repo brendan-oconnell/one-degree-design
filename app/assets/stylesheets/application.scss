@@ -27,3 +27,42 @@ body {
   height: 22em;
   width: 100%;
 }
+
+
+.green {
+  color: $cgreen;
+}
+.red {
+  color: $cred
+}
+
+.dark-mode-bulb {
+  a {
+  font-size: 1em;
+  text-align: center;
+  color: #FCCA06;
+  i {
+    padding: .6em;
+  }
+  }
+}
+
+
+.yellow-background{
+  background-color: $cyellow !important;
+}
+
+.black-background{
+  background-color: black !important;
+  * {
+    color: $cyellow !important;
+  }
+}
+
+.bulb-light {
+  color: black !important;
+}
+
+.orange-highlight {
+  background-color: #ECB390;
+}

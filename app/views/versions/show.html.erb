@@ -23,6 +23,7 @@
 <div class="green-container-show">
   <div class="container">
     <div class="cards">
+
       <div class="card-title">
         Images
         <div class="card-category">
@@ -38,9 +39,11 @@
           <p><strong>Recommendation:</strong></p>
           Compress image files and use the most efficient file formats possible.
           <div class="mt-4 mb-2">
-            <button name="button" type="submit" class="btn btn-flat">
-              Learn More
-            </button>
+            <a href = "#reducingimages">
+              <button name="button" type="submit" class="btn btn-flat">
+                Learn More
+              </button>
+            </a>
           </div>
         </div>
       </div>
@@ -55,16 +58,18 @@
             <p>The top 3 most-used fonts on your site are <%= @version.font_families[0] %>, <%= @version.font_families[1] %>, and <%= @version.font_families[2] %>.</p>
             <p><strong>Recommendation:</strong>Reduce font file sizes or use browser standard fonts.</p>
             <div class="mt-4 mb-2">
-              <button name="button" type="submit" class="btn btn-flat">
-                Learn More
-              </button>
+              <a href = "#font">
+                <button name="button" type="submit" class="btn btn-flat">
+                  Learn More
+                </button>
+              </a>
             </div>
           <% end %>
         </div>
       </div>
 
       <div class="card-title">
-      Background Colors
+        Background Colors
         <div class="card-category">
           <p>Most-used background colors on your site:</p>
           <div class="background-colors">
@@ -80,15 +85,21 @@
           </div>
           <p><strong>Recommendation:</strong>Use background colors that consume less energy on OLED screens.</p>
           <div class="mt-4 mb-2">
-            <button name="button" type="submit" class="btn btn-flat">
-              Learn More
-            </button>
+            <a href = "#background">
+              <button name="button" type="submit" class="btn btn-flat">
+                Learn More
+              </button>
+            </a>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="image-analysis">
+
+
+
+
+    <div class="image-analysis" id = "reducingimages">
       <div class="analysis-banner">
         <h1><span class="highlight">Reducing</span> image file size</h1>
       </div>
@@ -138,6 +149,8 @@
         </div>
       </div>
     </div>
+
+
   <% if @version.font_families == [] %>
   <% else  %>
    <div class="image-analysis">

@@ -29,14 +29,17 @@
     </div>
   </div>
 </div>
-<div class="green-container-home"></div>
+<div class="spacer"></div>
 <div class="container">
   <h1 class="websites-urls"><%= @website.url %></h1>
   <% @websites.each do |website| %>
     <% @versions = Version.where(website_id: website) %>
-    <% @versions.each do |version| %>
-      <div class="version-stats"><%= version.green_hosting %></div>
-      <div class="version-misc"> <%= version.font_families %></div>
+    <% @versions.each_with_index do |version, index| %>
+      <h3 class="mb-2">Version <%= index + 1 %></h3>
+      <div class="d-flex version-container">
+        <div class="version-stats flex-grow-2"><%= version.green_hosting %></div>
+        <div class="version-misc flex-grow-1"> <%= version.font_families %></div>
+      </div>
     <% end %>
   <% end %>
   <%# erase versions that are the same or validations %>

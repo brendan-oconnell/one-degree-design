@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   # dashboard
 
-  get 'dashboard', to: 'pages#dashboard'
+  get 'dashboard', to: 'pages#dashboard', as: :dashboard
 
   # footer
   get 'about', to: 'pages#about'

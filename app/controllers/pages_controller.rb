@@ -6,4 +6,11 @@ class PagesController < ApplicationController
   @website = Website.new
   end
 
+  def dashboard
+    @user = current_user
+    @websitenew = Website.new
+    @website = Website.find_by_user_id(@user.id)
+    @websites = Website.where(user_id: @user)
+
+  end
 end

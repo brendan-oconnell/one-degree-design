@@ -36,13 +36,13 @@ def compile_photos_with_cloudinary(html_doc)
       end
     end
   end
-    @photos.sort_by! { |photo| photo[:bytes] }
-    @version.photos = @photos.reverse.first(3)
+  @photos.sort_by! { |photo| photo[:bytes] }
+  @version.photos = @photos.reverse.first(3)
 
-    # photos_size
-    @all_images_size = 0
-    @photos.each { |photo| @all_images_size += photo[:bytes] }
+  # photos_size
+  @all_images_size = 0
+  @photos.each { |photo| @all_images_size += photo[:bytes] }
 
-    @version.update(all_images_size: @all_images_size)
-    @version.save
+  @version.update(all_images_size: @all_images_size)
+  @version.save
 end

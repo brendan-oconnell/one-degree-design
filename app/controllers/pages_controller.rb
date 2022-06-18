@@ -5,5 +5,5 @@ class PagesController < ApplicationController
   def home
   @website = Website.new
   end
-  
+
 end

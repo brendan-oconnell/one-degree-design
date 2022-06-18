@@ -10,6 +10,10 @@ export default class extends Controller {
   }
 
   spin(event) {
+    // make a validation for the input field?
+    // event.preventDefault()
+    // launch the creation
+
     this.mainTarget.classList.add("blur")
     this.spinnerTarget.classList.add("spinner")
     // make a validation for the input field?

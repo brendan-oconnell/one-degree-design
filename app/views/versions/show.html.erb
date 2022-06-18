@@ -26,20 +26,17 @@
       <div class="card-title">
         Images
         <div class="card-category">
-          <p>Heaviest pictures on your site:</p>
-          <div class="d-flex w-100">
-            <% if @version.photos %>
-              <% @version.photos.each do |photo| %>
-                <% photo = eval(photo) %>
-                <img class="website-photos" src="<%=photo[:url]%>" alt="website photos">
-              <% end %>
-            <% else %>
-              <div class=" website-photos spinner"></div>
-              <div class=" website-photos loading spinner"></div>
-              <div class=" website-photos loading spinner"></div>
+          <p>Some of the largest image files on your site:</p>
+          <% if @version.photos %>
+          <div class="d-flex">
+            <% @version.photos.each do |photo| %>
+              <% photo = eval(photo) %>
+              <img class="website-photos" src="<%=photo[:url]%>" alt="website photos">
             <% end %>
           </div>
-          <p>Your site has 30 total images, which have a combined size of 100mb. That’s a lot!</p>
+          <% end %>
+          <p><strong>Recommendation:</strong></p>
+          Compress image files and use the most efficient file formats possible.
           <div class="mt-4 mb-2">
             <button name="button" type="submit" class="btn btn-flat">
               Learn More

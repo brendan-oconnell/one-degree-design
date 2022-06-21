@@ -2,19 +2,21 @@
 <html>
   <head>
     <title>One Degree Design</title>
+    <link rel="icon" type="image/png" href="assets/images/one-degree-design.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="assets/images/one-degree-design.png" sizes="32x32">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <script src="https://kit.fontawesome.com/768c354273.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
 
-  <body data-controller= "loading-spinner">
+  <body data-controller= "loading-spinner" >
     <div class="loading" data-loading-spinner-target="spinner"></div>
-    <div data-loading-spinner-target="main">
+    <div data-loading-spinner-target="main" data-controller="dark-mode" data-dark-mode-target="white">
       <%= render 'shared/navbar' %>
       <%= render 'shared/flashes' %>
       <%= yield %>

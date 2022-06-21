@@ -71,10 +71,10 @@
             <div class="background-color-display" style="background-color: <%= @version.background_color[0] %>">
               <p><%= @version.background_color[0] %></p>
             </div>
-            <div class="background-color-display" style="background-color: <%= @version.background_color[1] %>"
+            <div class="background-color-display" style="background-color: <%= @version.background_color[1] %>">
               <p><%= @version.background_color[1] %></p>
             </div>
-            <div class="background-color-display" style="background-color: <%= @version.background_color[2] %>"
+            <div class="background-color-display" style="background-color: <%= @version.background_color[2] %>">
               <p><%= @version.background_color[2] %></p>
             </div>
           </div>
@@ -88,20 +88,155 @@
       </div>
     </div>
 
+    <div class="image-analysis">
+      <div class="analysis-banner">
+        <h1><span class="highlight">Reducing</span> image file size</h1>
+      </div>
 
-    <div class="banner box">
-      <h1><span class="highlight">Image</span> analysis</h1>
+      <div class="row analysis-row">
+        <div class="analysis-card-title col-6">
+          <div class="analysis-card">
+            <img src="<%= eval(@version.photos[0])[:url] %>" alt="">
+          </div>
+        </div>
+
+        <div class="tip-card col-6">
+          <h2>Use fewer pixels</h2>
+          <p>This image is  <strong><%= eval(@version.photos[0])[:dimensions][0] %> x <%= eval(@version.photos[0])[:dimensions][1] %> pixels</strong></p>
+          <p>Are you displaying images on your site at the right resolution? If your div is 300 x 200px and your image is 3000 x 2000 px, the image resolution is too large - the user won’t see it, and it wastes energy on your site. Change the file size!</p>
+        </div>
+
+      </div>
+
+      <div class="row analysis-row">
+        <div class="tip-card col-6">
+          <h2>Use  efficient file types</h2>
+          <p>This image is a <strong><%= eval(@version.photos[1])[:type] %></strong> </p>
+          <p>Did you know some image file types are much more efficient than others? Roughly speaking, at an acceptable quality, the WebP is almost half the size of JPEG, and AVIF is under half the size of WebP. https://jakearchibald.com/2020/avif-has-landed/</p>
+
+        </div>
+
+        <div class="analysis-card col-6">
+          <img src="<%= eval(@version.photos[1])[:url] %>" alt="">
+        </div>
+
+      </div>
+
+      <div class="row analysis-row">
+        <div class="analysis-card col-6">
+          <img src="<%= eval(@version.photos[2])[:url] %>" alt="">
+
+        </div>
+
+        <div class="tip-card col-6">
+          <h2>Compress images</h2>
+          <p>This image is approximately <strong> <%= eval(@version.photos[2])[:size] %></strong> pixels</p>
+          <p>https://www.omnicalculator.com/other/image-file-size Compressed images take up much less space, and don't consume as much energy. We recommend the following sites:
+              Link
+              Link
+              Link</p>
+        </div>
+      </div>
     </div>
-    <br>
-    <div class="banner box">
-      <h1><span class="highlight">Font</span> analysis</h1>
+  <% if @version.font_families == [] %>
+  <% else  %>
+   <div class="image-analysis">
+      <div class="analysis-banner">
+        <h1><span class="highlight">Reducing</span> font file size</h1>
+      </div>
+
+      <div class="row analysis-row">
+
+        <div class="tip-card col-6">
+          <h2>Consider browser-default fonts.</h2>
+          <p>Your site uses <strong><%= @version.font_families[0] %>, <%= @version.font_families[1] %>, and <%= @version.font_families[2] %></strong> fonts.</p>
+          <p>Many designers look down on browser-default fonts, but did you know that each web font you use can add up to 400kb to your site?</p>
+          <p>https://www.smashingmagazine.com/2019/06/optimizing-google-fonts-performance/</p>
+        </div>
+
+        <div class="analysis-card-title col-6">
+          <div class="analysis-card">
+            <h2></h2>
+            <h2 style="font-family:serif;">Here's how default Serif</h2>
+            <h2 style="font-family:sans-serif;">Sans Serif,</h2>
+            <h2 style="font-family:mono;">and Mono fonts display in your browser.</h2>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row analysis-row">
+
+        <div class="analysis-card-title col-6">
+          <div class="analysis-card">
+            <p>Test</p>
+          </div>
+        </div>
+
+        <div class="tip-card col-6">
+          <h2>Reduce web font file size</h2>
+          <p>OK, we get it! You love your web fonts and don't want to change them. There's still lots you can do to reduce file size, page load times, and the carbon footprint of your site.
+        </div>
+
+
+      </div>
+
     </div>
-    <br>
-    <div class="banner box">
-      <h1><span class="highlight">Background color</span> analysis</h1>
+  <% end  %>
+
+
+     <div class="image-analysis">
+      <div class="analysis-banner">
+        <h1><span class="highlight">Change</span> your background color</h1>
+      </div>
+
+      <div class="row analysis-row">
+
+
+        <div class="tip-card col-6">
+          <h2>Did you know?</h2>
+          <p>Some background colors use a LOT more energy than others. For example, a black background can use up to 80% less energy on OLED screens!</p>
+        </div>
+
+        <div class="analysis-card-title col-6">
+          <div class="analysis-card">
+            <div class="background-colors">
+              <div class="background-color-display" style="background-color: <%= @version.background_color[0] %>">
+                <p><%= @version.background_color[0] %></p>
+              </div>
+              <div class="background-color-display" style="background-color: <%= @version.background_color[1] %>">
+                <p><%= @version.background_color[1] %></p>
+              </div>
+              <div class="background-color-display" style="background-color: <%= @version.background_color[2] %>">
+                <p><%= @version.background_color[2] %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row analysis-row">
+
+
+
+        <div class="analysis-card-title col-6">
+          <div class="analysis-card">
+            <p>Test</p>
+          </div>
+        </div>
+
+
+         <div class="tip-card col-6">
+          <h2>Advice</h2>
+          <p>Choose cooler colors like black, red, or blue for backgrounds. Offer the user a “dark mode” button to switch to a dark background.</p>
+        </div>
+
+
+      </div>
+
     </div>
 
-  </div>
 </div>
 
 

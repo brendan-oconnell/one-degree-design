@@ -1,33 +1,27 @@
 <div class="position-relative">
   <div class="container text-center">
-    <div class="banner box">
+    <div class="banner box row">
         <h1>What's your <span class="highlight">website's</span> carbon footprint?</h1>
         <p> Take concrete steps to make your site greener!</p>
     </div>
-    <div class="testyoursite text-center">
-
-        <div class="mx-auto">
-          <%= simple_form_for([@website],
+    <div class="testyoursite text-center search-bar mt-4 ms-3 search-form-control form-group">
+          <%= simple_form_for([@website], html: { class: "row"},
                               data: {
                               loading_spinner_target: "form",
-                              action: "submit->loading-spinner#spin"
+                              action: "submit->loading-spinner#spin",
                               }) do |f| %>
-            <div class="search-form-control form-group">
-
-              <div class="search-bar mt-4 ms-3">
-                <div class="search-bar-http-www-text">
-                  <h3>https://www.</h3>
-                </div>
-                <div class="search-bar-content pe-3">
-                  <%= f.input :url, placeholder: "example.com", label: false %>
-                </div>
-                <div class="me-3">
-                  <%= f.submit "Test my site now -->" , class: "btn btn-flat"  %>
-                </div>
+              <div class="search-bar-http-www-text col-sm-2">
+                <h3>https://www.</h3>
               </div>
+              <div class="search-bar-content pe-3 col-sm-6">
+                <%= f.input :url, placeholder: "example.com", label: false %>
+              </div>
+              <div class="me-3 col-sm-4">
+                <%= f.submit "Test my site now -->" , class: "btn btn-flat"  %>
+              </div>
+            </div>
           <% end %>
-        </div>
-      </div>
+
     </div>
   </div>
 

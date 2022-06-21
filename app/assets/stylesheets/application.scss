@@ -41,9 +41,9 @@ body {
   font-size: 1em;
   text-align: center;
   color: #FCCA06;
-  i {
-    padding: .6em;
-  }
+    i {
+      padding: .6em;
+    }
   }
 }
 
@@ -54,8 +54,11 @@ body {
 
 .black-background{
   background-color: black !important;
-  * {
-    color: $cyellow !important;
+  > * {
+    color: $cyellow;
+  }
+  h1, span {
+    color: $cyellow;
   }
 }
 
@@ -63,6 +66,20 @@ body {
   color: black !important;
 }
 
-.orange-highlight {
-  background-color: #ECB390;
-}
+// .orange-highlight {
+//   color: #000000;
+//   position: relative;
+//   z-index: 0;
+//   text-decoration: none;
+// }
+
+// .orange-highlight::before {
+//   background-color: #ECB390 !important;
+//   position: absolute;
+//   content: "";
+//   height: 20px;
+//   width: 92%;
+//   z-index: -1;
+//   bottom: 0;
+//   transform: translate(2px, 3px);
+// }

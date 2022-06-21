@@ -9,8 +9,8 @@ export default class extends Controller {
       this.whiteTarget.classList.toggle("yellow-background")
       this.footerTarget.classList.toggle("black-background")
       this.bulbTarget.classList.toggle("bulb-light")
-      // this.highlightTarget.classList.toggle("orange-highlight")
       this.greenTarget.classList.toggle("black-background")
+      this.highlightTarget.classList.toggle("orange-highlight")
     }
   }
 
@@ -21,8 +21,9 @@ export default class extends Controller {
     this.whiteTarget.classList.toggle("yellow-background")
     this.footerTarget.classList.toggle("black-background")
     this.bulbTarget.classList.toggle("bulb-light")
-    // this.highlightTarget.classList.toggle("orange-highlight")
     this.greenTarget.classList.toggle("black-background")
+    this.highlightTarget.classList.toggle("orange-highlight")
+    this.highlightTarget.classList.toggle("highlightnav")
     if (localStorage.getItem("darkSwitch") == "dark") {
       localStorage.setItem("darkSwitch", "light")
     } else {

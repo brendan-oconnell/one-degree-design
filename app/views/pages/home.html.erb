@@ -1,7 +1,9 @@
 <div class="position-relative">
   <div class="container text-center">
     <div class="banner box">
-        <h1>What's your <span class="highlight">website's</span> carbon footprint?</h1>
+
+        <h1>How much <span class="highlight" data-dark-mode-target="highlight">energy</span> does your site use?</h1>
+
         <p> Take concrete steps to make your site greener!</p>
     </div>
     <div class="testyoursite text-center">
@@ -13,17 +15,17 @@
                               action: "submit->loading-spinner#spin"
                               }) do |f| %>
             <div class="search-form-control form-group">
+              <div class="search-bar">
+                  <div class="pe-0 mb-3 search-bar-http-www-text search-form-control flex-shrink-1">
+                  <h5 class="p-0 m-0">https://www.</h5>
+                </div>
+                <div class="search-bar-content ps-0">
 
-              <div class="search-bar mt-4 ms-3">
-                <div class="search-bar-http-www-text">
-                  <h3>https://www.</h3>
+                <%= f.input :url, placeholder: "onedegreedesign.com", label: false, class: "ps-0 border-start-0 search-input" %>
+                  <%# <input class="form-control string required" type="text" name="search[query]" id="search_query" placeholder="https://www.onedegreedesign.com" /> %>
+
                 </div>
-                <div class="search-bar-content pe-3">
-                  <%= f.input :url, placeholder: "example.com", label: false %>
-                </div>
-                <div class="me-3">
-                  <%= f.submit "Test my site now -->" , class: "btn btn-flat"  %>
-                </div>
+
               </div>
           <% end %>
         </div>
@@ -31,6 +33,6 @@
     </div>
   </div>
 
-  <div class="green-container-home">
+  <div class="green-container-home" data-dark-mode-target="green">
   </div>
 </div>

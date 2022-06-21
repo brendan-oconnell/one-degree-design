@@ -1,9 +1,9 @@
 <div class="position-relative">
   <div class="container text-start h-100">
 
-  <%# BANNER %>
+    <%# BANNER %>
     <div class="banner box">
-        <h1><span class="highlight">Hello</span><%= user.first_name %>, 👋</h1>
+        <h1><span class="highlight" data-dark-mode-target="highlight">Hello</span> <%= @user.email %>, 👋</h1>
         <p> Compare all your website versions</p>
     </div>
     <div class="testyoursite text-center row">
@@ -11,9 +11,9 @@
         <h2>Website search form</h2>
       </div>
 
-  <%# SEARCH FORM %>
-        <div class="col-12 col-xl-6 col-lg-6 mx-auto">
-        <%# make a stimulus for the search %>
+        <%# SEARCH %>
+        <div class="col-12 col-xl-6 col-lg-6 mx-auto w-100 ps-5 pe-5">
+          <%# make a stimulus for the search %>
           <%= simple_form_for([@websitenew]) do |f| %>
             <div class="search-form-control form-group">
               <div class="search-bar">
@@ -21,63 +21,23 @@
                   <h5 class="p-0 m-0">https://www.</h5>
                 </div>
                 <div class="search-bar-content flex-grow-1">
-                <%= f.input :url, placeholder: "onedegreedesign.com", label: false, class:"border-start-0 search-inputv" %>
+                  <%= f.input :url, placeholder: "onedegreedesign.com", label: false, class:"border-start-0 search-input" %>
                 </div>
+                <%= f.submit "Test my site now ⟶", class: "btn btn-flat mb-3 ms-3 btn-search"  %>
               </div>
-            <div class="mt-4 mb-2">
-              <%= f.submit "Find", class: "btn btn-flat"  %>
             </div>
           <% end %>
         </div>
-      </div>
     </div>
   </div>
 </div>
-
-<div class="spacer"></div>
-
 <%# WEBSITE %>
-<div class="container mb-5 version-container">
-  <% @websites.each do |website| %>
-    <% @versions = Version.where(website_id: website) %>
-    <% @versions.reverse.each_with_index do |version, index| %>
-    <%# put them in a partial so that you can alternate them depending on the index %>
-      <div class="version-headers d-flex w-100 mt-5 mb-2">
-      <% if index == 0 %>
-        <h3 class="flex-grow-1">YOUR LAST VERSION </h3>
-      <% else %>
-        <h3 class="">VERSION <%= index + 1 %></h3>
-      <% end %>
-      <h2 class="websites-urls"><%= website.url %></h2>
-      <h3 class=""> <%= version.created_at.day %> <%= version.created_at.month  %> <%= version.created_at.year %></h3>
-      </div>
-      <div class="version">
-        <div class="d-flex version-infos">
-          <div></div>
-          <div class="version-stats flex-grow-1 d-flex justify-content-around flex-column">
-            <% if version.cleaner_than > 0.5 %>
-            <p>Cleaner than <strong class="green"><%= (version.cleaner_than * 100).to_i %>%</strong> websites tested</p>
-            <% else %>
-            <p><strong class="red"><%= 100 - (version.cleaner_than * 100).to_i %>%</strong> of Websites tested are cleaner than your website </p>
-            <% end %>
-
-
-
-
-
-            <% if version.green_hosting == true %>
-              <p>Your site is using <strong class="green">green</strong> hosting!</p>
-            <% else %>
-              <p>Your site is <strong class="red">not</strong> using green hosting..</p>
-            <% end %>
-            <p>The size of your site is <%= number_with_precision((version.bytes / 1000000), precision: 2) %>mb</p>
-          </div>
-
-        </div>
-
-      </div>
-        <%= link_to "Read the full analysis", version_path(version), class: "btn btn-flat mt-4 w-100" %>
+<div class="green-container-dashboard mb-5 pb-5" data-dark-mode-target="green">
+  <div class="spacer"></div>
+  <div class="container mt-5">
+    <% @websites.each do |website| %>
+      <%= render 'shared/version_card', website: website %>
     <% end %>
-  <% end %>
-  <%# erase versions that are the same or validations %>
+    <%# erase versions that are the same or validations %>
+  </div>
 </div>

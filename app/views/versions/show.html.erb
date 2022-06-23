@@ -3,93 +3,128 @@
       <h1>Your <span class="highlight">results</span> for <%= @version.website.url[12..-1] %></h1>
       <p> How's your carbon footprint?</p>
   </div>
-  <div class="testyoursite text-center row">
+
+
+    <div class = card-stat>
+      <div class = card-hosting>
+        <div>
+          <img src="https://img.icons8.com/emoji/48/000000/party-popper.png" alt="good  job"/>
+        </div>
+        <div>
+        <% if @version.green_hosting %>
+            <p>Your site is using green hosting!</p>
+          <% else %>
+            <p>You're not using green hosting!</p>
+          <% end %>
+          Your site is cleaner than <%= @version.cleaner_than*100 %> % of sites tested!
+        </div>
+      </div>
+
+      <div class = card-megabyte>
+        <div>
+          <img src="https://img.icons8.com/color/48/000000/statistics.png" alt="Megabytes"/>
+        </div>
+        <div>
+          The size of your site is <%= @version.bytes/1000000 %> megabytes.
+        </div>
+      </div>
+    </div>
+
+  <%# <div class="testyoursite text-center row">
     <div class="col-12 mb-3">
       <h2>Stats</h2>
     </div>
     <div class="col-12 col-xl-6 col-lg-6 mx-auto">
       <% if @version.green_hosting %>
-        <p>Your site is using green hosting!</p>
-      <% else %>
-        <p>You're not using green hosting :(</p>
-      <% end %>
-      The size of your site is <%= @version.bytes/1000000 %> megabytes.
-      Your site is cleaner than <%= @version.cleaner_than*100 %> % of sites tested!
+        <%# <p>Your site is using green hosting!</p> %>
+      <%# <% else %>
+        <%# <p>You're not using green hosting </p> %>
+      <%# <% end %>
+      <%# The size of your site is <%= @version.bytes/1000000 megabytes. %>
+      <%# Your site is cleaner than <%= @version.cleaner_than*100 % of sites tested! %>
 
-    </div>
+    <%# </div>
   </div>
+</div>  %>
 </div>
 
 <div class="green-container-show">
   <div class="container">
-    <div class="cards">
-
-      <div class="card-title">
-        Images
-        <div class="card-category">
-          <p>Some of the largest image files on your site:</p>
-          <% if @version.photos %>
-          <div class="d-flex">
-            <% @version.photos.each do |photo| %>
-              <% photo = eval(photo) %>
-              <img class="website-photos" src="<%=photo[:url]%>" alt="website photos">
-            <% end %>
-          </div>
-          <% end %>
-          <p><strong>Recommendation:</strong></p>
-          Compress image files and use the most efficient file formats possible.
-          <div class="mt-4 mb-2">
-            <a href = "#reducingimages">
-              <button name="button" type="submit" class="btn btn-flat">
-                Learn More
-              </button>
-            </a>
+    <div>
+      <div>
+        <h1>Details</h1>
+      </div>
+      <div class="cards">
+        <div class="card-title">
+          Images
+          <div class="card-category">
+            <p>3 largest imagefiles onyour site.</p>
+            <br>
+            <p><strong>Recommendation:</strong></p>
+            Compress image files and use the most efficient file formats possible.
+              <div class="mt-4 mb-2">
+                <a href = "#reducingimages">
+                  <button name="button" type="submit" class="btn btn-flat">
+                    Learn More
+                  </button>
+                </a>
+              </div>
           </div>
         </div>
-      </div>
+          <%#  <% if @version.photos %>
+            <%# <div class="d-flex"> %>
+              <%# <% @version.photos.each do |photo| %>
+                <%# <% photo = eval(photo) %>
+  <%#               <img class="website-photos" src="<%=photo[:url]" alt="website photos">  %>
+              <%# <% end %>
+            <%# </div> %>
+            <%# <% end %>
 
-      <div class="card-title">
-        Fonts
-        <div class="card-category">
-          <% if @version.font_families == [] %>
-            <h2>Nice work!</h2>
-            <p> You're using low-energy browser standard fonts. Fonts like Open Sans, Times New Roman, Georgia, Arial or Helvetica, to name a few, don't add any extra weight to your site.</p>
-          <% else %>
-            <p>The top 3 most-used fonts on your site are <%= @version.font_families[0] %>, <%= @version.font_families[1] %>, and <%= @version.font_families[2] %>.</p>
-            <p><strong>Recommendation:</strong>Reduce font file sizes or use browser standard fonts.</p>
+        <div class="card-title">
+          Fonts
+          <div class="card-category">
+            <% if @version.font_families == [] %>
+              <h2>Nice work!</h2>
+              <p> You're using low-energy browser standard fonts. Fonts like Open Sans, Times New Roman, Georgia, Arial or Helvetica, to name a few, don't add any extra weight to your site.</p>
+            <% else %>
+              <p>The top 3 most-used fonts on your site are <%= @version.font_families[0] %>, <%= @version.font_families[1] %>, and <%= @version.font_families[2] %>.</p>
+              <p><strong>Recommendation:</strong></p>
+              <br>
+              Reduce font file sizes or use browser standard fonts.
+              <div class="mt-4 mb-2">
+                <a href = "#reducingfont">
+                  <button name="button" type="submit" class="btn btn-flat">
+                    Learn More
+                  </button>
+                </a>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="card-title">
+          Background Colors
+          <div class="card-category">
+            <p>Most-used background colors on your site:</p>
+            <div class="background-colors">
+              <div class="background-color-display" style="background-color: <%= @version.background_color[0] %>">
+                <p><%= @version.background_color[0] %></p>
+              </div>
+              <div class="background-color-display" style="background-color: <%= @version.background_color[1] %>">
+                <p><%= @version.background_color[1] %></p>
+              </div>
+              <div class="background-color-display" style="background-color: <%= @version.background_color[2] %>">
+                <p><%= @version.background_color[2] %></p>
+              </div>
+            </div>
+            <p><strong>Recommendation:</strong>Use background colors that consume less energy on OLED screens.</p>
             <div class="mt-4 mb-2">
-              <a href = "#font">
+              <a href = "#reducingbackground">
                 <button name="button" type="submit" class="btn btn-flat">
                   Learn More
                 </button>
               </a>
             </div>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="card-title">
-        Background Colors
-        <div class="card-category">
-          <p>Most-used background colors on your site:</p>
-          <div class="background-colors">
-            <div class="background-color-display" style="background-color: <%= @version.background_color[0] %>">
-              <p><%= @version.background_color[0] %></p>
-            </div>
-            <div class="background-color-display" style="background-color: <%= @version.background_color[1] %>">
-              <p><%= @version.background_color[1] %></p>
-            </div>
-            <div class="background-color-display" style="background-color: <%= @version.background_color[2] %>">
-              <p><%= @version.background_color[2] %></p>
-            </div>
-          </div>
-          <p><strong>Recommendation:</strong>Use background colors that consume less energy on OLED screens.</p>
-          <div class="mt-4 mb-2">
-            <a href = "#background">
-              <button name="button" type="submit" class="btn btn-flat">
-                Learn More
-              </button>
-            </a>
           </div>
         </div>
       </div>
@@ -99,7 +134,7 @@
 
 
 
-    <div class="image-analysis" id = "reducingimages">
+    <div id = "reducingimages" class="image-analysis" >
       <div class="analysis-banner">
         <h1><span class="highlight">Reducing</span> image file size</h1>
       </div>
@@ -112,9 +147,25 @@
         </div>
 
         <div class="tip-card col-6">
+          <div class="results">
+            <div>
+              <p>CURRET SIZE</p>
+              <%= eval(@version.photos[0])[:dimensions][0] %> x <%= eval(@version.photos[0])[:dimensions][1] %> px
+            </div>
+            <div>
+              <p>REDUCED IMAGE</p>
+              exemple 800 x 600 px
+            </div>
+            <div>
+              <p>SMALLER</p>
+              exemple 90%%
+            </div>
+          </div>
+          <div class="solutions">
           <h2>Use fewer pixels</h2>
           <p>This image is  <strong><%= eval(@version.photos[0])[:dimensions][0] %> x <%= eval(@version.photos[0])[:dimensions][1] %> pixels</strong></p>
           <p>Are you displaying images on your site at the right resolution? If your div is 300 x 200px and your image is 3000 x 2000 px, the image resolution is too large - the user won’t see it, and it wastes energy on your site. Change the file size!</p>
+          </div>
         </div>
 
       </div>
@@ -151,9 +202,10 @@
     </div>
 
 
-  <% if @version.font_families == [] %>
-  <% else  %>
-   <div class="image-analysis">
+
+    <% if @version.font_families == [] %>
+    <% else  %>
+   <div id = "reducingfont" class="image-analysis">
       <div class="analysis-banner">
         <h1><span class="highlight">Reducing</span> font file size</h1>
       </div>
@@ -198,7 +250,7 @@
   <% end  %>
 
 
-     <div class="image-analysis">
+     <div id = "reducingbackground" class="image-analysis">
       <div class="analysis-banner">
         <h1><span class="highlight">Change</span> your background color</h1>
       </div>

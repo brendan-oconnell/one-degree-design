@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, components: {registrations: 'registrations', sessions: 'sessions'}
 
   require "sidekiq/web"
   authenticate :user, ->(user) { user.admin? } do

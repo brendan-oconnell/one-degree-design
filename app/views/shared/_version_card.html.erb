@@ -1,18 +1,18 @@
 <% @versions = Version.where(website_id: website) %>
 <% @versions.reverse.each_with_index do |version, index| %>
   <div class="version mt-5">
-    <div class="version-headers d-flex w-100 mt-5 mb-2">
       <% if index == 0 %>
         <h5 class="dark-mode-text">YOUR LAST VERSION   </h5>
       <% else %>
         <h5 class="dark-mode-text">VERSION <%= index + 1 %>  </h5>
       <% end %>
-      <h5 class="color: $cyellow">   <%= version.created_at.day %> <%= version.created_at.month  %> <%= version.created_at.year %></h5>
+    <div class="version-headers d-flex w-100 mt-3 mb-2">
+      <h2 class="websites-urls"><%= website.url.upcase %> </h2>
+      <h5 class="ms-3 dark-mode-text d-flex justify-content-center flex-column"><%= Date.parse("#{version.created_at}").strftime("%B %d, %Y") %></h5>
     </div>
-    <h2 class="websites-urls"><%= website.url.upcase %></h2>
 
 
-    <div class="d-flex version-infos w-100 justify-content-between">
+    <div class="d-flex version-infos mb-5 w-100 justify-content-between">
 
       <div class="version-infos-container text-center">
         <p>Background colors:</p>
@@ -22,13 +22,13 @@
             <% end %>
           </div>
       </div>
-      <div class="version-infos-container">
+      <div class="version-infos-container ms-3">
         <p>Images size:</p>
           <h3>
             <%= version.all_images_size %>mb
           </h3>
       </div>
-      <div class="version-infos-container">
+      <div class="version-infos-container ms-3">
         <p>Biggest image:</p>
           <h3>
             <%= version.photos.first.size %>mb
@@ -38,7 +38,7 @@
     </div>
 
 
-    <div class="version-stats d-flex justify-content-between">
+    <div class="version-stats mb-5 d-flex justify-content-between">
 
       <div class="version-stat-text">
         <% if version.cleaner_than > 0.5 %>
@@ -57,7 +57,6 @@
 
       <%= link_to "Read the full analysis ⟶", version_path(version), class: "btn btn-flat btn-version" %>
     </div>
-    <div class="spacer"></div>
     <hr>
   </div>
 

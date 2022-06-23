@@ -1,9 +1,8 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon" data-dark-mode-target="navbar">
   <div class="container-fluid">
     <%= link_to root_path, class: "navbar-brand" do %>
-      <%= image_tag "one-degree-design.png", alt: "logo", class: "rounded-circle" %>
+          <div class="brand">One degree design</div>
     <% end %>
-    <div class="brand">One <span class="highlightnav" data-dark-mode-target="highlightnav">degree </span> design</div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -14,13 +13,6 @@
         <li class="nav-item active">
           <%= link_to "Dashboard", dashboard_path, class: "nav-link" %>
         </li>
-        <li class="nav-item dropdown">
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <%= link_to "Action", "#", class: "dropdown-item" %>
-            <%= link_to "Another action", "#", class: "dropdown-item" %>
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-          </div>
         <li class="nav-item">
           <%= link_to "Logout", destroy_user_session_path, class: "nav-link" %>
         </li>

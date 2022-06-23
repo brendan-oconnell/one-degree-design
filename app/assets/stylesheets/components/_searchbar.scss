@@ -1,7 +1,7 @@
 .search-form-control {
   position: relative;
   text-align: center;
-  display: block;
+  // display: block;
 }
 
 // .search-form-control .btn {
@@ -34,6 +34,9 @@
   border-radius: 7px;
   position: absolute;
   padding-bottom: 1%;
+  padding-top: 1%;
+  padding-left: 1%;
+  padding-right: 1%;
   h2 {
     padding-top: 4vh;
   }
@@ -41,20 +44,29 @@
     font-size: 22px;
     border-left: none !important;
     box-shadow: none !important;
-    border-radius: 0 10px 10px 0;
   }
 }
 
 .search-bar {
-  // display: flex;
   height: 3.9em;
+
+  display: flex;
+}
+
+input:focus {
+  outline: none;
 }
 
 .search-bar-http-www-text {
-  display: flex;
+ // display: flex;
+  width: 20%;
   justify-content: center;
-  flex-direction: column;
-  padding: 0.375rem 0.75rem;
+  // flex-direction: column;
+  // padding: 0.375rem 0.75rem;
+  padding-top: 0.375rem;
+  padding-right: 0.75rem;
+  padding-bottom: 0.19rem;
+  padding-left: 0.75rem;
   font-size: 22px;
   font-weight: 400;
   line-height: 1.5;
@@ -66,10 +78,17 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border-radius: 10px 0 0 10px;
+  // border-radius: 10px 0 0 10px;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  height: 0%;
+  h3 {
+    font-size: 1.5rem;
+    padding-top: 6%;
+  }
 }
 
 .search-bar-content {
   width: 100%;
+  border-radius: 10px 0 0 10px;
+
 }

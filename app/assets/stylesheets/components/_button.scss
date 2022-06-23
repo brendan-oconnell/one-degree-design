@@ -1,7 +1,7 @@
 .btn-flat {
   color: white;
   padding: 8px 24px;
-  border-radius: 4px;
+  border-radius: 10px;
   background: #94B49F;
   transition: background 0.3s ease;
   // margin: 4vh 0;
@@ -12,4 +12,14 @@
   background: #94B49F;
   color: white;
   // padding: 2vh 30vh;
+}
+
+
+.btn-version{
+  height:10%;
+  border-radius: 10px;
+}
+
+.btn-search {
+  border-radius: 10px !important;
 }

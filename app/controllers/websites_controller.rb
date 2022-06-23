@@ -39,14 +39,27 @@ class WebsitesController < ApplicationController
 
   def fonts_and_backgrounds_scraping(html_doc)
     stylesheet_links = []
+    stylesheet_corrected_links = []
+    # add all stylesheets to array
     html_doc.search("link").each do |link|
       stylesheet_links << link.attributes["href"].value if link.attributes["rel"].value == "stylesheet"
     end
+    # if stylesheet begins with https://www, don't do anything with it.
+    stylesheet_links.each do |stylesheet|
+      if stylesheet.start_with?("http")
+        stylesheet_corrected_links << stylesheet
+      else
+        modified_stylesheet_url = stylesheet.insert(0, @website.url)
+        stylesheet_corrected_links << modified_stylesheet_url
+      end
+    end
+
+    # TODO:
 
     @font_families = []
     @backgrounds = []
 
-    stylesheet_links.each do |stylesheet|
+    stylesheet_corrected_links.each do |stylesheet|
       style_file = URI.open(stylesheet).read
 
       @font_families << style_file.scan(/font-family:[",'](.{1,22})[",']/)
@@ -69,6 +82,10 @@ class WebsitesController < ApplicationController
       # @photos << image.attributes["src"].value unless image.attributes["alt"].nil?
       unless image.attributes["alt"].nil?
         src_value = image.attributes["data-src"] ? image.attributes["data-src"].value : image.attributes["src"].value
+        if src_value.start_with?("http")
+        else
+          src_value.insert(0, @website.url)
+        end
         dimensions = FastImage.size(src_value)
         type = FastImage.type(src_value)
         size = dimensions[0] * dimensions[1]

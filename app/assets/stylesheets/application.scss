@@ -54,11 +54,11 @@ body {
 
 .black-background{
   background-color: black !important;
-  > * {
-    color: $cyellow;
-  }
   h1, span {
     color: $cyellow;
+  }
+  .dark-mode-text {
+    color: $cyellow
   }
 }
 
@@ -66,20 +66,37 @@ body {
   color: black !important;
 }
 
-// .orange-highlight {
-//   color: #000000;
-//   position: relative;
-//   z-index: 0;
-//   text-decoration: none;
-// }
+.orange-highlightnav {
+  color: #000000;
+  position: relative;
+  z-index: 0;
+  text-decoration: none;
+}
 
-// .orange-highlight::before {
-//   background-color: #ECB390 !important;
-//   position: absolute;
-//   content: "";
-//   height: 20px;
-//   width: 92%;
-//   z-index: -1;
-//   bottom: 0;
-//   transform: translate(2px, 3px);
-// }
+.orange-highlightnav::before {
+  background-color: #ECB390 !important;
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 92%;
+  z-index: -1;
+  bottom: 0;
+  transform: translate(2px, 3px);
+}
+
+.orange-highlight {
+  color: #000000;
+  position: relative;
+  z-index: 0;
+  text-decoration: none;
+}
+.orange-highlight::before {
+  background-color: #ECB390;
+  position: absolute;
+  content: "";
+  height: 33px;
+  width: 100%;
+  z-index: -1;
+  bottom: 0;
+  transform: translate(5px, 2px);
+}

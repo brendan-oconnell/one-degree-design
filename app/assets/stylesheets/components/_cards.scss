@@ -89,6 +89,15 @@
 
 .results {
   display: flex;
+  justify-content: space-between;
+  color: white;
+}
+
+.solutions {
+  font-size: 12px;
+  background-color: #332B1A;
+  color: white;
+  border-radius: 8px;
 }
 
 

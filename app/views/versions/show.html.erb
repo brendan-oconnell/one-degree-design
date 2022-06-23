@@ -148,22 +148,22 @@
 
         <div class="tip-card col-6">
           <div class="results">
-            <div>
+            <div class="curret">
               <p>CURRET SIZE</p>
               <%= eval(@version.photos[0])[:dimensions][0] %> x <%= eval(@version.photos[0])[:dimensions][1] %> px
             </div>
-            <div>
+            <div class="reduced">
               <p>REDUCED IMAGE</p>
               exemple 800 x 600 px
             </div>
-            <div>
+            <div class="smaller">
               <p>SMALLER</p>
               exemple 90%%
             </div>
           </div>
           <div class="solutions">
-          <h2>Use fewer pixels</h2>
-          <p>This image is  <strong><%= eval(@version.photos[0])[:dimensions][0] %> x <%= eval(@version.photos[0])[:dimensions][1] %> pixels</strong></p>
+          <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i>  Use fewer pixels</h2>
+          <%# <p>This image is  <strong><%= eval(@version.photos[0])[:dimensions][0] x <%= eval(@version.photos[0])[:dimensions][1] pixels</strong></p>%>
           <p>Are you displaying images on your site at the right resolution? If your div is 300 x 200px and your image is 3000 x 2000 px, the image resolution is too large - the user won’t see it, and it wastes energy on your site. Change the file size!</p>
           </div>
         </div>

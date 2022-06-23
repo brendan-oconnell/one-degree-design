@@ -13,7 +13,7 @@
         <%= simple_form_for([@website],
                               data: { loading_spinner_target: "form",
                               action: "submit->loading-spinner#spin",
-                              })) do |f| %>
+                              }) do |f| %>
           <div class="search-form-control form-group">
             <div class="search-bar d-flex w-100">
               <div class="pe-0 mb-3 search-bar-http-www-text search-form-control flex-shrink-1">

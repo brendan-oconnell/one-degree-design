@@ -5,14 +5,20 @@
   bottom: 0;
   top: 57px;
   // height: 300vh;
+  margin: auto;
+
+  h1{
+    padding-top: 70px;
+    color: white;
+  }
 }
 
-.background-colors {
-  display: flex;
-}
+// .background-colors {
+//   display: flex;
+// }
 
 .background-color-display {
-  width: 30%;
+  // width: 30%;
   margin: 2%;
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);

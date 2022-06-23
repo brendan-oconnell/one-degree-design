@@ -1,8 +1,20 @@
 .results {
-  margin: 0 auto;
+ // margin: 0 auto;
   display: block;
-  background-color: #D8E1E9;
-  border-radius: 7px;
+ // background-color: #D8E1E9;
+ // border-radius: 7px;
+  justify-content: space-between;
+
+
+  .curret {
+    padding-right: 8px;
+
+  }
+
+  .reduced {
+    padding-left: 8px;
+  }
+
 
   h2{
     text-align: center
@@ -10,5 +22,9 @@
 
   strong{
     color: green;
+  }
+
+  p{
+    font-size: x-small;
   }
 }

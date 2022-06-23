@@ -1,10 +1,12 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
+  margin: 0 4%;
+  font-weight: 200;
 }
 
 .navbar-lewagon .brand {
-  font-size: 24px;
+  font-size: 16px;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -22,7 +24,8 @@
   text-decoration: none;
 }
 .highlightnav::before {
-  background-color: #D8E1E9;
+  // background-color: #D8E1E9;
+  background-color: #ECB390;
   position: absolute;
   content: "";
   height: 20px;

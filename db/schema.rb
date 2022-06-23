@@ -69,9 +69,9 @@ ActiveRecord::Schema.define(version: 2022_06_11_124501) do
     t.string "background_color"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "photos", array: true
+    t.text "photos"
     t.float "co2_renewable"
-    t.string "font_families", array: true
+    t.string "font_families"
     t.boolean "carbonapi_updated"
     t.index ["website_id"], name: "index_versions_on_website_id"
   end

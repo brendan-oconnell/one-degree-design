@@ -1,7 +1,7 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon" data-dark-mode-target="navbar">
   <div class="container-fluid">
     <%= link_to root_path, class: "navbar-brand" do %>
-      <%= image_tag "one-degree-design.png", alt: "logo" %>
+      <%= image_tag "one-degree-design.png", alt: "logo", class: "rounded-circle" %>
     <% end %>
     <div class="brand">One <span class="highlightnav">degree </span> design</div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,12 +14,25 @@
         <li class="nav-item active">
           <%= link_to "Dashboard", dashboard_path, class: "nav-link" %>
         </li>
+        <li class="nav-item dropdown">
+          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <%= link_to "Action", "#", class: "dropdown-item" %>
+            <%= link_to "Another action", "#", class: "dropdown-item" %>
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+          </div>
         <li class="nav-item">
           <%= link_to "Logout", destroy_user_session_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item dark-mode-bulb">
+          <a href=""><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb" data-action="click->dark-mode#switch"></i></a>
         </li>
       <% else %>
         <li class="nav-item">
           <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item dark-mode-bulb" >
+          <a href=""><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb" id="darkSwitch" data-action="click->dark-mode#switch"></i></a>
         </li>
        <% end %>
     </ul>

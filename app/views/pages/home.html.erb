@@ -8,7 +8,7 @@
       <div class="col-12 mb-3">
         <h2>Test your site now</h2>
       </div>
-      <div class="col-12 col-xl-6 col-lg-6 mx-auto w-100 ps-5 pe-5">
+      <div class="col-12 col-xl-6 col-lg-6 mx-auto w-100 ps-5 pe-5" >
         <%# make a stimulus for the search %>
         <%= simple_form_for([@website]) do |f| %>
           <div class="search-form-control form-group">
@@ -19,7 +19,7 @@
               <div class="search-bar-content flex-grow-1">
                 <%= f.input :url, placeholder: "onedegreedesign.com", label: false, class:"border-start-0 search-input" %>
               </div>
-              <%= f.submit "Test my site now ⟶", class: "btn btn-flat mb-3 ms-3 btn-search"  %>
+              <%= f.submit "Find a site ⟶", class: "btn btn-flat mb-3 ms-3 btn-search"  %>
             </div>
           </div>
         <% end %>

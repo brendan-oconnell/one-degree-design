@@ -8,7 +8,7 @@
 .card-category {
   background-size: cover;
   background-position: center;
-  height: 300px;
+  // height: 300px;
   // display: flex;
   justify-content: center;
   align-items: center;
@@ -26,13 +26,85 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 16px;
-  padding-top: 141px;
+ // padding-top: 141px;
   right: 9%;
   left: 9%;
   // position: absolute;
   margin: 0 4.3%;
-
+  text-decoration: none;
 }
+
+.card-stat {
+  //display: flex;
+  justify-content: space-around;
+  color: black;
+  align-items: center;
+  right: 10%;
+  left: 10%;
+  // margin: 0 auto;
+  // padding: 30px;
+  display: flex;
+ // background-color: #D8E1E9;
+  border-radius: 7px;
+  position: absolute;
+  // padding-bottom: 1%;
+  z-index: 2;
+  padding-left: 70px;
+  padding-right: 70px;
+
+  .card-hosting{
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    color: black;
+    padding: 30px;
+    text-align: center;
+    // justify-content: center;
+    // border-style: groove;
+    border-radius: 16px;
+    font-size: 12px;
+    line-height: 1.4;
+    // margin-bottom: -54px;
+    // margin-top: 24px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  }
+
+  .card-megabyte{
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    color: black;
+    padding: 30px;
+    text-align: center;
+    // justify-content: center;
+    // border-style: groove;
+    border-radius: 16px;
+    font-size: 12px;
+    line-height: 1.4;
+   // margin-bottom: -54px;
+   // margin-top: 24px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  }
+}
+
+.results {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+}
+
+.solutions {
+  font-size: 12px;
+  background-color: #332B1A;
+  color: white;
+  border-radius: 8px;
+}
+
+
+
+
+
+
 
 // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {

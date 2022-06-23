@@ -1,7 +1,7 @@
 <div class="position-relative">
   <div class="container text-center">
     <div class="banner box">
-        <h1>What's your <span class="highlight">website's</span> carbon footprint?</h1>
+        <h1>What's your <span class="highlight"  data-dark-mode-target="highlight">website's</span> carbon footprint?</h1>
         <p> Take concrete steps to make your site greener!</p>
     </div>
     <div class="testyoursite text-center row">
@@ -12,12 +12,12 @@
         <%# make a stimulus for the search %>
         <%= simple_form_for([@website]) do |f| %>
           <div class="search-form-control form-group">
-            <div class="search-bar w-100">
+            <div class="search-bar d-flex w-100">
               <div class="pe-0 mb-3 search-bar-http-www-text search-form-control flex-shrink-1">
                 <h5 class="p-0 m-0">https://www.</h5>
               </div>
               <div class="search-bar-content flex-grow-1">
-                <%= f.input :url, placeholder: "onedegreedesign.com", label: false, class:"border-start-0 search-input" %>
+                <%= f.input :url, placeholder: "onedegreedesign.com", label: false, class:"border-start-0 search-input form-control" %>
               </div>
               <%= f.submit "Find a site ⟶", class: "btn btn-flat mb-3 ms-3 btn-search"  %>
             </div>

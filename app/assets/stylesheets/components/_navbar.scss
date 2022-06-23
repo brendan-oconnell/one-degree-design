@@ -17,6 +17,7 @@
   width: 52px;
 }
 
+
 .highlightnav {
   color: #000000;
   position: relative;
@@ -44,4 +45,9 @@
   display: flex;
   justify-content: flex-end !important;
   padding: 20px;
+}
+
+.bulb-light{
+  position: sticky;
+  top: 0;
 }

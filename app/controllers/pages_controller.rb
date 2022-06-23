@@ -10,7 +10,10 @@ class PagesController < ApplicationController
     @user = current_user
     @websitenew = Website.new
     @website = Website.find_by_user_id(@user.id)
-    @websites = Website.where(user_id: @user)
-
+    if params[:query].present?
+      @websites = Website.where(url: "https://www.#{params[:query]}")
+    else
+      @websites = Website.where(user_id: @user)
+    end
   end
 end

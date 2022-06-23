@@ -2,8 +2,8 @@
   <div class="container text-start h-100">
 
     <%# BANNER %>
-    <div class="banner box">
-        <h1><span class="highlight" data-dark-mode-target="highlight">Hello</span> <%= @user.email %>, 👋</h1>
+    <div class="banner box w-100">
+        <h1><span class="highlight" data-dark-mode-target="highlight">Hello</span> <%= @user.first_name %>, 👋</h1>
         <p> Compare all your website versions</p>
     </div>
     <div class="testyoursite text-center row">
@@ -12,30 +12,30 @@
       </div>
 
         <%# SEARCH %>
-        <div class="col-12 col-xl-6 col-lg-6 mx-auto w-100 ps-5 pe-5" data-controller="search-form">
+        <div class="col-12 col-xl-6 col-lg-6 mx-auto w-100 ps-5 pe-5">
           <%# make a stimulus for the search %>
-          <%= simple_form_for([@websitenew],
-                              data: {action: "submit->search-form#search"}) do |f| %>
-            <div class="search-form-control form-group">
-              <div class="search-bar d-flex">
+
+          <%= form_tag dashboard_path, class:' d-flex flex-grow-1', method: :get do %>
+            <div class="search-form-control form-group w-100">
+              <div class="search-bar d-flex w-100">
                 <div class="pe-0 mb-3 search-bar-http-www-text search-form-control flex-shrink-1">
                   <h5 class="p-0 m-0">https://www.</h5>
                 </div>
                 <div class="search-bar-content flex-grow-1">
-                  <%= f.input :url, placeholder: "onedegreedesign.com", label: false, class:"border-start-0 search-input" %>
+                  <%= text_field_tag :query,
+                    params[:query],
+                    class: "border-start-0 search-input form-control",
+                    placeholder: " onedegreedesign.com"
+                  %>
+                  <%# <%= f.input :url, placeholder: "onedegreedesign.com", label: false, class:"border-start-0 search-input" %>
                 </div>
-                <%= f.submit "Test my site now ⟶", class: "btn btn-flat mb-3 ms-3 btn-search"%>
-              </div>
+            <%= submit_tag "Find my site now ⟶", class: "btn btn-flat mb-3 ms-3 btn-search" %>
             </div>
           <% end %>
         </div>
     </div>
   </div>
 </div>
-
-
-<div class="spacer"></div>
-
 
 
 
@@ -45,6 +45,7 @@
   <div class="container mt-5">
     <% @websites.each do |website| %>
       <%= render 'shared/version_card', website: website %>
+      <div class="spacer"></div>
     <% end %>
     <%# erase versions that are the same or validations %>
   </div>

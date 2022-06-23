@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_11_124501) do
+ActiveRecord::Schema.define(version: 2022_06_21_184045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2022_06_11_124501) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "admin", default: false, null: false
+    t.string "first_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -66,12 +67,12 @@ ActiveRecord::Schema.define(version: 2022_06_11_124501) do
     t.float "co2"
     t.float "all_images_size"
     t.float "fonts_file_size"
-    t.string "background_color"
+    t.string "background_color", array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "photos"
+    t.text "photos", array: true
     t.float "co2_renewable"
-    t.string "font_families"
+    t.string "font_families", array: true
     t.boolean "carbonapi_updated"
     t.index ["website_id"], name: "index_versions_on_website_id"
   end

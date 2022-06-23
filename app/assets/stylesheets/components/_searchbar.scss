@@ -45,6 +45,7 @@
     font-size: 22px;
     border-left: none !important;
     box-shadow: none !important;
+    border-radius: 0 10px 10px 0;
   }
 }
 
@@ -86,8 +87,4 @@
   width: 100%;
   border-radius: 10px 0 0 10px;
 
-}
-
-.search-input {
-  border-radius: 0 10px 10px 0;
 }

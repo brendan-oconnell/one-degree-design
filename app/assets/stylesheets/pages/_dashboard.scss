@@ -1,0 +1,65 @@
+.green-container-dashboard{
+  background-color: #678D58;
+  z-index: 0;
+  position: relative;
+  bottom: 0;
+  top: 57px;
+}
+
+
+.version-container {
+
+  * {
+    font-family: monospace;
+  }
+}
+
+
+.version-infos{
+  height: 20em;
+  > * {
+    border-radius: 4px;
+    height: 100%;
+    text-align: center;
+    padding: 1em;
+  }
+  p {
+    font-size: 1.2em;
+    letter-spacing: 2px;
+  }
+}
+
+.version-stats{
+  color: #D8E1E9;
+  background: #1E331A;
+  padding: 2em;
+  border-radius: 10px;
+  font-size: 1.5em;
+}
+
+.version-misc{
+  background-color: $cgreen;
+  min-width: 33%;
+}
+
+.version-infos-container {
+  background-color: white;
+  height: 10em;
+  flex: 1 1 0px;
+  margin: 1em;
+  border-radius: 10px;
+
+}
+
+
+.background-color-sample {
+  height: 50px;
+  width: 75px;
+  border-radius: 10px;
+  border: 0.5px solid rgba(0,0,0,.5);
+  margin: 0.5em;
+}
+
+.long-arrow {
+  width: 1em;
+}

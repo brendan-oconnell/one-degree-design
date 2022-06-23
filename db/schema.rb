@@ -67,12 +67,12 @@ ActiveRecord::Schema.define(version: 2022_06_21_184045) do
     t.float "co2"
     t.float "all_images_size"
     t.float "fonts_file_size"
-    t.string "background_color"
+    t.string "background_color", array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "photos"
+    t.text "photos", array: true
     t.float "co2_renewable"
-    t.string "font_families"
+    t.string "font_families", array: true
     t.boolean "carbonapi_updated"
     t.index ["website_id"], name: "index_versions_on_website_id"
   end

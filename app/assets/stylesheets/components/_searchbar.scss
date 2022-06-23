@@ -45,12 +45,15 @@
     font-size: 22px;
     border-left: none !important;
     box-shadow: none !important;
-    border-radius: 0 10px 10px 0;
   }
 }
 
 .search-bar {
   display: flex;
+}
+
+input:focus {
+  outline: none;
 }
 
 .search-bar-http-www-text {

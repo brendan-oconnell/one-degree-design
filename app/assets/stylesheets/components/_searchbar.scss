@@ -26,9 +26,9 @@
 }
 
 .testyoursite {
+  right: 16%;
+  left: 16%;
   z-index: 1;
-  right: 10%;
-  left: 10%;
   margin: 0 auto;
   display: block;
   background-color: #D8E1E9;
@@ -47,7 +47,7 @@
 }
 
 .search-bar {
-  display: flex;
+  // display: flex;
 }
 
 .search-bar-http-www-text {

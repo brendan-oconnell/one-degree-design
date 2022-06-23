@@ -2,7 +2,7 @@
   background-size: cover;
   background-position: center;
   margin-top: 9vh;
-  margin-left: 4%;
+  // margin-left: 4%;
   h1 {
     margin: 0;
     color: rgb(0, 0, 0);
@@ -13,12 +13,12 @@
   }
   p {
     font-size: 20px;
-    color: #AF5D63;
     font-style: normal;
-    font-weight: 300;
-    font-size: 32px;
+    font-weight: 200;
+    font-size: 22px;
     line-height: 39px;
     width: 82%;
+    padding-left: 16%;
   }
 }
 
@@ -42,7 +42,7 @@
   background-color: $cwhite;
   position: absolute;
   content: "";
-  height: 33px;
+  height: 25px;
   width: 100%;
   z-index: -2;
   bottom: 0;

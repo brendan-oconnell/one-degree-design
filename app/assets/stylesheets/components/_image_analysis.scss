@@ -6,22 +6,21 @@
 }
 
 .analysis-card {
-  // position: relative;
-  // overflow: hidden;
-  // background-size: cover;
-  // background-position: center;
-  // height: 300px;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-  // background-color: white;
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-color: white;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 14px;
   color: black;
-  // font-weight: bold;
-  // text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  // border-radius: 5px;
-  // box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  // padding: 13px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
 
 
   // .analysis-card-title {
@@ -44,6 +43,24 @@
     object-fit: cover;
     border-radius: 8px;
   }
+}
+
+.background-analysis-card {
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  // background-color: white;
+  height: 300px;
+  //display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  color: black;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  //box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
 .analysis-banner {

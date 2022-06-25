@@ -26,7 +26,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 16px;
- // padding-top: 141px;
+  padding-top: 20px;
   right: 9%;
   left: 9%;
   // position: absolute;
@@ -59,6 +59,7 @@
     color: black;
     padding: 30px;
     text-align: center;
+    padding-top: 5%;
     // justify-content: center;
     // border-style: groove;
     border-radius: 16px;
@@ -67,6 +68,10 @@
     // margin-bottom: -54px;
     // margin-top: 24px;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
+
+    // img {
+    //   padding-top: 34%;
+    // }
   }
 
   .card-megabyte{
@@ -76,15 +81,20 @@
     color: black;
     padding: 30px;
     text-align: center;
+    padding-top: 5%;
     // justify-content: center;
     // border-style: groove;
     border-radius: 16px;
     font-size: 12px;
-    line-height: 1.4;
+    line-height: 2.4;
    // margin-bottom: -54px;
    // margin-top: 24px;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
   }
+
+  // img {
+  //   padding-top: 10%;
+  // }
 }
 
 .results {
@@ -98,13 +108,76 @@
   background-color: #332B1A;
   color: white;
   border-radius: 8px;
+  margin-top: 16px;
+  padding-left: 4%;
+  padding-right: 4%;
+
+  // p{
+  //   padding-left: 8px;
+  //   margin-top: 4%;
+  // }
 }
 
 
+.file {
+  margin-top: 10%;
+  color: white;
+}
 
 
+.compress-images {
+  font-size: 12px;
+  background-color: #332B1A;
+  color: white;
+  border-radius: 8px;
+  margin-top: 16%;
+}
 
+.card-font-results {
+  text-align: left;
+  color: white;
 
+  p{
+    text-align: center;
+  }
+}
+
+.font-results {
+text-align: center;
+vertical-align: middle;
+}
+
+.font-color-display {
+  margin: 2%;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  height: 70px;
+  background-color: black;
+}
+
+.font-text{
+  text-align: justify;
+}
+
+.font-solutions{
+  font-size: 12px;
+  background-color: #332B1A;
+  color: white;
+  border-radius: 8px;
+  margin-top: 16px;
+  margin-top: 24%;
+  padding-left: 4%;
+}
+
+.background-solutions{
+  font-size: 12px;
+  background-color: #332B1A;
+  color: white;
+  border-radius: 8px;
+  margin-top: 16px;
+  margin-top: 24%;
+  padding-left: 4%;
+}
 
 // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {

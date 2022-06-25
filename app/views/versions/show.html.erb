@@ -16,7 +16,7 @@
           <% else %>
             <p>You're not using green hosting!</p>
           <% end %>
-          Your site is cleaner than <%= @version.cleaner_than*100 %> % of sites tested!
+          Your site is cleaner than <strong><%= @version.cleaner_than*100 %></strong> % of sites tested!
         </div>
       </div>
 
@@ -25,7 +25,7 @@
           <img src="https://img.icons8.com/color/48/000000/statistics.png" alt="Megabytes"/>
         </div>
         <div>
-          The size of your site is <%= @version.bytes/1000000 %> megabytes.
+          The size of your site is <strong><%= @version.bytes/1000000 %> megabytes.</strong>
         </div>
       </div>
     </div>
@@ -51,7 +51,7 @@
 <div class="green-container-show" data-dark-mode-target="green">
   <div class="container">
     <div>
-      <div>
+      <div class="detail">
         <h1>Details</h1>
       </div>
       <div class="cards">
@@ -65,7 +65,7 @@
               <div class="mt-4 mb-2">
                 <a href = "#reducingimages">
                   <button name="button" type="submit" class="btn btn-flat">
-                    Learn More
+                    Learn More ⟶
                   </button>
                 </a>
               </div>
@@ -94,7 +94,7 @@
               <div class="mt-4 mb-2">
                 <a href = "#reducingfont">
                   <button name="button" type="submit" class="btn btn-flat">
-                    Learn More
+                    Learn More ⟶
                   </button>
                 </a>
               </div>
@@ -121,7 +121,7 @@
             <div class="mt-4 mb-2">
               <a href = "#reducingbackground">
                 <button name="button" type="submit" class="btn btn-flat">
-                  Learn More
+                  Learn More ⟶
                 </button>
               </a>
             </div>
@@ -139,14 +139,14 @@
         <h1><span class="highlight">Reducing</span> image file size</h1>
       </div>
 
-      <div class="row analysis-row">
-        <div class="analysis-card-title col-6">
+      <div class="row analysis-row" style="padding-bottom: 8px">
+        <div class="analysis-card-title col-4">
           <div class="analysis-card">
             <img src="<%= eval(@version.photos[0])[:url] %>" alt="">
           </div>
         </div>
 
-        <div class="tip-card col-6">
+        <div class="tip-card col-8" style ="margin-top: 7%">
           <div class="results">
             <div class="curret">
               <h3>CURRET SIZE</h3>
@@ -170,33 +170,47 @@
 
       </div>
 
-      <div class="row analysis-row">
-        <div class="tip-card col-6">
-          <h2>Use  efficient file types</h2>
-          <p>This image is a <strong><%= eval(@version.photos[1])[:type] %></strong> </p>
-          <p>Did you know some image file types are much more efficient than others? Roughly speaking, at an acceptable quality, the WebP is almost half the size of JPEG, and AVIF is under half the size of WebP. https://jakearchibald.com/2020/avif-has-landed/</p>
 
+
+
+
+      <div class="row analysis-row">
+        <div class="tip-card col-8">
+          <div class="file">
+            <p>This image is a <strong><%= eval(@version.photos[1])[:type] %></strong></p>
+              <div class="solutions">
+                <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i>Use  efficient file types</h2>
+                <p>Did you know some image file types are much more efficient than others? Roughly speaking, at an acceptable quality, the WebP is almost half the size of JPEG, and AVIF is under half the size of WebP. https://jakearchibald.com/2020/avif-has-landed/</p>
+              </div>
+          </div>
         </div>
 
-        <div class="analysis-card col-6">
+        <div class="analysis-card col-4">
           <img src="<%= eval(@version.photos[1])[:url] %>" alt="">
         </div>
 
       </div>
 
       <div class="row analysis-row">
-        <div class="analysis-card col-6">
+        <div class="analysis-card col-4">
           <img src="<%= eval(@version.photos[2])[:url] %>" alt="">
 
         </div>
 
-        <div class="tip-card col-6">
-          <h2>Compress images</h2>
-          <p>This image is approximately <strong> <%= eval(@version.photos[2])[:size] %></strong> pixels</p>
-          <p>https://www.omnicalculator.com/other/image-file-size Compressed images take up much less space, and don't consume as much energy. We recommend the following sites:
-              Link
-              Link
-              Link</p>
+        <div class="tip-card col-8">
+          <div class="file">
+            <p>This image is approximately <strong> <%= eval(@version.photos[2])[:size] %></strong> pixels</p>
+              <div class="solutions">
+                <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i>Compress images</h2>
+                <p>https://www.omnicalculator.com/other/image-file-size Compressed images take up much less space, and don't consume as much energy. We recommend the following sites:
+                  <ul>
+                    <li>Link</li>
+                    <li>Link</li>
+                    <li>Link</li>
+                  </ul>
+                </p>
+              </div>
+          </div>
         </div>
       </div>
     </div>
@@ -211,24 +225,44 @@
       </div>
 
       <div class="row analysis-row">
-
-        <div class="tip-card col-6">
-          <h2>Consider browser-default fonts.</h2>
-          <p>Your site uses <strong><%= @version.font_families[0] %>, <%= @version.font_families[1] %>, and <%= @version.font_families[2] %></strong> fonts.</p>
-          <p>Many designers look down on browser-default fonts, but did you know that each web font you use can add up to 400kb to your site?</p>
-          <p>https://www.smashingmagazine.com/2019/06/optimizing-google-fonts-performance/</p>
-        </div>
-
         <div class="analysis-card-title col-6">
           <div class="analysis-card">
-            <h2></h2>
-            <h2 style="font-family:serif;">Here's how default Serif</h2>
-            <h2 style="font-family:sans-serif;">Sans Serif,</h2>
-            <h2 style="font-family:mono;">and Mono fonts display in your browser.</h2>
+            <div class="font-solutions">
+              <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i>Consider browser-default fonts.</h2>
+              <ul>
+                <li style="font-family:serif;">Here's how default Serif</li>
+                <li style="font-family:sans-serif;">Sans Serif</li>
+                <li style="font-family:mono;">and Mono fonts display in your browser.</li>
+              </ul>
+            </div>
           </div>
         </div>
 
+        <div class="tip-card col-6">
+          <div class="card-font-results">
+            <div>
+              <p>Your site uses</p>
+            </div>
+            <div class="font-results">
+              <div class="font-color-display">
+              <p><%= @version.font_families[0] %></p>
+              </div>
+              <div class="font-color-display">
+              <p><%= @version.font_families[1] %></p>
+              </div>
+              <div class="font-color-display">
+              <p><%= @version.font_families[2] %></p>
+              </div>
+            </div>
+            <div class="font-text">
+              <p>Many designers look down on browser-default fonts, but did you know that each web font you use can add up to 400kb to your site?</p>
+              <p>https://www.smashingmagazine.com/2019/06/optimizing-google-fonts-performance/</p>
+            </div>
+          </div>
+        </div>
       </div>
+
+
 
       <div class="row analysis-row">
 
@@ -239,10 +273,11 @@
         </div>
 
         <div class="tip-card col-6">
-          <h2>Reduce web font file size</h2>
-          <p>OK, we get it! You love your web fonts and don't want to change them. There's still lots you can do to reduce file size, page load times, and the carbon footprint of your site.
+          <div class="font-solutions">
+            <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i>Reduce web font file size</h2>
+            <p>OK, we get it! You love your web fonts and don't want to change them. There's still lots you can do to reduce file size, page load times, and the carbon footprint of your site.
+          </div>
         </div>
-
 
       </div>
 
@@ -259,8 +294,10 @@
 
 
         <div class="tip-card col-6">
-          <h2>Did you know?</h2>
-          <p>Some background colors use a LOT more energy than others. For example, a black background can use up to 80% less energy on OLED screens!</p>
+          <div class="background-solutions">
+            <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i>Did you know?</h2>
+            <p>Some background colors use a LOT more energy than others. For example, a black background can use up to 80% less energy on OLED screens!</p>
+          </div>
         </div>
 
         <div class="analysis-card-title col-6">
@@ -292,11 +329,12 @@
         </div>
 
 
-         <div class="tip-card col-6">
-          <h2>Advice</h2>
-          <p>Choose cooler colors like black, red, or blue for backgrounds. Offer the user a “dark mode” button to switch to a dark background.</p>
+        <div class="tip-card col-6">
+          <div class="background-solutions">
+            <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i>Advice</h2>
+            <p>Choose cooler colors like black, red, or blue for backgrounds. Offer the user a “dark mode” button to switch to a dark background.</p>
+          </div>
         </div>
-
 
       </div>
 

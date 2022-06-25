@@ -13,7 +13,7 @@
   justify-content: center;
   align-items: center;
   background-color: white;
-  font-size: 14px;
+  font-size: 16px;
   color: black;
   // font-weight: bold;
   // text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
@@ -49,29 +49,31 @@
   position: absolute;
   // padding-bottom: 1%;
   z-index: 2;
-  padding-left: 70px;
-  padding-right: 70px;
 
   .card-hosting{
     display: flex;
     justify-content: space-between;
     background-color: white;
     color: black;
-    padding: 30px;
+    padding: 60px;
     text-align: center;
     padding-top: 5%;
     // justify-content: center;
     // border-style: groove;
     border-radius: 16px;
-    font-size: 12px;
-    line-height: 1.4;
+    font-size: 22px;
+    // line-height: 1.4;
     // margin-bottom: -54px;
     // margin-top: 24px;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    width: 45%;
 
     // img {
     //   padding-top: 34%;
     // }
+    h1 {
+      font-size: 4.5rem;
+    }
   }
 
   .card-megabyte{
@@ -79,17 +81,18 @@
     justify-content: space-between;
     background-color: white;
     color: black;
-    padding: 30px;
+    padding: 60px;
     text-align: center;
-    padding-top: 5%;
+    padding-top: 72px;
     // justify-content: center;
     // border-style: groove;
     border-radius: 16px;
-    font-size: 12px;
-    line-height: 2.4;
+    font-size: 22px;
+    // line-height: 2.4;
    // margin-bottom: -54px;
    // margin-top: 24px;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    width: 45%;
   }
 
   // img {

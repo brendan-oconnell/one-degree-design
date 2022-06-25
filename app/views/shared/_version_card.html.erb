@@ -23,16 +23,39 @@
           </div>
       </div>
       <div class="version-infos-container ms-3">
-        <p>Images size:</p>
-          <h3>
-            <%= version.all_images_size %>mb
-          </h3>
+        <p>Largest image dimensions:</p>
+          <h4>
+            <ul>
+              <li>
+                <%= eval(version.photos[0])[:dimensions][0] %> x <%= eval(version.photos[0])[:dimensions][1] %> px
+              </li>
+              <li>
+                <%= eval(version.photos[1])[:dimensions][0] %> x <%= eval(version.photos[1])[:dimensions][1] %> px
+              </li>
+              <li>
+                <%= eval(version.photos[2])[:dimensions][0] %> x <%= eval(version.photos[2])[:dimensions][1] %> px
+              </li>
+            </ul>
+          </h4>
       </div>
       <div class="version-infos-container ms-3">
-        <p>Biggest image:</p>
-          <h3>
-            <%= version.photos.first.size %>mb
-          </h3>
+        <p>Estimated file sizes:</p>
+          <h4>
+            <ul>
+              <li>
+                <% first_image_file_size = eval(version.photos[0])[:dimensions][0]*eval(version.photos[0])[:dimensions][1] %>
+                <%= (first_image_file_size/5000000.to_f).round(2) %>mb
+              </li>
+              <li>
+                <% second_image_file_size = eval(version.photos[1])[:dimensions][0]*eval(version.photos[1])[:dimensions][1] %>
+                <%= (second_image_file_size/5000000.to_f).round(2) %>mb
+              </li>
+              <li>
+                <% third_image_file_size = eval(version.photos[2])[:dimensions][0]*eval(version.photos[2])[:dimensions][1] %>
+                <%= (third_image_file_size/5000000.to_f).round(2) %>mb
+              </li>
+            </ul>
+          </h4>
       </div>
 
     </div>

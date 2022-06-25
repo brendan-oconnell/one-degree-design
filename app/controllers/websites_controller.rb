@@ -20,7 +20,7 @@ class WebsitesController < ApplicationController
       # CloudinaryCallJob.perform_later(@version)
       redirect_to version_path(@version)
     else
-      render :websites
+      render :new
     end
   end
 

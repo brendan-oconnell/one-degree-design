@@ -8,15 +8,24 @@
     <div class = card-stat>
       <div class = card-hosting>
         <div>
-          <img src="https://img.icons8.com/emoji/48/000000/party-popper.png" alt="good  job"/>
+          <% if @version.cleaner_than > 0.5 %>
+            <h1>👍</h1>
+        <% else %>
+          <h1>👎</h1>
+        <% end %>
         </div>
         <div>
+          <% if @version.cleaner_than > 0.5 %>
+            <p>Cleaner than <strong class="green"><%= (@version.cleaner_than * 100).to_i %>% of sites tested!</strong></p>
+          <% else %>
+            <p>Dirtier than <strong class="red"><%= 100 - (@version.cleaner_than * 100).to_i %>% of sites tested.</strong></p>
+          <% end %>
         <% if @version.green_hosting %>
             <p>Your site is using green hosting!</p>
           <% else %>
             <p>You're not using green hosting!</p>
           <% end %>
-          Your site is cleaner than <strong><%= @version.cleaner_than*100 %></strong> % of sites tested!
+
         </div>
       </div>
 
@@ -25,7 +34,12 @@
           <img src="https://img.icons8.com/color/48/000000/statistics.png" alt="Megabytes"/>
         </div>
         <div>
+
           <p>The size of your site is <strong><%= @version.bytes/1000000 %> megabytes.</strong></p>
+
+          <p><strong><%= @version.bytes/1000000 %> megabytes</strong></p>
+          <p></p>The overall size of your site.
+
         </div>
       </div>
     </div>
@@ -52,16 +66,17 @@
   <div class="container">
     <div>
       <div class="detail">
-        <h1>Details</h1>
+        <h1>Summary</h1>
       </div>
       <div class="cards">
         <div class="card-title">
           Images
           <div class="card-category">
-            <p>3 largest imagefiles onyour site.</p>
+            <p>Three of the largest images on your site are <strong><%= eval(@version.photos[0])[:dimensions][0] %> x <%= eval(@version.photos[0])[:dimensions][1] %> px, <%= eval(@version.photos[1])[:dimensions][0] %> x <%= eval(@version.photos[1])[:dimensions][1] %> px, and <%= eval(@version.photos[2])[:dimensions][0] %> x <%= eval(@version.photos[2])[:dimensions][1] %> px.</strong></p>
             <br>
-            <p><strong>Recommendation:</strong></p>
-            Compress image files and use the most efficient file formats possible.
+            <p><strong>Recommendation:</strong>
+            <br>
+            Compress image files and use the most efficient file formats possible.</p>
               <div class="mt-4 mb-2">
                 <a href = "#reducingimages">
                   <button name="button" type="submit" class="btn btn-flat">
@@ -87,10 +102,10 @@
               <h2>Nice work!</h2>
               <p> You're using low-energy browser standard fonts. Fonts like Open Sans, Times New Roman, Georgia, Arial or Helvetica, to name a few, don't add any extra weight to your site.</p>
             <% else %>
-              <p>The top 3 most-used fonts on your site are <%= @version.font_families[0] %>, <%= @version.font_families[1] %>, and <%= @version.font_families[2] %>.</p>
-              <p><strong>Recommendation:</strong></p>
+              <p>The top 3 most-used fonts on your site are <strong><%= @version.font_families[0] %>, <%= @version.font_families[1] %>, and <%= @version.font_families[2] %>.</strong></p>
+              <p><strong>Recommendation:</strong>
               <br>
-              Reduce font file sizes or use browser standard fonts.
+              Reduce font file sizes or use browser standard fonts.</p>
               <div class="mt-4 mb-2">
                 <a href = "#reducingfont">
                   <button name="button" type="submit" class="btn btn-flat">

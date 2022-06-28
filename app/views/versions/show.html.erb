@@ -128,7 +128,10 @@
                 <p><%= @version.background_color[2] %></p>
               </div>
             </div>
-            <p><strong>Recommendation:</strong>Use background colors that consume less energy on OLED screens.</p>
+            <br>
+            <p><strong>Recommendation:</strong>
+            <br>
+            Use background colors that consume less energy on OLED screens.</p>
             <div class="mt-4 mb-2">
               <a href = "#reducingbackground">
                 <button name="button" type="submit" class="btn btn-flat">
@@ -147,7 +150,7 @@
 
     <div id = "reducingimages" class="image-analysis" >
       <div class="analysis-banner">
-        <h1><span class="highlight">Reducing</span> image file size</h1>
+        <h1>Reducing image file size</h1>
       </div>
 
       <div class="row analysis-row" style="padding-bottom: 8px">
@@ -254,7 +257,7 @@
 
    <div id = "reducingfont" class="image-analysis">
       <div class="analysis-banner">
-        <h1><span class="highlight">Reducing</span> font file size</h1>
+        <h1>Reducing font file size</h1>
       </div>
             <div class="row analysis-row">
         <div class="tip-card col-8">
@@ -280,23 +283,18 @@
       </div>
 
       <div class="row analysis-row" style="padding-bottom: 8px">
-        <div class="analysis-card col-4">
-
+        <div class="analysis-card col-4" style="background: black;">
         </div>
 
         <div class="tip-card col-8">
           <div class="results">
             <div class="curret">
-              <h3>CURRENT SIZE</h3>
-              <p><%= eval(@version.photos[0])[:dimensions][0] %> x <%= eval(@version.photos[0])[:dimensions][1] %> px</p>
+              <h3>REDUCED WEB FONT FORMATS</h3>
+              <p>WOFF2</p>
             </div>
             <div class="reduced">
-              <h3>REDUCED</h3>
-              <p><%= eval(@version.photos[0])[:dimensions][0]/10 %> x <%= eval(@version.photos[0])[:dimensions][1]/10 %> px</p>
-            </div>
-            <div class="smaller">
-              <h3>SMALLER</h3>
-              <p><strong>90%</strong></p>
+              <h3>SIZE REDUCTION</h3>
+              <p>90%</p>
             </div>
           </div>
           <div class="solutions">
@@ -315,61 +313,52 @@
 
      <div id = "reducingbackground" class="image-analysis">
       <div class="analysis-banner">
-        <h1><span class="highlight">Change</span> your background color</h1>
+        <h1>Change your background color</h1>
       </div>
 
-      <div class="row analysis-row">
 
-
-        <div class="tip-card col-6">
-          <div class="background-solutions">
-            <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i>Did you know?</h2>
-            <p>Some background colors use a LOT more energy than others. For example, a black background can use up to 80% less energy on OLED screens!</p>
-          </div>
-        </div>
-
-        <div class="analysis-card-title col-6">
-          <div class="analysis-card">
-            <div class="background-colors">
-              <div class="background-color-display" style="background-color: <%= @version.background_color[0] %>">
-                <p><%= @version.background_color[0] %></p>
-              </div>
-              <div class="background-color-display" style="background-color: <%= @version.background_color[1] %>">
-                <p><%= @version.background_color[1] %></p>
-              </div>
-              <div class="background-color-display" style="background-color: <%= @version.background_color[2] %>">
-                <p><%= @version.background_color[2] %></p>
+            <div class="row analysis-row">
+        <div class="tip-card col-8">
+          <div class="file">
+          <div class="results">
+            <div class="curret">
+              <h3>CURRENT BACKGROUND COLORS</h3>
+               <div class="background-color-container d-flex justify-content-center">
+                  <% @version.background_color.each do |color| %>
+                    <div class="background-color-sample" style='background-color: <%=color%>'></div>
+                  <% end %>
               </div>
             </div>
+
+            <div class="reduced">
+              <h3>RECOMMENDED COLORS</h3>
+                <div class="background-color-container d-flex justify-content-center">
+
+                    <div class="background-color-sample" style="background-color: black;border-color: white;"></div>
+                    <div class="background-color-sample" style='background-color: #E4140C'></div>
+                    <div class="background-color-sample" style='background-color: #1C4752'></div>
+
+              </div>
+            </div>
+            <div class="smaller">
+              <h3>REDUCED ENERGY</h3>
+              <p><strong>20-50%</strong></p>
+            </div>
           </div>
+
+              <div class="solutions">
+                <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Use  darker background colors</h2>
+                <p>Some background colors use a LOT more energy than others. For example, a black background can use up to 80% less energy on OLED screens! Choose cooler colors like black, red, or blue for backgrounds. Offer the user a “dark mode” button to switch to a dark background.</p>
+                <p><a href="https://jakearchibald.com/2020/avif-has-landed/">Learn More</a></p>
+              </div>
+          </div>
+        </div>
+
+        <div class="analysis-card col-4" style="margin-top: 32px;">
+          <img src="https://cdn.shortpixel.ai/spai3/w_1680+q_glossy+ret_img+to_auto/https://www.wholegraindigital.com/wp-content/uploads/2022/03/Capture.jpg" alt="">
         </div>
 
       </div>
-
-      <div class="row analysis-row">
-
-
-
-        <div class="analysis-card-title col-6">
-          <div class="analysis-card">
-            <p>Test</p>
-          </div>
-        </div>
-
-
-        <div class="tip-card col-6">
-          <div class="background-solutions">
-            <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i>Advice</h2>
-            <p>Choose cooler colors like black, red, or blue for backgrounds. Offer the user a “dark mode” button to switch to a dark background.</p>
-          </div>
-        </div>
-
-      </div>
-
     </div>
 
 </div>
-
-
-
-<%#  adjusted_bytes: carbon_infos["statistics"]["adjustedBytes"], energy: carbon_infos["statistics"]["energy"], co2: carbon_infos["statistics"]["co2"]["grid"]["grams"], co2_renewable: carbon_infos["statistics"]["co2"]["renewable"]["grams"], all_images_size: @all_images_size, background_color: background_color, font_families: font_families )

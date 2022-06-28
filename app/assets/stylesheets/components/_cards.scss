@@ -39,6 +39,7 @@
   border-radius: 7px;
   position: absolute;
   z-index: 2;
+}
 
   .card-hosting{
     display: flex;
@@ -62,12 +63,12 @@
     width: 45%;
 
 
-    p{
+    p {
       padding-left: 2%;
 
     // img {
     //   padding-top: 34%;
-    // }
+    }
     h1 {
       font-size: 4.5rem;
 
@@ -98,11 +99,9 @@
 
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     width: 45%;
-  }
-
-  p{
-    padding-left: 2%;
-  }
+    p{
+      padding-left: 2%;
+    }
 }
 
 .results {

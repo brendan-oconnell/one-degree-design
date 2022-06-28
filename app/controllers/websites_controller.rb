@@ -4,6 +4,8 @@ require "nokogiri"
 require "fastimage"
 
 class WebsitesController < ApplicationController
+
+
   def create
     existing_website = Website.find_by_url("https://www.#{website_params[:url]}")
     if Website.find_by_url("https://www.#{website_params[:url]}") && existing_website.user == current_user
@@ -72,10 +74,17 @@ class WebsitesController < ApplicationController
     default_font_families = ["open sans", "times", "times new roman", "georgia", "serif", "Verdana", "Arial", "Helvetica", "sans-serif", "courier", "monospace", "lucida console", "cursive", "fantasy" ]
 
     @font_families.reject! { |font| default_font_families.include?(font.downcase) }
+    @backgrounds.map do |color|
+      color = "#fff" if color == "white"
+    end
+    raise
+
 
     @font_families.sort_by! { |font| @font_families.count(font) }.reverse!.uniq!
     @backgrounds.sort_by! { |color| @backgrounds.count(color) }.reverse!.uniq!
   end
+
+
   def image_scraping(html_doc)
     @photos = []
     html_doc.search("img").each do |image|
@@ -113,7 +122,6 @@ class WebsitesController < ApplicationController
     url = website.url
     html_file = URI.open(url).read
     html_doc = Nokogiri::HTML(html_file)
-
     last_version = Version.find_by_website_id(@website.id)
     # if last_version && (Time.now.utc - last_version.created_at) < 86_400
     #   @version = last_version
@@ -124,7 +132,6 @@ class WebsitesController < ApplicationController
       carbon_infos = website_carbon_api(url)
       @version[:carbonapi_updated] = true
     # end
-
     fonts_and_backgrounds_scraping(html_doc)
     image_scraping(html_doc)
 

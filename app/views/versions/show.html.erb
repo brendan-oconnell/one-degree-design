@@ -8,24 +8,29 @@
     <div class = card-stat>
       <div class = card-hosting>
         <div>
-          <img src="https://img.icons8.com/emoji/48/000000/party-popper.png" alt="good  job"/>
+          <img src="https://img.icons8.com/emoji/48/000000/party-popper.png" alt="good job" class ="card-hosting-image"/>
         </div>
         <div>
-        <% if @version.green_hosting %>
-            <p>Your site is using green hosting!</p>
-          <% else %>
-            <p>You're not using green hosting!</p>
-          <% end %>
-          Your site is cleaner than <%= @version.cleaner_than*100 %> % of sites tested!
+        <div class="card-hosting-text">
+          <% if @version.green_hosting %>
+              <h3><strong>Your site is using green hosting!</strong></h3>
+            <% else %>
+              <h3><strong>You're not using green hosting!</strong></h3>
+            <% end %>
+          <h3>Your site is cleaner than <%= @version.cleaner_than*100 %> % of sites tested!</h3>
         </div>
+      </div>
       </div>
 
       <div class = card-megabyte>
         <div>
-          <img src="https://img.icons8.com/color/48/000000/statistics.png" alt="Megabytes"/>
+          <img src="https://img.icons8.com/color/48/000000/statistics.png" alt="Megabytes" class ="card-megabytes-image"/>
         </div>
         <div>
-          The size of your site is <%= @version.bytes/1000000 %> megabytes.
+          <div class="card-megabyte-text">
+            <h3><strong><%= @version.bytes/1000000 %> megabytes.</strong></h3>
+            <h3>The size of your site</h3>
+          </div>
         </div>
       </div>
     </div>
@@ -49,7 +54,7 @@
 </div>
 
 <div class="green-container-show" data-dark-mode-target="green">
-  <div class="container">
+  <div class="container mt-5">
     <div>
       <div>
         <h1>Details</h1>
@@ -142,14 +147,14 @@
       <div class="row analysis-row">
         <div class="analysis-card-title col-6">
           <div class="analysis-card">
-            <img src="<%= eval(@version.photos[0])[:url] %>" alt="">
+            <img src="<%= eval(@version.photos[0])[:url] %>" alt="" class="analysis-card-image">
           </div>
         </div>
 
         <div class="tip-card col-6">
           <div class="results">
             <div class="curret">
-              <p>CURRET SIZE</p>
+              <p>CURRENT SIZE</p>
               <%= eval(@version.photos[0])[:dimensions][0] %> x <%= eval(@version.photos[0])[:dimensions][1] %> px
             </div>
             <div class="reduced">
@@ -161,7 +166,7 @@
               exemple 90%%
             </div>
           </div>
-          <div class="solutions">
+          <div class="solutions p-3">
           <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i>  Use fewer pixels</h2>
           <%# <p>This image is  <strong><%= eval(@version.photos[0])[:dimensions][0] x <%= eval(@version.photos[0])[:dimensions][1] pixels</strong></p>%>
           <p>Are you displaying images on your site at the right resolution? If your div is 300 x 200px and your image is 3000 x 2000 px, the image resolution is too large - the user won’t see it, and it wastes energy on your site. Change the file size!</p>

@@ -7,7 +7,8 @@
         <h5 class="dark-mode-text">VERSION <%= index + 1 %>  </h5>
       <% end %>
     <div class="version-headers d-flex w-100 mt-3 mb-2">
-      <h2 class="websites-urls"><%= website.url.upcase %> </h2>
+      <% website_url = website.url.match(/www\.(.+)/)[1].upcase %>
+      <h2 class="websites-urls"><%= website_url %> </h2>
       <h5 class="ms-3 dark-mode-text d-flex justify-content-center flex-column"><%= Date.parse("#{version.created_at}").strftime("%B %d, %Y") %></h5>
     </div>
 

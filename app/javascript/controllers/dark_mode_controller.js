@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["bulb","navbar", "white","green", "footer", "highlightnav", "highlight"]
+  static targets = ["bulb","navbar", "white","green", "footer", "highlight"]
 
   connect() {
     if (localStorage.getItem("darkSwitch") == "dark") {
@@ -11,7 +11,6 @@ export default class extends Controller {
       this.greenTarget.classList.toggle("black-background")
       this.footerTarget.classList.toggle("black-background")
       this.highlightTarget.classList.toggle("orange-highlight")
-      this.highlightnavTarget.classList.toggle("orange-highlightnav")
     }
   }
 
@@ -24,7 +23,7 @@ export default class extends Controller {
     this.greenTarget.classList.toggle("black-background")
     this.footerTarget.classList.toggle("black-background")
     this.highlightTarget.classList.toggle("orange-highlight")
-    this.highlightnavTarget.classList.toggle("orange-highlightnav")
+
     if (localStorage.getItem("darkSwitch") == "dark") {
       localStorage.setItem("darkSwitch", "light")
     } else {

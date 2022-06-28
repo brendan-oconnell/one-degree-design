@@ -28,10 +28,11 @@
 
         </div>
       </div>
+      </div>
 
       <div class = card-megabyte>
         <div>
-          <img src="https://img.icons8.com/color/48/000000/statistics.png" alt="Megabytes"/>
+          <img src="https://img.icons8.com/color/48/000000/statistics.png" alt="Megabytes" class ="card-megabytes-image"/>
         </div>
         <div>
           <p><strong><%= @version.bytes/1000000 %> megabytes</strong></p>
@@ -59,7 +60,7 @@
 </div>
 
 <div class="green-container-show" data-dark-mode-target="green">
-  <div class="container">
+  <div class="container mt-5">
     <div>
       <div class="detail">
         <h1>Summary</h1>
@@ -157,7 +158,7 @@
 
         <div class="tip-card col-8">
           <div class="results">
-            <div class="curret">
+            <div class="current">
               <h3>CURRENT SIZE</h3>
               <p><%= eval(@version.photos[0])[:dimensions][0] %> x <%= eval(@version.photos[0])[:dimensions][1] %> px</p>
             </div>
@@ -170,8 +171,8 @@
               <p><strong>90%</strong></p>
             </div>
           </div>
-          <div class="solutions">
-          <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Use fewer pixels</h2>
+          <div class="solutions p-3">
+          <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i>  Use fewer pixels</h2>
           <%# <p>This image is  <strong><%= eval(@version.photos[0])[:dimensions][0] x <%= eval(@version.photos[0])[:dimensions][1] pixels</strong></p>%>
           <p>Are your image files larger than their container? Generally speaking, image pixel sizes should be no larger than their div container. For example, if your div is 500 x 400px but your image is 3000 x 2000 px, your user will never see the extra pixels, and your large file will increase your carbon footprint.</p>
           <p>Learn More</p>

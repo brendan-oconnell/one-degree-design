@@ -48,6 +48,7 @@
     font-size: 22px;
     border-left: none !important;
     box-shadow: none !important;
+    border-radius: 0 10px 10px 0 ;
   }
 }
 
@@ -67,8 +68,7 @@ input:focus {
 }
 
 .search-bar-http-www-text {
- // display: flex;
-  width: 20%;
+  display: flex;
   justify-content: center;
   // flex-direction: column;
   // padding: 0.375rem 0.75rem;
@@ -80,7 +80,7 @@ input:focus {
   padding-right: 0.75rem;
   padding-bottom: 0.19rem;
   padding-left: 0.75rem;
-  font-size: 22px;
+  font-size: 22px !important;
   font-weight: 400;
   line-height: 1.5;
   color: #0E0000;
@@ -91,7 +91,7 @@ input:focus {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  // border-radius: 10px 0 0 10px;
+  border-radius: 10px 0 0 10px;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   height: 75%;
   h3 {

@@ -34,12 +34,8 @@
           <img src="https://img.icons8.com/color/48/000000/statistics.png" alt="Megabytes"/>
         </div>
         <div>
-
-          <p>The size of your site is <strong><%= @version.bytes/1000000 %> megabytes.</strong></p>
-
           <p><strong><%= @version.bytes/1000000 %> megabytes</strong></p>
           <p></p>The overall size of your site.
-
         </div>
       </div>
     </div>
@@ -148,40 +144,37 @@
 
 
 
+
     <div id = "reducingimages" class="image-analysis" >
       <div class="analysis-banner">
         <h1><span class="highlight">Reducing</span> image file size</h1>
       </div>
 
-      <div class="row analysis-row">
-        <div class="analysis-card-title col-4">
-          <div class="analysis-card">
-            <img src="<%= eval(@version.photos[0])[:url] %>" alt="">
-          </div>
+      <div class="row analysis-row" style="padding-bottom: 8px">
+        <div class="analysis-card col-4">
+          <img src="<%= eval(@version.photos[0])[:url] %>" alt="">
         </div>
 
         <div class="tip-card col-8">
-          <div class="file">
-            <div class="results">
-              <div class="curret">
-                <h3>CURRET SIZE</h3>
-                <p><%= eval(@version.photos[0])[:dimensions][0] %> x <%= eval(@version.photos[0])[:dimensions][1] %> px</p>
-              </div>
-              <div class="reduced">
-                <h3>REDUCED IMAGE</h3>
-              <p>800 x 600 px</p>
-              </div>
-              <div class="smaller">
-                <h3>SMALLER</h3>
-                <p><strong>90%</strong></p>
-              </div>
+          <div class="results">
+            <div class="curret">
+              <h3>CURRENT SIZE</h3>
+              <p><%= eval(@version.photos[0])[:dimensions][0] %> x <%= eval(@version.photos[0])[:dimensions][1] %> px</p>
             </div>
-
-            <div class="image-solutions">
-            <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i>  Use fewer pixels</h2>
-            <%# <p>This image is  <strong><%= eval(@version.photos[0])[:dimensions][0] x <%= eval(@version.photos[0])[:dimensions][1] pixels</strong></p>%>
-            <p>Are you displaying images on your site at the right resolution? If your div is 300 x 200px and your image is 3000 x 2000 px, the image resolution is too large - the user won’t see it, and it wastes energy on your site. Change the file size!</p>
+            <div class="reduced">
+              <h3>REDUCED</h3>
+              <p><%= eval(@version.photos[0])[:dimensions][0]/10 %> x <%= eval(@version.photos[0])[:dimensions][1]/10 %> px</p>
             </div>
+            <div class="smaller">
+              <h3>SMALLER</h3>
+              <p><strong>90%</strong></p>
+            </div>
+          </div>
+          <div class="solutions">
+          <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Use fewer pixels</h2>
+          <%# <p>This image is  <strong><%= eval(@version.photos[0])[:dimensions][0] x <%= eval(@version.photos[0])[:dimensions][1] pixels</strong></p>%>
+          <p>Are your image files larger than their container? Generally speaking, image pixel sizes should be no larger than their div container. For example, if your div is 500 x 400px but your image is 3000 x 2000 px, your user will never see the extra pixels, and your large file will increase your carbon footprint.</p>
+          <p>Learn More</p>
           </div>
         </div>
 
@@ -194,10 +187,25 @@
       <div class="row analysis-row">
         <div class="tip-card col-8">
           <div class="file">
-            <p>This image is a <strong><%= eval(@version.photos[1])[:type] %></strong></p>
-              <div class="image-solutions">
-                <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i>Use  efficient file types</h2>
-                <p>Did you know some image file types are much more efficient than others? Roughly speaking, at an acceptable quality, the WebP is almost half the size of JPEG, and AVIF is under half the size of WebP. https://jakearchibald.com/2020/avif-has-landed/</p>
+          <div class="results">
+            <div class="curret">
+              <h3>CURRENT FILE TYPE</h3>
+              <p><%= eval(@version.photos[1])[:type] %></p>
+            </div>
+            <div class="reduced">
+              <h3>COMPRESSED FILE TYPE</h3>
+              <p>avif</p>
+            </div>
+            <div class="smaller">
+              <h3>SMALLER</h3>
+              <p><strong>50-80%</strong></p>
+            </div>
+          </div>
+
+              <div class="solutions">
+                <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Use  efficient file types</h2>
+                <p>Did you know some image file types are much more efficient than others? Web-optimized file types like WebP and AVIF can be dramatically smaller than commonly-used formats like jpg and png.</p>
+                <p><a href="https://jakearchibald.com/2020/avif-has-landed/">Learn More</a></p>
               </div>
           </div>
         </div>
@@ -216,16 +224,23 @@
 
         <div class="tip-card col-8">
           <div class="file">
-            <p>This image is approximately <strong> <%= eval(@version.photos[2])[:size] %></strong> pixels</p>
-              <div class="image-solutions">
-                <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i>Compress images</h2>
-                <p>https://www.omnicalculator.com/other/image-file-size Compressed images take up much less space, and don't consume as much energy. We recommend the following sites:
-                  <ul>
-                    <li>Link</li>
-                    <li>Link</li>
-                    <li>Link</li>
-                  </ul>
-                </p>
+            <div class="results">
+              <div class="curret">
+                <h3>APPROX. FILE SIZE</h3>
+                <p><strong> <%= eval(@version.photos[2])[:size]/5000.to_f.round(2) %></strong> kb</p>
+              </div>
+              <div class="reduced">
+
+              </div>
+              <div class="smaller">
+
+              </div>
+          </div>
+            <!-- calculation based on https://www.omnicalculator.com/other/image-file-size -->
+              <div class="solutions">
+                <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Compress images</h2>
+                <p>Properly compressed images have little to no impact on user experience, and reduce your carbon footprint.</p>
+                <p>Learn More</p>
               </div>
           </div>
         </div>
@@ -234,74 +249,68 @@
 
 
 
-    <% if @version.font_families == [] %>
-    <% else  %>
+    <%#<% if @version.font_families == [] %>
+    <%#<% else  %>
+
    <div id = "reducingfont" class="image-analysis">
       <div class="analysis-banner">
         <h1><span class="highlight">Reducing</span> font file size</h1>
       </div>
-
-      <div class="row analysis-row">
-        <div class="analysis-card-title col-6">
-          <div class="font-analysis-card">
-            <div class="font-solutions">
-              <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i>Consider browser-default fonts.</h2>
-              <ul>
-                <li style="font-family:serif;">Here's how default Serif</li>
-                <br>
-                <li style="font-family:sans-serif;">Sans Serif</li>
-                <br>
-                <li style="font-family:mono;">and Mono fonts display in your browser.</li>
-              </ul>
+            <div class="row analysis-row">
+        <div class="tip-card col-8">
+          <div class="file">
+          <div class="results">
+            <div class="curret">
+              <h3>CURRENT FONTS</h3>
+              <p><%= @version.font_families[0] %>, <%= @version.font_families[1] %>, <%= @version.font_families[2] %> </p>
+            </div>
+            <div class="smaller">
+              <h3>APPROX. SIZE</h3>
+              <p><strong>up to 1.2mb</strong></p>
             </div>
           </div>
-        </div>
 
-        <div class="tip-card col-6">
-          <div class="card-font-results">
-            <div>
-              <p>Your site uses</p>
-            </div>
-            <div class="font-results">
-              <div class="font-color-display">
-              <p><%= @version.font_families[0] %></p>
+              <div class="solutions">
+                <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Consider browser standard fonts</h2>
+                <p> <span style="font-family:serif;"> Here's how default Serif, </span><span style="font-family:sans-serif;"> Sans Serif, </span><span style="font-family:serif;"> and Mono fonts display in your browser.</span> Many designers look down on browser-default fonts, but did you know that each web font you use can add up to 400kb to your site?</p>
+                <p><a href="https://www.smashingmagazine.com/2019/06/optimizing-google-fonts-performance/">Learn More</a></p>
               </div>
-              <div class="font-color-display">
-              <p><%= @version.font_families[1] %></p>
-              </div>
-              <div class="font-color-display">
-              <p><%= @version.font_families[2] %></p>
-              </div>
-            </div>
-            <div class="font-text">
-              <p>Many designers look down on browser-default fonts, but did you know that each web font you use can add up to 400kb to your site?</p>
-              <p>https://www.smashingmagazine.com/2019/06/optimizing-google-fonts-performance/</p>
-            </div>
           </div>
         </div>
       </div>
 
+      <div class="row analysis-row" style="padding-bottom: 8px">
+        <div class="analysis-card col-4">
 
-
-      <div class="row analysis-row">
-
-        <div class="analysis-card-title col-6">
-          <div class="analysis-card">
-            <p>Test</p>
-          </div>
         </div>
 
-        <div class="tip-card col-6">
-          <div class="font-solutions">
-            <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i>Reduce web font file size</h2>
-            <p>OK, we get it! You love your web fonts and don't want to change them. There's still lots you can do to reduce file size, page load times, and the carbon footprint of your site.
+        <div class="tip-card col-8">
+          <div class="results">
+            <div class="curret">
+              <h3>CURRENT SIZE</h3>
+              <p><%= eval(@version.photos[0])[:dimensions][0] %> x <%= eval(@version.photos[0])[:dimensions][1] %> px</p>
+            </div>
+            <div class="reduced">
+              <h3>REDUCED</h3>
+              <p><%= eval(@version.photos[0])[:dimensions][0]/10 %> x <%= eval(@version.photos[0])[:dimensions][1]/10 %> px</p>
+            </div>
+            <div class="smaller">
+              <h3>SMALLER</h3>
+              <p><strong>90%</strong></p>
+            </div>
+          </div>
+          <div class="solutions">
+          <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Reduce web font file size</h2>
+          <%# <p>This image is  <strong><%= eval(@version.photos[0])[:dimensions][0] x <%= eval(@version.photos[0])[:dimensions][1] pixels</strong></p>%>
+          <p>OK, we get it! You love your web fonts and don't want to change them. There's still lots you can do to reduce file size, page load times, and the carbon footprint of your site.</p>
+          <p>Learn More</p>
           </div>
         </div>
 
       </div>
 
     </div>
-  <% end  %>
+  <%#<% end  %>
 
 
      <div id = "reducingbackground" class="image-analysis">
@@ -320,7 +329,7 @@
         </div>
 
         <div class="analysis-card-title col-6">
-          <div class="background-analysis-card">
+          <div class="analysis-card">
             <div class="background-colors">
               <div class="background-color-display" style="background-color: <%= @version.background_color[0] %>">
                 <p><%= @version.background_color[0] %></p>

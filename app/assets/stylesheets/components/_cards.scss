@@ -109,14 +109,35 @@
   display: flex;
   justify-content: space-between;
   color: white;
+  font-size: 26px;
+  font-weight: 600;
+  h3 {
+    font-size: 13px;
+    margin: 0px;
+  }
+}
+
+.solutions {
+  font-size: 17px;
+  background-color: #332B1A;
+  color: #FFDC8E;
+  border-radius: 8px;
+  margin-top: 16px;
+  padding: 2%;
+
+  // p{
+  //   padding-left: 8px;
+  //   margin-top: 4%;
+  // }
+  h2 {
+    font-size: 1.5rem;
+  }
 }
 
 
 
-
-
 .file {
-  margin-top: 10%;
+  margin-top: 1%;
   color: white;
 }
 

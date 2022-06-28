@@ -4,6 +4,7 @@ export default class extends Controller {
   static targets = ["bulb","navbar", "white","green", "footer", "highlight"]
 
   connect() {
+
     if (localStorage.getItem("darkSwitch") == "dark") {
       this.navbarTarget.classList.toggle("yellow-background")
       this.whiteTarget.classList.toggle("yellow-background")

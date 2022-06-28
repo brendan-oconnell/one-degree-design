@@ -16,7 +16,7 @@
 
   <body data-controller= "loading-spinner" >
     <div class="loading" data-loading-spinner-target="spinner"></div>
-    <div data-loading-spinner-target="main" data-controller="dark-mode" data-dark-mode-target="white">
+    <div data-loading-spinner-target="main" data-controller="dark-mode" data-dark-mode-target="white" class="yellow-background">
       <%= render 'shared/navbar' %>
       <%= render 'shared/flashes' %>
       <%= yield %>

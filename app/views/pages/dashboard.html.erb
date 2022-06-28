@@ -3,7 +3,7 @@
 
     <%# BANNER %>
     <div class="banner box text-center w-100">
-        <h1><span class="highlight" data-dark-mode-target="highlight">Hello</span> <%= @user.first_name %>, 👋</h1>
+        <h1><span class="highlight orange-highlight" data-dark-mode-target="highlight">Hello</span> <%= @user.first_name %>, 👋</h1>
         <p> Compare all your website versions</p>
     </div>
     <div class="testyoursite text-center row">
@@ -40,8 +40,8 @@
 
 
 <%# WEBSITE %>
-<div class="green-container-dashboard mb-5 pb-5" data-dark-mode-target="green">
-  <div class="spacer"></div>
+<div class="green-container-dashboard mb-5 pb-5 black-background" data-dark-mode-target="green">
+  <div class="spacer black-background" data-dark-mode-target="spacer"></div>
   <div class="container mt-5">
     <% @websites.each do |website| %>
       <%= render 'shared/version_card', website: website %>

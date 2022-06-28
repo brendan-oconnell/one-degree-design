@@ -19,17 +19,28 @@
 
 
 
+<div class="col-12 col-xl-6 col-lg-6 mx-auto w-100 ps-5 pe-5" >
+        <%# make a stimulus for the search %>
 
-          <%= simple_form_for([@websitenew]) do |f| %>
-            <div class="search-form-control form-group">
-              <div class="search-bar d-flex">
-                <div class="pe-0 mb-3 search-bar-http-www-text search-form-control flex-shrink-1">
-                  <h5 class="p-0 m-0">https://www.</h5>
-                </div>
-                <div class="search-bar-content flex-grow-1">
-                  <%= f.input :query, params[:query], placeholder: "onedegreedesign.com", label: false, class:"border-start-0 search-input" %>
-                </div>
-                <%= f.submit "Find my site now ⟶", class: "btn btn-flat mb-3 ms-3 btn-search"%>
+       <%= simple_form_for([@website],
+                              data: { loading_spinner_target: "form",
+                              action: "submit->loading-spinner#spin",
+                              }) do |f| %>
+          <div class="search-form-control form-group">
+            <div class="search-bar d-flex w-100">
+              <div class="pe-0 mb-3 search-bar-http-www-text search-form-control flex-shrink-1">
+                <h3 class="p-0 m-0">https://www.</h3>
               </div>
+              <div class="search-bar-content flex-grow-1">
+                <%= f.input :url, placeholder: "onedegreedesign.com", label: false, class:"border-start-0 search-input form-control " %>
+              </div>
+
+      </div>
+
+      <div class="col-12 col-xl-6 col-lg-6 mx-auto w-100 ps-5 pe-5" >
+        <%# make a stimulus for the search %>
+              <%= f.submit "Check your site ⟶", class: "btn btn-flat mb-3 ms-3 btn-search"  %>
             </div>
-          <% end %>
+          </div>
+        <% end %>
+      </div>

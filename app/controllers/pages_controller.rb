@@ -14,6 +14,7 @@ class PagesController < ApplicationController
       @websites = Website.where(url: "https://www.#{params[:query]}")
     else
       @websites = Website.where(user_id: @user)
+
     end
   end
 end

@@ -20,7 +20,7 @@ class WebsitesController < ApplicationController
       # CloudinaryCallJob.perform_later(@version)
       redirect_to version_path(@version)
     else
-      render :websites
+      render :new
     end
   end
 
@@ -115,15 +115,15 @@ class WebsitesController < ApplicationController
     html_doc = Nokogiri::HTML(html_file)
 
     last_version = Version.find_by_website_id(@website.id)
-    if last_version && (Time.now.utc - last_version.created_at) < 86_400
-      @version = last_version
-      @version[:carbonapi_updated] = false
-      carbon_infos = nil
-    else
+    # if last_version && (Time.now.utc - last_version.created_at) < 86_400
+    #   @version = last_version
+    #   @version[:carbonapi_updated] = false
+    #   carbon_infos = nil
+    # else
       @version = Version.new
       carbon_infos = website_carbon_api(url)
       @version[:carbonapi_updated] = true
-    end
+    # end
 
     fonts_and_backgrounds_scraping(html_doc)
     image_scraping(html_doc)

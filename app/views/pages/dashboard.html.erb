@@ -1,8 +1,8 @@
 <div class="position-relative">
-  <div class="container text-start h-100">
+  <div class="container text-center h-100">
 
     <%# BANNER %>
-    <div class="banner box w-100">
+    <div class="banner box text-center w-100">
         <h1><span class="highlight" data-dark-mode-target="highlight">Hello</span> <%= @user.first_name %>, 👋</h1>
         <p> Compare all your website versions</p>
     </div>
@@ -19,12 +19,12 @@
             <div class="search-form-control form-group w-100">
               <div class="search-bar d-flex w-100">
                 <div class="pe-0 mb-3 search-bar-http-www-text search-form-control flex-shrink-1">
-                  <h3 class="p-0 m-0">https://www.</h3>
+                  <h3 class="m-0">https://www.</h3>
                 </div>
                 <div class="search-bar-content flex-grow-1">
                   <%= text_field_tag :query,
                     params[:query],
-                    class: "border-start-0 search-input form-control",
+                    class: "border-start-0 form-control search-bar-content",
                     placeholder: " onedegreedesign.com"
                   %>
                   <%# <%= f.input :url, placeholder: "onedegreedesign.com", label: false, class:"border-start-0 search-input" %>

@@ -77,7 +77,6 @@ class WebsitesController < ApplicationController
     @backgrounds.map do |color|
       color = "#fff" if color == "white"
     end
-    raise
 
 
     @font_families.sort_by! { |font| @font_families.count(font) }.reverse!.uniq!

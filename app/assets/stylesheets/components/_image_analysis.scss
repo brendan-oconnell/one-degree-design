@@ -4,7 +4,6 @@
   justify-content: space-between;
 
 }
-
 .analysis-card {
   position: relative;
   overflow: hidden;
@@ -18,12 +17,6 @@
   font-size: 14px;
   color: black;
   border-radius: 8px;
-  // font-weight: bold;
-  // text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  // border-radius: 5px;
-  // box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  // padding: 13px;
-
 
 
   // .analysis-card-title {
@@ -48,8 +41,27 @@
   }
 }
 
+
 .tip-card {
   margin-top: 1%;
+
+
+.background-analysis-card {
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  // background-color: white;
+  height: 300px;
+  //display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  color: black;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  //box-shadow: 0 0 15px rgba(0,0,0,0.2);
 
 }
 

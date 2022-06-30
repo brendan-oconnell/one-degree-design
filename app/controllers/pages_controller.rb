@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
 
-  skip_before_action :authenticate_user!, only: [ :home, :version, :about, :howitworks ]
+  skip_before_action :authenticate_user!, only: [ :home, :about, :howitworks ]
 
   def home
   @website = Website.new

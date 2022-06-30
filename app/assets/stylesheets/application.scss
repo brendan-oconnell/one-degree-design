@@ -37,10 +37,16 @@ body {
 }
 
 .dark-mode-bulb {
+  position: sticky;
+  top: 8.5%;
+  left: 94.5%;
+  z-index: 5;
+  color: #FCCA06;
+  z-index: 5;
+  color: #FCCA06;
   a {
   font-size: 1em;
   text-align: center;
-  color: #FCCA06;
     i {
       padding: .6em;
     }
@@ -62,8 +68,15 @@ body {
   }
 }
 
+.blue-background{
+  background-color: $cwhite !important;
+  h2, p {
+    color: $cblack;
+  }
+}
+
 .bulb-light {
-  color: black !important;
+  color: grey !important;
 }
 
 .orange-highlightnav {

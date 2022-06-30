@@ -1,5 +1,4 @@
 .card-title {
-  padding: 0 4%;
   color: white;
   font-size: 24px;
   font-weight: 100;
@@ -40,11 +39,9 @@
 
 .card-stat {
   //display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   color: black;
   align-items: center;
-  right: 10%;
-  left: 10%;
   // margin: 0 auto;
   // padding: 30px;
   display: flex;
@@ -122,7 +119,7 @@
   background-color: #332B1A;
   color: #FFDC8E;
   border-radius: 8px;
-  margin-top: 16px;
+  margin-top: 8px;
   padding: 2%;
 
   // p{

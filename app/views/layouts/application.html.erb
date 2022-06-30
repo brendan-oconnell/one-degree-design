@@ -16,7 +16,8 @@
 
   <body data-controller= "loading-spinner" >
     <div class="loading" data-loading-spinner-target="spinner"></div>
-    <div data-loading-spinner-target="main" data-controller="dark-mode" data-dark-mode-target="white" class="yellow-background">
+    <div data-loading-spinner-target="main" data-controller="dark-mode" data-dark-mode-target="white" class="yellow-background" >
+      <a href=""><i class="fa-solid fa-lightbulb dark-mode-bulb bulb-light" data-dark-mode-target="bulb" id="darkSwitch" data-action="click->dark-mode#switch"></i></a>
       <%= render 'shared/navbar' %>
       <%= render 'shared/flashes' %>
       <%= yield %>

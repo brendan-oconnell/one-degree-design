@@ -1,12 +1,14 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  background: transparent;
+
   margin: 0 5%;
+
   font-weight: 200;
 }
 
 .navbar-lewagon .brand {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
 }
 
@@ -46,9 +48,4 @@
   display: flex;
   justify-content: flex-end !important;
   padding: 20px;
-}
-
-.bulb-light{
-  position: sticky;
-  top: 0;
 }

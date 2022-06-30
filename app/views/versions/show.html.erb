@@ -4,39 +4,40 @@
       <p> How's your carbon footprint?</p>
   </div>
 
-
-    <div class = card-stat>
-      <div class = card-hosting>
-        <div>
-          <% if @version.cleaner_than > 0.5 %>
-            <h1>👍</h1>
-        <% else %>
-          <h1>👎</h1>
-        <% end %>
-        </div>
-        <div>
-          <% if @version.cleaner_than > 0.5 %>
-            <p>Cleaner than <strong class="green"><%= (@version.cleaner_than * 100).to_i %>% of sites tested!</strong></p>
+    <div class="container">
+      <div class = "card-stat">
+        <div class = "card-hosting">
+          <div>
+            <% if @version.cleaner_than > 0.5 %>
+              <h1>👍</h1>
           <% else %>
-            <p>Dirtier than <strong class="red"><%= 100 - (@version.cleaner_than * 100).to_i %>% of sites tested.</strong></p>
+            <h1>👎</h1>
           <% end %>
-        <% if @version.green_hosting %>
-            <p>Your site is using green hosting!</p>
-          <% else %>
-            <p>You're not using green hosting!</p>
-          <% end %>
+          </div>
+          <div>
+            <% if @version.cleaner_than > 0.5 %>
+              <p>Cleaner than <strong class="green"><%= (@version.cleaner_than * 100).to_i %>% of sites tested!</strong></p>
+            <% else %>
+              <p>Dirtier than <strong class="red"><%= 100 - (@version.cleaner_than * 100).to_i %>% of sites tested.</strong></p>
+            <% end %>
+          <% if @version.green_hosting %>
+              <p>Your site is using green hosting!</p>
+            <% else %>
+              <p>You're not using green hosting!</p>
+            <% end %>
 
+          </div>
         </div>
-      </div>
 
 
-      <div class = card-megabyte>
-        <div>
-          <img src="https://img.icons8.com/color/48/000000/statistics.png" alt="Megabytes"/>
-        </div>
-        <div>
-          <p><strong><%= @version.bytes/1000000 %> megabytes</strong></p>
-          <p></p>The overall size of your site.
+        <div class = "card-megabyte">
+          <div>
+            <img src="https://img.icons8.com/color/48/000000/statistics.png" alt="Megabytes"/>
+          </div>
+          <div>
+            <p><strong><%= @version.bytes/1000000 %> megabytes</strong></p>
+            <p></p>The overall size of your site.
+          </div>
         </div>
       </div>
     </div>
@@ -65,7 +66,7 @@
       <div class="detail">
         <h1>Summary</h1>
       </div>
-      <div class="cards">
+      <div class="cards ms-0 me-0">
         <div class="card-title">
           Images
           <div class="card-category">
@@ -159,9 +160,9 @@
           <img src="<%= eval(@version.photos[0])[:url] %>" alt="">
         </div>
 
-        <div class="tip-card col-8">
+        <div class="tip-card pe-0 col-8">
           <div class="results">
-            <div class="curret">
+            <div class="current">
               <h3>CURRENT SIZE</h3>
               <p><%= eval(@version.photos[0])[:dimensions][0] %> x <%= eval(@version.photos[0])[:dimensions][1] %> px</p>
             </div>
@@ -174,11 +175,11 @@
               <p><strong>90%</strong></p>
             </div>
           </div>
-          <div class="solutions">
+          <div class="solutions" data-dark-mode-target="image">
           <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Use fewer pixels</h2>
           <%# <p>This image is  <strong><%= eval(@version.photos[0])[:dimensions][0] x <%= eval(@version.photos[0])[:dimensions][1] pixels</strong></p>%>
           <p>Are your image files larger than their container? Generally speaking, image pixel sizes should be no larger than their div container. For example, if your div is 500 x 400px but your image is 3000 x 2000 px, your user will never see the extra pixels, and your large file will increase your carbon footprint.</p>
-          <p>Learn More</p>
+          <p class="mb-0">Learn More</p>
           </div>
         </div>
 
@@ -189,10 +190,10 @@
 
 
       <div class="row analysis-row">
-        <div class="tip-card col-8">
+        <div class="tip-card ps-0 col-8">
           <div class="file">
           <div class="results">
-            <div class="curret">
+            <div class="current">
               <h3>CURRENT FILE TYPE</h3>
               <p><%= eval(@version.photos[1])[:type] %></p>
             </div>
@@ -206,7 +207,7 @@
             </div>
           </div>
 
-              <div class="solutions">
+              <div class="solutions" data-dark-mode-target="file">
                 <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Use  efficient file types</h2>
                 <p>Did you know some image file types are much more efficient than others? Web-optimized file types like WebP and AVIF can be dramatically smaller than commonly-used formats like jpg and png.</p>
                 <p><a href="https://jakearchibald.com/2020/avif-has-landed/">Learn More</a></p>
@@ -226,10 +227,10 @@
 
         </div>
 
-        <div class="tip-card col-8">
+        <div class="tip-card pe-0 col-8">
           <div class="file">
             <div class="results">
-              <div class="curret">
+              <div class="current">
                 <h3>APPROX. FILE SIZE</h3>
                 <p><strong> <%= eval(@version.photos[2])[:size]/5000.to_f.round(2) %></strong> kb</p>
               </div>
@@ -241,7 +242,7 @@
               </div>
           </div>
             <!-- calculation based on https://www.omnicalculator.com/other/image-file-size -->
-              <div class="solutions">
+              <div class="solutions" data-dark-mode-target="size">
                 <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Compress images</h2>
                 <p>Properly compressed images have little to no impact on user experience, and reduce your carbon footprint.</p>
                 <p>Learn More</p>
@@ -261,10 +262,10 @@
         <h1>Reducing font file size</h1>
       </div>
             <div class="row analysis-row">
-        <div class="tip-card col-8">
+        <div class="tip-card  ps-0 col-8">
           <div class="file">
           <div class="results">
-            <div class="curret">
+            <div class="current">
               <h3>CURRENT FONTS</h3>
               <p><%= @version.font_families[0] %>, <%= @version.font_families[1] %>, <%= @version.font_families[2] %> </p>
             </div>
@@ -274,7 +275,7 @@
             </div>
           </div>
 
-              <div class="solutions">
+              <div class="solutions" data-dark-mode-target="font">
                 <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Consider browser standard fonts</h2>
                 <p> <span style="font-family:serif;"> Here's how default Serif, </span><span style="font-family:sans-serif;"> Sans Serif, </span><span style="font-family:serif;"> and Mono fonts display in your browser.</span> Many designers look down on browser-default fonts, but did you know that each web font you use can add up to 400kb to your site?</p>
                 <p><a href="https://www.smashingmagazine.com/2019/06/optimizing-google-fonts-performance/">Learn More</a></p>
@@ -287,9 +288,9 @@
         <div class="analysis-card col-4" style="background: black;">
         </div>
 
-        <div class="tip-card col-8">
+        <div class="tip-card pe-0 col-8">
           <div class="results">
-            <div class="curret">
+            <div class="current">
               <h3>REDUCED WEB FONT FORMATS</h3>
               <p>WOFF2</p>
             </div>
@@ -298,7 +299,7 @@
               <p>90%</p>
             </div>
           </div>
-          <div class="solutions">
+          <div class="solutions" data-dark-mode-target="format">
           <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Reduce web font file size</h2>
           <%# <p>This image is  <strong><%= eval(@version.photos[0])[:dimensions][0] x <%= eval(@version.photos[0])[:dimensions][1] pixels</strong></p>%>
           <p>OK, we get it! You love your web fonts and don't want to change them. There's still lots you can do to reduce file size, page load times, and the carbon footprint of your site.</p>
@@ -319,10 +320,10 @@
 
 
             <div class="row analysis-row">
-        <div class="tip-card col-8">
+        <div class="tip-card ps-0 col-8">
           <div class="file">
           <div class="results">
-            <div class="curret">
+            <div class="current">
               <h3>CURRENT BACKGROUND COLORS</h3>
                <div class="background-color-container d-flex justify-content-center">
                   <% @version.background_color.each do |color| %>
@@ -347,7 +348,7 @@
             </div>
           </div>
 
-              <div class="solutions">
+              <div class="solutions" data-dark-mode-target="color">
                 <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Use  darker background colors</h2>
                 <p>Some background colors use a LOT more energy than others. For example, a black background can use up to 80% less energy on OLED screens! Choose cooler colors like black, red, or blue for backgrounds. Offer the user a “dark mode” button to switch to a dark background.</p>
                 <p><a href="https://jakearchibald.com/2020/avif-has-landed/">Learn More</a></p>

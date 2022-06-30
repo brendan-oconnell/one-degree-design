@@ -74,10 +74,15 @@ class WebsitesController < ApplicationController
     default_font_families = ["open sans", "times", "times new roman", "georgia", "serif", "Verdana", "Arial", "Helvetica", "sans-serif", "courier", "monospace", "lucida console", "cursive", "fantasy" ]
 
     @font_families.reject! { |font| default_font_families.include?(font.downcase) }
-    @backgrounds.map do |color|
-      color = "#fff" if color == "white"
+    @backgrounds.map! do |color|
+      white_colors = ["white", "#ffffff"]
+      if white_colors.include?(color)
+        color = "#fff"
+      else
+        color = color
+      end
     end
-    raise
+    @backgrounds.reject! { |color| color == "transparent" }
 
 
     @font_families.sort_by! { |font| @font_families.count(font) }.reverse!.uniq!

@@ -1,9 +1,10 @@
 <div class="container text-start">
+
   <div class="banner box">
       <h1>Your <span class="highlight orange-highlight" data-dark-mode-target="highlight">results</span> for <%= @version.website.url[12..-1] %></h1>
       <p> How's your carbon footprint?</p>
   </div>
-
+  
     <div class="container">
       <div class = "card-stat">
         <div class = "card-hosting">
@@ -42,26 +43,20 @@
       </div>
     </div>
 
-  <%# <div class="testyoursite text-center row">
-    <div class="col-12 mb-3">
-      <h2>Stats</h2>
+    <div class = card-megabyte>
+      <div>
+        <h1 style="font-size: 3.5rem;">💻</h1>
+      </div>
+      <div>
+        <p><strong><%= @version.bytes/1000000 %> megabytes</strong></p>
+        <p></p>The size of your site
+      </div>
     </div>
-    <div class="col-12 col-xl-6 col-lg-6 mx-auto">
-      <% if @version.green_hosting %>
-        <%# <p>Your site is using green hosting!</p> %>
-      <%# <% else %>
-        <%# <p>You're not using green hosting </p> %>
-      <%# <% end %>
-      <%# The size of your site is <%= @version.bytes/1000000 megabytes. %>
-      <%# Your site is cleaner than <%= @version.cleaner_than*100 % of sites tested! %>
-
-    <%# </div>
   </div>
-</div>  %>
 </div>
 
 <div class="green-container-show black-background" data-dark-mode-target="green">
-  <div class="container mt-5">
+  <div class="container mt-5 ms-5 me-5">
     <div>
       <div class="detail">
         <h1>Summary</h1>
@@ -84,21 +79,12 @@
               </div>
           </div>
         </div>
-          <%#  <% if @version.photos %>
-            <%# <div class="d-flex"> %>
-              <%# <% @version.photos.each do |photo| %>
-                <%# <% photo = eval(photo) %>
-  <%#               <img class="website-photos" src="<%=photo[:url]" alt="website photos">  %>
-              <%# <% end %>
-            <%# </div> %>
-            <%# <% end %>
-
         <div class="card-title">
           Fonts
           <div class="card-category">
             <% if @version.font_families == [] %>
               <h2>Nice work!</h2>
-              <p> You're using low-energy browser standard fonts. Fonts like Open Sans, Times New Roman, Georgia, Arial or Helvetica, to name a few, don't add any extra weight to your site.</p>
+              <p> You're using low-energy browser standard fonts. Fonts like <strong>Open Sans, Times New Roman, Georgia, Arial or Helvetica</strong>, to name a few, don't add any extra weight to your site.</p>
             <% else %>
               <p>The top 3 most-used fonts on your site are <strong><%= @version.font_families[0] %>, <%= @version.font_families[1] %>, and <%= @version.font_families[2] %>.</strong></p>
               <p><strong>Recommendation:</strong>
@@ -245,7 +231,7 @@
               <div class="solutions" data-dark-mode-target="size">
                 <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Compress images</h2>
                 <p>Properly compressed images have little to no impact on user experience, and reduce your carbon footprint.</p>
-                <p>Learn More</p>
+                <p><a href="">Learn More</a></p>
               </div>
           </div>
         </div>

@@ -85,6 +85,7 @@ class WebsitesController < ApplicationController
     @backgrounds.reject! { |color| color == "transparent" }
 
 
+
     @font_families.sort_by! { |font| @font_families.count(font) }.reverse!.uniq!
     @backgrounds.sort_by! { |color| @backgrounds.count(color) }.reverse!.uniq!
   end

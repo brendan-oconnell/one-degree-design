@@ -1,62 +1,49 @@
-<div class="container text-start">
+<div class="container position-relative text-start">
 
   <div class="banner box">
       <h1>Your <span class="highlight orange-highlight" data-dark-mode-target="highlight">results</span> for <%= @version.website.url[12..-1] %></h1>
       <p> How's your carbon footprint?</p>
   </div>
-  
-    <div class="container">
-      <div class = "card-stat">
-        <div class = "card-hosting">
-          <div>
-            <% if @version.cleaner_than > 0.5 %>
-              <h1>👍</h1>
+
+  <div class="p-0 m-0 w-100 position-absolute card-stat-container">
+    <div class="card-stat">
+      <div class="card-hosting">
+        <div>
+          <% if @version.cleaner_than > 0.5 %>
+            <h1>👍</h1>
           <% else %>
             <h1>👎</h1>
           <% end %>
-          </div>
-          <div>
-            <% if @version.cleaner_than > 0.5 %>
-              <p>Cleaner than <strong class="green"><%= (@version.cleaner_than * 100).to_i %>% of sites tested!</strong></p>
-            <% else %>
-              <p>Dirtier than <strong class="red"><%= 100 - (@version.cleaner_than * 100).to_i %>% of sites tested.</strong></p>
-            <% end %>
+        </div>
+        <div>
+          <% if @version.cleaner_than > 0.5 %>
+            <p>Cleaner than <strong class="green"><%= (@version.cleaner_than * 100).to_i %>% of sites tested!</strong></p>
+          <% else %>
+            <p>Dirtier than <strong class="red"><%= 100 - (@version.cleaner_than * 100).to_i %>% of sites tested.</strong></p>
+          <% end %>
           <% if @version.green_hosting %>
-              <p>Your site is using green hosting!</p>
-            <% else %>
-              <p>You're not using green hosting!</p>
-            <% end %>
-
-          </div>
-        </div>
-
-
-        <div class = "card-megabyte">
-          <div>
-            <img src="https://img.icons8.com/color/48/000000/statistics.png" alt="Megabytes"/>
-          </div>
-          <div>
-            <p><strong><%= @version.bytes/1000000 %> megabytes</strong></p>
-            <p></p>The overall size of your site.
-          </div>
+            <p>Your site is using green hosting!</p>
+          <% else %>
+            <p>You're not using green hosting!</p>
+          <% end %>
         </div>
       </div>
-    </div>
 
-    <div class = card-megabyte>
-      <div>
-        <h1 style="font-size: 3.5rem;">💻</h1>
-      </div>
-      <div>
-        <p><strong><%= @version.bytes/1000000 %> megabytes</strong></p>
-        <p></p>The size of your site
+      <div class="card-megabyte">
+        <div>
+          <h1 style="font-size: 3.5rem;">💻</h1>
+        </div>
+        <div>
+          <p><strong><%= @version.bytes/1000000 %> megabytes</strong></p>
+          <p>The size of your site</p>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 <div class="green-container-show black-background" data-dark-mode-target="green">
-  <div class="container mt-5 ms-5 me-5">
+  <div class="container mt-5">
     <div>
       <div class="detail">
         <h1>Summary</h1>
@@ -271,7 +258,7 @@
       </div>
 
       <div class="row analysis-row" style="padding-bottom: 8px">
-        <div class="analysis-card col-4" style="background: black;">
+        <div class="analysis-card col-4" style="background: transparent;">
         </div>
 
         <div class="tip-card pe-0 col-8">
@@ -348,5 +335,5 @@
 
       </div>
     </div>
-
+  <div class="spacer black-background" data-dark-mode-target="spacer"></div>
 </div>

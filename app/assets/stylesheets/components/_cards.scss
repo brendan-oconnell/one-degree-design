@@ -21,9 +21,6 @@
   padding: 13px;
 }
 
-.spacer {
-  background-color: black !important;
-}
 
 .cards {
   display: grid;
@@ -38,7 +35,7 @@
 }
 
 .card-stat {
-  //display: flex;
+  display: flex;
   justify-content: space-between;
   color: black;
   align-items: center;
@@ -50,6 +47,7 @@
   position: absolute;
   // padding-bottom: 1%;
   z-index: 2;
+  width: 98.5%;
 
   .card-hosting{
     display: flex;

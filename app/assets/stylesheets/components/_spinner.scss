@@ -7,7 +7,7 @@
   z-index: 10;
   &::before {
       border: solid 3px rgba(0,0,0,.0);
-      border-bottom-color: $blue;
+      border-bottom-color: $corange;
       border-radius: 50%;
       content: "";
       height: 90px;
@@ -37,7 +37,7 @@
   &::before {
       animation: 2s linear infinite spinner;
       border: solid 3px rgba(0,0,0,.0);
-      border-bottom-color: $cblue;
+      border-bottom-color: $corange;
       border-radius: 50%;
       content: "";
       height: 90px;

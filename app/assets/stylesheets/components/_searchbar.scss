@@ -70,8 +70,8 @@ input:focus {
 .search-bar-http-www-text {
   display: flex;
   justify-content: center;
-  // flex-direction: column;
-  // padding: 0.375rem 0.75rem;
+  flex-direction: column;
+  padding: 0.375rem 0.75rem;
   border-top-left-radius: 10px;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
@@ -95,7 +95,7 @@ input:focus {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   height: 75%;
   h3 {
-    font-size: 1.5rem;
+    font-size: 21px;
     padding-top: 2%;
   }
 }

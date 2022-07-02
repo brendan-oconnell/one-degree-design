@@ -34,7 +34,7 @@
           <h1 style="font-size: 3.5rem;">💻</h1>
         </div>
         <div>
-          <p><strong><%= @version.bytes/1000000 %> megabytes</strong></p>
+          <p><strong><%= (@version.bytes/1000000).round(2) %> megabytes</strong></p>
           <p>The size of your site</p>
         </div>
       </div>
@@ -205,7 +205,7 @@
             <div class="results">
               <div class="current">
                 <h3>APPROX. FILE SIZE</h3>
-                <p><strong> <%= eval(@version.photos[2])[:size]/5000.to_f.round(2) %></strong> kb</p>
+                <p><strong> <%= eval(@version.photos[2])[:size]/5000 %></strong> kb</p>
               </div>
               <div class="reduced">
 
@@ -300,7 +300,7 @@
               <h3>CURRENT BACKGROUND COLORS</h3>
                <div class="background-color-container d-flex justify-content-center">
                   <% @version.background_color.each do |color| %>
-                    <div class="background-color-sample" style='background-color: <%=color%>'></div>
+                    <div class="background-color-sample" style='background-color: <%=color%>;border-color: white;'></div>
                   <% end %>
               </div>
             </div>
@@ -309,9 +309,9 @@
               <h3>RECOMMENDED COLORS</h3>
                 <div class="background-color-container d-flex justify-content-center">
 
-                    <div class="background-color-sample" style="background-color: black;border-color: white;"></div>
-                    <div class="background-color-sample" style='background-color: #E4140C'></div>
-                    <div class="background-color-sample" style='background-color: #1C4752'></div>
+                    <div class="background-color-sample" style="background-color: black;border-color: white"></div>
+                    <div class="background-color-sample" style='background-color: #E4140C;border-color: white'></div>
+                    <div class="background-color-sample" style='background-color: #1C4752;border-color: white'></div>
 
               </div>
             </div>

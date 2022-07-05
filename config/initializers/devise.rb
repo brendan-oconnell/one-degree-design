@@ -16,6 +16,12 @@ Devise.setup do |config|
   # by default. You can change it below and use your own secret key.
   # config.secret_key = '37295ca2e4c9f9f74d5f6a455395dc62ebf8d6fe804414a5500e6a0a2788785beaf4d93af3660b41ce11058e7082131d29811e21f3b076f679232855c6db7767'
 
+
+  # https://github.com/heartcombo/devise/wiki/How-To:-Create-a-guest-user
+  # config.warden do |manager|
+  #   manager.default_strategies(scope: :user).unshift :guest_user
+  # end
+
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'

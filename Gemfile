@@ -25,7 +25,11 @@ gem "mini_magick"
 # sidekick for activejob
 gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
+
+# image dimensions tool without downloading full images
 gem 'fastimage'
+# guest accounts
+gem 'devise-guests'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

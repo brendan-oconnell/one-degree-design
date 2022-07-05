@@ -8,12 +8,12 @@ class WebsitesController < ApplicationController
 
   def create
     existing_website = Website.find_by_url("https://www.#{website_params[:url]}")
-    if Website.find_by_url("https://www.#{website_params[:url]}") && existing_website.user == current_user
+    if Website.find_by_url("https://www.#{website_params[:url]}") && existing_website.user == current_or_guest_user
       @website = Website.find_by_url("https://www.#{website_params[:url]}")
     else
       @website = Website.new(website_params)
       @website.url = "https://www.#{website_params[:url]}"
-      @website.user = current_user unless current_user.nil?
+      @website.user = current_or_guest_user unless current_or_guest_user.nil?
     end
     if @website.valid?
       @website.save

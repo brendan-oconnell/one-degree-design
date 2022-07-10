@@ -23,9 +23,11 @@ class WebsitesController < ApplicationController
         # CloudinaryCallJob.perform_later(@version)
         redirect_to version_path(@version)
       else
+        @version.destroy
         redirect_to scrapingerror_path
       end
     else
+      @version.destroy
       redirect_to scrapingerror_path
     end
   end

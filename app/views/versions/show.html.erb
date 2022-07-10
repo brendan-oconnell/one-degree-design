@@ -52,6 +52,8 @@
         <div class="card-title">
           Images
           <div class="card-category">
+            <%# TODO: if there are fewer than 3 images on the site, skip this because it breaks everything. %>
+            <%# nytimes.com produces this error %>
             <p>Three of the largest images on your site are <strong><%= eval(@version.photos[0])[:dimensions][0] %> x <%= eval(@version.photos[0])[:dimensions][1] %> px, <%= eval(@version.photos[1])[:dimensions][0] %> x <%= eval(@version.photos[1])[:dimensions][1] %> px, and <%= eval(@version.photos[2])[:dimensions][0] %> x <%= eval(@version.photos[2])[:dimensions][1] %> px.</strong></p>
             <br>
             <p><strong>Recommendation:</strong>

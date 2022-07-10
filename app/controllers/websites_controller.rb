@@ -18,11 +18,15 @@ class WebsitesController < ApplicationController
     if @website.valid?
       @website.save
       create_version(@website)
-      @version.save
-      # CloudinaryCallJob.perform_later(@version)
-      redirect_to version_path(@version)
+      if @scraped_successfully == true
+        @version.save
+        # CloudinaryCallJob.perform_later(@version)
+        redirect_to version_path(@version)
+      else
+        redirect_to scrapingerror_path
+      end
     else
-      render :new
+      redirect_to scrapingerror_path
     end
   end
 
@@ -94,37 +98,49 @@ class WebsitesController < ApplicationController
   def image_scraping(html_doc)
     @photos = []
     html_doc.search("img").each do |image|
-      # @photos << image.attributes["src"].value unless image.attributes["alt"].nil?
-      unless image.attributes["alt"].nil?
+      # added in code for lazy loading. If page has lazy loading, there won't be an image URL and it should be skipped.
+      # e.g. nytimes.com
+      # if image.attributes["loading"] exists and has a value (e.g. "lazy"), we can't scrape that image.
+      # so don't include it. hence the unless.
+      unless image.attributes["alt"].nil? || image.attributes["loading"]
         src_value = image.attributes["data-src"] ? image.attributes["data-src"].value : image.attributes["src"].value
         if src_value.start_with?("http")
         else
           src_value.insert(0, @website.url)
         end
         dimensions = FastImage.size(src_value)
-        type = FastImage.type(src_value)
-        size = dimensions[0] * dimensions[1]
-        @photos << {
-          url: src_value,
-          size: size,
-          dimensions: dimensions,
-          type: type
-        }
-          # query = Cloudinary::Uploader.upload(src_value)
-          # @photos << {
-          #   width: query["width"],
-          #   height: query["height"],
-          #   bytes: query["bytes"],
-          #   url: query["url"]
-          # }
+        if dimensions
+          type = FastImage.type(src_value)
+          size = dimensions[0] * dimensions[1]
+          @photos << {
+            url: src_value,
+            size: size,
+            dimensions: dimensions,
+            type: type
+          }
+            # query = Cloudinary::Uploader.upload(src_value)
+            # @photos << {
+            #   width: query["width"],
+            #   height: query["height"],
+            #   bytes: query["bytes"],
+            #   url: query["url"]
+            # }
+        end
       end
     end
     @photos.sort_by! { |photo| photo[:size] }
     @version.photos = @photos.reverse.first(3)
+    # some sites e.g. websitecarbon.com return an empty array for @photos, because of the way photos are displayed.
+    # if this happens, assign scraped_succssfully as false, which will cause them to be redirected to scraping error page.
+
+    if @version.photos == []
+      @scraped_successfully = false
+    end
   end
 
 
   def create_version(website)
+    @scraped_successfully = true
     url = website.url
     html_file = URI.open(url).read
     html_doc = Nokogiri::HTML(html_file)

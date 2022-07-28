@@ -54,7 +54,11 @@
           <div class="card-category">
             <%# TODO: if there are fewer than 3 images on the site, skip this because it breaks everything. %>
             <%# nytimes.com produces this error %>
-            <p>Three of the largest images on your site are <strong><%= eval(@version.photos[0])[:dimensions][0] %> x <%= eval(@version.photos[0])[:dimensions][1] %> px, <%= eval(@version.photos[1])[:dimensions][0] %> x <%= eval(@version.photos[1])[:dimensions][1] %> px, and <%= eval(@version.photos[2])[:dimensions][0] %> x <%= eval(@version.photos[2])[:dimensions][1] %> px.</strong></p>
+            <% if @version.photos[2] %>
+              <p>Three of the largest images on your site are <strong><%= eval(@version.photos[0])[:dimensions][0] %> x <%= eval(@version.photos[0])[:dimensions][1] %> px, <%= eval(@version.photos[1])[:dimensions][0] %> x <%= eval(@version.photos[1])[:dimensions][1] %> px, and <%= eval(@version.photos[2])[:dimensions][0] %> x <%= eval(@version.photos[2])[:dimensions][1] %> px.</strong></p>
+            <% else  %>
+              <p>There are fewer than three images on your homepage. Nice! Images are a huge contributor to a website's carbon footprint.</p>
+            <% end  %>
             <br>
             <p><strong>Recommendation:</strong>
             <br>
@@ -124,7 +128,7 @@
 
 
 
-
+  <% if @version.photos[0] %>
     <div id = "reducingimages" class="image-analysis" >
       <div class="analysis-banner">
         <h1>Reducing image file size</h1>
@@ -132,7 +136,7 @@
 
       <div class="row analysis-row" style="padding-bottom: 8px">
         <div class="analysis-card col-4">
-          <img src="<%= eval(@version.photos[0])[:url] %>" alt="">
+            <img src="<%= eval(@version.photos[0])[:url] %>" alt="">
         </div>
 
         <div class="tip-card pe-0 col-8">
@@ -159,11 +163,12 @@
         </div>
 
       </div>
+  <% end %>
 
 
 
 
-
+  <% if @version.photos[1] %>
       <div class="row analysis-row">
         <div class="tip-card ps-0 col-8">
           <div class="file">
@@ -195,7 +200,8 @@
         </div>
 
       </div>
-
+  <% end %>
+  <% if @version.photos[2] %>
       <div class="row analysis-row">
         <div class="analysis-card col-4">
           <img src="<%= eval(@version.photos[2])[:url] %>" alt="">
@@ -226,6 +232,7 @@
         </div>
       </div>
     </div>
+    <% end  %>
 
 
 

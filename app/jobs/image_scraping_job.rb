@@ -3,14 +3,14 @@ require "fastimage"
 class ImageScrapingJob < ApplicationJob
   queue_as :urgent
 
-  def perform(html_doc, version)
+  def perform(html_doc, version, website)
     # Do something later
-    image_scraping(html_doc, version)
+    image_scraping(html_doc, version, website)
   end
 end
 
 private
-def image_scraping(html_doc, version)
+def image_scraping(html_doc, version, website)
   @photos = []
   html_doc.search("img").each do |image|
     # added in code for lazy loading. If page has lazy loading, there won't be an image URL and it should be skipped.
@@ -21,7 +21,7 @@ def image_scraping(html_doc, version)
       src_value = image.attributes["data-src"] ? image.attributes["data-src"].value : image.attributes["src"].value
       if src_value.start_with?("http")
       else
-        src_value.insert(0, @website.url)
+        src_value.insert(0, website.url)
       end
       dimensions = FastImage.size(src_value)
       if dimensions

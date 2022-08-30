@@ -160,7 +160,7 @@ class WebsitesController < ApplicationController
     html_doc = Nokogiri::HTML(html_file)
     FontsBackgroundsScrapingJob.perform_now(html_doc, @version, @website)
     # fonts_and_backgrounds_scraping(html_doc)
-    ImageScrapingJob.perform_now(html_doc, @version)
+    ImageScrapingJob.perform_now(html_doc, @version, @website)
     # image_scraping(html_doc)
 
 

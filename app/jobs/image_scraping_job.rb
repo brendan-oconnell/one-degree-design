@@ -1,4 +1,6 @@
 require "fastimage"
+require "open-uri"
+require "nokogiri"
 
 class ImageScrapingJob < ApplicationJob
   queue_as :default
@@ -14,6 +16,7 @@ def image_scraping(version, website)
   html_file = URI.open(website.url).read
   html_doc = Nokogiri::HTML(html_file)
   @photos = []
+  # Parallel.each(html_doc.search("img")) { |image|
   html_doc.search("img").each do |image|
     # added in code for lazy loading. If page has lazy loading, there won't be an image URL and it should be skipped.
     # e.g. nytimes.com
@@ -45,6 +48,7 @@ def image_scraping(version, website)
       end
     end
   end
+  #}
   @photos.sort_by! { |photo| photo[:size] }
   version.update(photos: @photos.reverse.first(3))
   # some sites e.g. websitecarbon.com return an empty array for @photos, because of the way photos are displayed.

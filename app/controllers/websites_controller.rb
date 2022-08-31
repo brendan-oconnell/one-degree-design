@@ -155,14 +155,12 @@ class WebsitesController < ApplicationController
       # carbon_infos = website_carbon_api(url)
       # @version[:carbonapi_updated] = true
     # end
-    CarbonApiJob.perform_now(url, @version)
-    html_file = URI.open(url).read
-    html_doc = Nokogiri::HTML(html_file)
-    FontsBackgroundsScrapingJob.perform_now(html_doc, @version, @website)
+    FontsBackgroundsScrapingJob.perform_later(@version, @website)
+    ImageScrapingJob.perform_later(@version, @website)
+    CarbonApiJob.perform_later(url, @version)
     # fonts_and_backgrounds_scraping(html_doc)
-    ImageScrapingJob.perform_now(html_doc, @version, @website)
     # image_scraping(html_doc)
-
+    sleep 20
 
 
     # if carbon_infos.nil?

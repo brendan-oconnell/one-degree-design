@@ -1,15 +1,17 @@
 class FontsBackgroundsScrapingJob < ApplicationJob
-  queue_as :urgent
+  queue_as :default
 
-  def perform(html_doc, version, website)
+  def perform(version, website)
     # Do something later
-    fonts_and_backgrounds_scraping(@arguments[0], version, website)
+    fonts_and_backgrounds_scraping(version, website)
   end
 end
 
 private
 
-def fonts_and_backgrounds_scraping(html_doc, version, website)
+def fonts_and_backgrounds_scraping(version, website)
+  html_file = URI.open(website.url).read
+  html_doc = Nokogiri::HTML(html_file)
   stylesheet_links = []
   stylesheet_corrected_links = []
   # add all stylesheets to array

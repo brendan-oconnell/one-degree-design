@@ -1,16 +1,18 @@
 require "fastimage"
 
 class ImageScrapingJob < ApplicationJob
-  queue_as :urgent
+  queue_as :default
 
-  def perform(html_doc, version, website)
+  def perform(version, website)
     # Do something later
-    image_scraping(html_doc, version, website)
+    image_scraping(version, website)
   end
 end
 
 private
-def image_scraping(html_doc, version, website)
+def image_scraping(version, website)
+  html_file = URI.open(website.url).read
+  html_doc = Nokogiri::HTML(html_file)
   @photos = []
   html_doc.search("img").each do |image|
     # added in code for lazy loading. If page has lazy loading, there won't be an image URL and it should be skipped.
@@ -44,10 +46,9 @@ def image_scraping(html_doc, version, website)
     end
   end
   @photos.sort_by! { |photo| photo[:size] }
-  version.photos = @photos.reverse.first(3)
+  version.update(photos: @photos.reverse.first(3))
   # some sites e.g. websitecarbon.com return an empty array for @photos, because of the way photos are displayed.
   # if this happens, assign scraped_succssfully as false, which will cause them to be redirected to scraping error page.
-
   if version.photos == []
     @scraped_successfully = false
   end

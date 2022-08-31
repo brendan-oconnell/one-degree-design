@@ -1,5 +1,5 @@
 class CarbonApiJob < ApplicationJob
-  queue_as :urgent
+  queue_as :default
 
   def perform(url, version)
     # Do something later

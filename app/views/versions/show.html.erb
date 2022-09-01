@@ -1,9 +1,9 @@
 <div class="container position-relative text-start">
-
   <div class="banner box">
       <h1>Your <span class="highlight orange-highlight" data-dark-mode-target="highlight">results</span> for <%= @version.website.url[12..-1] %></h1>
       <p> How's your carbon footprint?</p>
   </div>
+<<<<<<< HEAD
 
   <div class="p-0 m-0 w-100 position-absolute card-stat-container">
     <div class="card-stat">
@@ -26,9 +26,34 @@
           <% else %>
             <p>You're not using green hosting!</p>
           <% end %>
+=======
+  <% if @version.cleaner_than %>
+    <div class="p-0 m-0 w-100 position-absolute card-stat-container">
+      <div class="card-stat">
+        <div class="card-hosting">
+          <div>
+            <% if @version.cleaner_than > 0.5 %>
+              <h1>👍</h1>
+            <% else %>
+              <h1>👎</h1>
+            <% end %>
+          </div>
+          <div>
+            <% if @version.cleaner_than > 0.5 %>
+              <p>Cleaner than <strong class="green"><%= (@version.cleaner_than * 100).to_i %>% of sites tested!</strong></p>
+            <% else %>
+              <p>Dirtier than <strong class="red"><%= 100 - (@version.cleaner_than * 100).to_i %>% of sites tested.</strong></p>
+            <% end %>
+            <% if @version.green_hosting %>
+              <p>Your site is using green hosting!</p>
+            <% else %>
+              <p>You're not using green hosting!</p>
+            <% end %>
+          </div>
+>>>>>>> 5da6500faacd01b49d4700cb4d5a42e62dbfab01
         </div>
-      </div>
 
+<<<<<<< HEAD
       <div class="card-megabyte row">
         <div class="col-12 col-lg-6">
           <h1 style="font-size: 3.5rem;">💻</h1>
@@ -36,11 +61,21 @@
         <div class="col-12 col-lg-6">
           <p><strong><%= (@version.bytes/1000000).round(2) %> megabytes</strong></p>
           <p>The size of your site</p>
+=======
+        <div class="card-megabyte">
+          <div>
+            <h1 style="font-size: 3.5rem;">💻</h1>
+          </div>
+          <div>
+            <p><strong><%= (@version.bytes/1000000).round(2) %> megabytes</strong></p>
+            <p>The size of your site</p>
+          </div>
+>>>>>>> 5da6500faacd01b49d4700cb4d5a42e62dbfab01
         </div>
       </div>
     </div>
   </div>
-</div>
+<% end  %>
 
 
 <div class="green-container-show black-background" data-dark-mode-target="green">
@@ -53,7 +88,15 @@
         <div class="card-title">
           Images
           <div class="card-category">
-            <p>Three of the largest images on your site are <strong><%= eval(@version.photos[0])[:dimensions][0] %> x <%= eval(@version.photos[0])[:dimensions][1] %> px, <%= eval(@version.photos[1])[:dimensions][0] %> x <%= eval(@version.photos[1])[:dimensions][1] %> px, and <%= eval(@version.photos[2])[:dimensions][0] %> x <%= eval(@version.photos[2])[:dimensions][1] %> px.</strong></p>
+            <%# TODO: if there are fewer than 3 images on the site, skip this because it breaks everything. %>
+            <%# nytimes.com produces this error %>
+            <% if @version.photos %>
+              <% if @version.photos[2] %>
+                <p>Three of the largest images on your site are <strong><%= eval(@version.photos[0])[:dimensions][0] %> x <%= eval(@version.photos[0])[:dimensions][1] %> px, <%= eval(@version.photos[1])[:dimensions][0] %> x <%= eval(@version.photos[1])[:dimensions][1] %> px, and <%= eval(@version.photos[2])[:dimensions][0] %> x <%= eval(@version.photos[2])[:dimensions][1] %> px.</strong></p>
+              <% else  %>
+                <p>There are fewer than three images on your homepage. Nice! Images are a huge contributor to a website's carbon footprint.</p>
+              <% end  %>
+            <% end  %>
             <br>
             <p><strong>Recommendation:</strong>
             <br>
@@ -123,7 +166,7 @@
 
 
 
-
+  <% if @version.photos[0] %>
     <div id = "reducingimages" class="image-analysis" >
       <div class="analysis-banner">
         <h1>Reducing image file size</h1>
@@ -131,7 +174,7 @@
 
       <div class="row analysis-row" style="padding-bottom: 8px">
         <div class="analysis-card col-4">
-          <img src="<%= eval(@version.photos[0])[:url] %>" alt="">
+            <img src="<%= eval(@version.photos[0])[:url] %>" alt="">
         </div>
 
         <div class="tip-card pe-0 col-8">
@@ -158,11 +201,12 @@
         </div>
 
       </div>
+  <% end %>
 
 
 
 
-
+  <% if @version.photos[1] %>
       <div class="row analysis-row">
         <div class="tip-card ps-0 col-8">
           <div class="file">
@@ -194,7 +238,8 @@
         </div>
 
       </div>
-
+  <% end %>
+  <% if @version.photos[2] %>
       <div class="row analysis-row">
         <div class="analysis-card col-4">
           <img src="<%= eval(@version.photos[2])[:url] %>" alt="">
@@ -225,6 +270,7 @@
         </div>
       </div>
     </div>
+    <% end  %>
 
 
 

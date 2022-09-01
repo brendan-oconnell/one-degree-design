@@ -1,12 +1,13 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.3'
+ruby '3.0.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.6'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 1.1'
+gem 'pg', '~> 1.3', '>= 1.3.5'
+#, '~> 1.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -25,7 +26,11 @@ gem "mini_magick"
 # sidekick for activejob
 gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
+
+# image dimensions tool without downloading full images
 gem 'fastimage'
+# guest accounts
+gem 'devise-guests'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -35,10 +40,13 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'devise'
 
+gem 'parallel'
+
 gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass', '~> 5.6.1'
-gem 'simple_form', github: 'heartcombo/simple_form'
-gem 'cloudinary', '~> 1.16.0'
+gem 'simple_form'
+#, github: 'heartcombo/simple_form'
+# gem 'cloudinary', '~> 1.16.0'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'

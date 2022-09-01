@@ -81,6 +81,13 @@ test:
 #
 production:
   <<: *default
+  #Heroku config settings currently commented out for deployment to AWS
   database: one_degree_design_production
   username: one_degree_design
-  password: <%= ENV['ONE_DEGREE_DESIGN_DATABASE_PASSWORD'] %>
+
+  #AWS config settings
+  # database: <%= ENV['RDS_DB_NAME'] %>
+  # username: <%= ENV['ONE_DEGREE_DESIGN_DATABASE_USERNAME'] %>
+  # password: <%= ENV['ONE_DEGREE_DESIGN_DATABASE_PASSWORD'] %>
+  # host: <%= ENV['RDS_HOSTNAME'] %>
+  # port: <%= ENV['RDS_PORT'] %>

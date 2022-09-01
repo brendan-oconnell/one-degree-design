@@ -2,7 +2,7 @@ class FontsBackgroundsScrapingJob < ApplicationJob
   queue_as :default
 
   def perform(version, website)
-    # Do something later
+
     fonts_and_backgrounds_scraping(version, website)
   end
 end
@@ -28,7 +28,7 @@ def fonts_and_backgrounds_scraping(version, website)
     end
   end
 
-  # TODO:
+
 
   @font_families = []
   @backgrounds = []
@@ -36,16 +36,16 @@ def fonts_and_backgrounds_scraping(version, website)
   stylesheet_corrected_links.each do |stylesheet|
     style_file = URI.open(stylesheet).read
 
-    @font_families << style_file.scan(/font-family:[",'](.{1,22})[",']/)
-    @backgrounds << style_file.scan(/background[-color]*:(\S{1,16});/)
+    @font_families << style_file.scan(/font-family:(.{1,22})[",']/)
+    @backgrounds << style_file.scan(/background[-color]*:[#]?(\w{1,16});[. ]?/)
   end
   @font_families.flatten!.map! { |font| font.downcase.gsub(/['"]/, "") }
   @backgrounds.flatten!
 
-  # if his font is not downloaded applaud
-  default_font_families = ["open sans", "times", "times new roman", "georgia", "serif", "Verdana", "Arial", "Helvetica", "sans-serif", "courier", "monospace", "lucida console", "cursive", "fantasy" ]
+  # COMMENTED BECAUSE WE SHOULD NOT REMOVE THE standard fonts if it is what they use?
+  # default_font_families = ["open sans", "times", "times new roman", "georgia", "serif", "Verdana", "Arial", "Helvetica", "sans-serif", "courier", "monospace", "lucida console", "cursive", "fantasy" ]
+  # @font_families.reject! { |font| default_font_families.include?(font.downcase) }
 
-  @font_families.reject! { |font| default_font_families.include?(font.downcase) }
   @backgrounds.map! do |color|
     white_colors = ["white", "#ffffff"]
     if white_colors.include?(color)

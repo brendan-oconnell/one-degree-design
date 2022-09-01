@@ -29,7 +29,9 @@
           <% else %>
             <p>Dirtier than <strong class="red"><%= 100 - (@version.cleaner_than * 100).to_i %>% of sites tested.</strong></p>
           <% end %>
-          <% if @version.green_hosting %>
+          <% if @version.green_hosting.nil? %>
+            <p>Green hosting unkown yet</p>
+          <% elsif @version.green_hosting %>
             <p>Your site is using green hosting!</p>
           <% else %>
             <p>You're not using green hosting!</p>
@@ -151,127 +153,144 @@
 
 
 
-    <% if @version.photos[0] %>
-      <div id = "reducingimages" class="image-analysis" >
-        <div class="analysis-banner">
-          <h1>Reducing image file size</h1>
-        </div>
 
-        <div class="row analysis-row" style="padding-bottom: 8px">
-          <div class="analysis-card col-4">
-              <img src="<%= eval(@version.photos[0])[:url] %>" alt="">
-          </div>
-
-          <div class="tip-card pe-0 col-8">
-            <div class="results">
-              <div class="current">
-                <h3>CURRENT SIZE</h3>
-                <p><%= eval(@version.photos[0])[:dimensions][0] %> x <%= eval(@version.photos[0])[:dimensions][1] %> px</p>
-              </div>
-              <div class="reduced">
-            <% if eval(@version.photos[0])[:dimensions][0] < 100 %>
-                <h3>REDUCED </h3>
-                <p><%= eval(@version.photos[0])[:dimensions][0] %> x <%= eval(@version.photos[0])[:dimensions][1] %> px</p>
-              </div>
-              <div class="smaller">
-                <h3>SMALLER</h3>
-                <p><strong>0%</strong></p>
-              </div>
-            </div>
-            <div class="solutions" data-dark-mode-target="image">
-              <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Great job!</h2>
-              <%# <p>This image is  <strong><%= eval(@version.photos[0])[:dimensions][0] x <%= eval(@version.photos[0])[:dimensions][1] pixels</strong></p>%>
-              <p>Can't get much smaller than that, we have nothing more to teach you on image sizes young padawan, congrats!</p>
-              <p class="mb-0"><a href="">Learn More</a></p>
-            </div>
-            <% else  %>
-              <h3>REDUCED</h3>
-              <p><%= eval(@version.photos[0])[:dimensions][0]/10 %> x <%= eval(@version.photos[0])[:dimensions][1]/10 %> px</p>
-            </div>
-              <div class="smaller">
-                <h3>SMALLER</h3>
-                <p><strong>90%</strong></p>
-              </div>
-            </div>
-            <div class="solutions" data-dark-mode-target="image">
-                    <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Use fewer pixels</h2>
-                    <%# <p>This image is  <strong><%= eval(@version.photos[0])[:dimensions][0] x <%= eval(@version.photos[0])[:dimensions][1] pixels</strong></p>%>
-                    <p>Are your image files larger than their container? Generally speaking, image pixel sizes should be no larger than their div container. For example, if your div is 500 x 400px but your image is 3000 x 2000 px, your user will never see the extra pixels, and your large file will increase your carbon footprint.</p>
-                    <p class="mb-0"><a href="">Learn More</a></p>
-            </div>
-          <% end %>
-          </div>
-        </div>
+    <div id = "reducingimages" class="image-analysis" >
+      <div class="analysis-banner">
+        <h1>Reducing image file size</h1>
       </div>
-    <% end %>
 
-
-
-
-    <% if @version.photos[1] %>
-        <div class="row analysis-row">
-          <div class="tip-card ps-0 col-8">
-            <div class="file">
-            <div class="results">
-              <div class="current">
-                <h3>CURRENT FILE TYPE</h3>
-                <p><%= eval(@version.photos[1])[:type] %></p>
-              </div>
-              <div class="reduced">
-                <h3>COMPRESSED FILE TYPE</h3>
-                <p>avif</p>
-              </div>
-              <div class="smaller">
-                <h3>SMALLER</h3>
-                <p><strong>50-80%</strong></p>
-              </div>
-            </div>
-
-              <div class="solutions" data-dark-mode-target="file">
-                <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Use  efficient file types</h2>
-                <p>Did you know some image file types are much more efficient than others? Web-optimized file types like WebP and AVIF can be dramatically smaller than commonly-used formats like jpg and png.</p>
-                <p><a href="https://jakearchibald.com/2020/avif-has-landed/">Learn More</a></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="analysis-card col-4">
-            <img src="<%= eval(@version.photos[1])[:url] %>" alt="">
-          </div>
-
-        </div>
-    <% end %>
-    <% if @version.photos[2] %>
-      <div class="row analysis-row">
+      <div class="row analysis-row" style="padding-bottom: 8px">
         <div class="analysis-card col-4">
-          <img src="<%= eval(@version.photos[2])[:url] %>" alt="">
-
+            <% if @version.photos && @version.photos %>
+              <img src="<%= eval(@version.photos[0])[:url] %>" alt="">
+            <% else %>
+              <img src="https://picsum.photos/500/500" alt="">
+            <% end %>
         </div>
 
         <div class="tip-card pe-0 col-8">
-          <div class="file">
-            <div class="results">
-              <div class="current">
-                <h3>APPROX. FILE SIZE</h3>
-                <p><strong> <%= eval(@version.photos[2])[:size]/5000 %></strong> kb</p>
-              </div>
-              <div class="reduced">
-
-              </div>
-              <div class="smaller">
-
-              </div>
+          <div class="results">
+            <div class="current">
+              <h3>CURRENT SIZE</h3>
+              <p><%= eval(@version.photos[0])[:dimensions][0] %> x <%= eval(@version.photos[0])[:dimensions][1] %> px</p>
+            </div>
+            <div class="reduced">
+          <% if eval(@version.photos[0])[:dimensions][0] < 100 %>
+              <h3>REDUCED </h3>
+              <p><%= eval(@version.photos[0])[:dimensions][0] %> x <%= eval(@version.photos[0])[:dimensions][1] %> px</p>
+            </div>
+            <div class="smaller">
+              <h3>SMALLER</h3>
+              <p><strong>0%</strong></p>
+            </div>
           </div>
-            <!-- calculation based on https://www.omnicalculator.com/other/image-file-size -->
-              <div class="solutions" data-dark-mode-target="size">
-                <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Compress images</h2>
-                <p>Properly compressed images have little to no impact on user experience, and reduce your carbon footprint.</p>
-                <p><a href="">Learn More</a></p>
-              </div>
+          <div class="solutions" data-dark-mode-target="image">
+            <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Great job!</h2>
+            <%# <p>This image is  <strong><%= eval(@version.photos[0])[:dimensions][0] x <%= eval(@version.photos[0])[:dimensions][1] pixels</strong></p>%>
+            <p>Can't get much smaller than that, we have nothing more to teach you on image sizes young padawan, congrats!</p>
+            <p class="mb-0"><a href="">Learn More</a></p>
+          </div>
+          <% else  %>
+            <h3>REDUCED</h3>
+            <p><%= eval(@version.photos[0])[:dimensions][0]/10 %> x <%= eval(@version.photos[0])[:dimensions][1]/10 %> px</p>
+          </div>
+            <div class="smaller">
+              <h3>SMALLER</h3>
+              <p><strong>90%</strong></p>
+            </div>
+          </div>
+          <div class="solutions" data-dark-mode-target="image">
+                  <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Use fewer pixels</h2>
+                  <%# <p>This image is  <strong><%= eval(@version.photos[0])[:dimensions][0] x <%= eval(@version.photos[0])[:dimensions][1] pixels</strong></p>%>
+                  <p>Are your image files larger than their container? Generally speaking, image pixel sizes should be no larger than their div container. For example, if your div is 500 x 400px but your image is 3000 x 2000 px, your user will never see the extra pixels, and your large file will increase your carbon footprint.</p>
+                  <p class="mb-0"><a href="">Learn More</a></p>
+          </div>
+        <% end %>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="row analysis-row">
+      <div class="tip-card ps-0 col-8">
+        <div class="file">
+        <div class="results">
+          <div class="current">
+            <h3>CURRENT FILE TYPE</h3>
+            <% if @version.photos[1] %>
+              <p><%= eval(@version.photos[1])[:type] %></p>
+            <% else %>
+              <p>file type unknown</p>
+            <% end %>
+          </div>
+          <div class="reduced">
+            <h3>COMPRESSED FILE TYPE</h3>
+            <p>avif</p>
+          </div>
+          <div class="smaller">
+            <h3>SMALLER</h3>
+            <p><strong>50-80%</strong></p>
+          </div>
+        </div>
+
+          <div class="solutions" data-dark-mode-target="file">
+            <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Use  efficient file types</h2>
+            <p>Did you know some image file types are much more efficient than others? Web-optimized file types like WebP and AVIF can be dramatically smaller than commonly-used formats like jpg and png.</p>
+            <p><a href="https://jakearchibald.com/2020/avif-has-landed/">Learn More</a></p>
           </div>
         </div>
       </div>
-    <% end  %>
+
+      <div class="analysis-card col-4">
+        <% if @version.photos[0] %>
+          <img src="<%= eval(@version.photos[1])[:url] %>" alt="">
+        <% else %>
+          <img src="https://picsum.photos/500/500" alt="">
+        <% end %>
+      </div>
+
+    </div>
+
+    <div class="row analysis-row">
+      <div class="analysis-card col-4">
+          <% if @version.photos[0] %>
+            <img src="<%= eval(@version.photos[2])[:url] %>" alt="">
+          <% else %>
+            <img src="https://picsum.photos/500/500" alt="">
+          <% end %>
+
+      </div>
+
+      <div class="tip-card pe-0 col-8">
+        <div class="file">
+          <div class="results">
+            <div class="current">
+              <h3>APPROX. FILE SIZE</h3>
+              <% if @version.photos[1] %>
+                <p><%= eval(@version.photos[2])[:size]/5000 %>kb</p>
+              <% else %>
+                <p>file size unknown</p>
+              <% end %>
+            </div>
+            <div class="reduced">
+
+            </div>
+            <div class="smaller">
+
+            </div>
+        </div>
+          <!-- calculation based on https://www.omnicalculator.com/other/image-file-size -->
+            <div class="solutions" data-dark-mode-target="size">
+              <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Compress images</h2>
+              <p>Properly compressed images have little to no impact on user experience, and reduce your carbon footprint.</p>
+              <p><a href="">Learn More</a></p>
+            </div>
+        </div>
+      </div>
+    </div>
+
 
 
     <%#<% if @version.font_families == [] %>
@@ -287,6 +306,7 @@
           <div class="results">
             <div class="current">
               <h3>CURRENT FONTS</h3>
+              <%= print @version.font_families %>
               <% if @version.font_families %>
                 <p><%= @version.font_families[0] %>, <%= @version.font_families[1] %>, <%= @version.font_families[2] %> </p>
               <% else %>

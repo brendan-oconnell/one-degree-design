@@ -20,9 +20,13 @@
           <a href=""><i class="fa-solid fa-lightbulb bulb-light" data-dark-mode-target="bulb" data-action="click->dark-mode#switch"></i></a>
         </li> %>
       <% else %>
-        <li class="nav-item">
+        <%# TODO: add login back when dashboard works better %>
+        <%# <li class="nav-item">
+          <li class="nav-item active">
+          <%= link_to "Dashboard", dashboard_path, class: "nav-link" %>
+        <%# </li>
           <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-        </li>
+        <%# </li> %>
         <%# <li class="nav-item dark-mode-bulb bulb-light" >
           <a href=""><i class="fa-solid fa-lightbulb bulb-light" data-dark-mode-target="bulb" id="darkSwitch" data-action="click->dark-mode#switch"></i></a>
         </li> %>

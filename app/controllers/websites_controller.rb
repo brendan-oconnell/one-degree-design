@@ -158,7 +158,7 @@ class WebsitesController < ApplicationController
     CarbonApiJob.perform_later(url, @version)
     # fonts_and_backgrounds_scraping(html_doc)
     # image_scraping(html_doc)
-    sleep 20
+    sleep 10
 
     # if carbon_infos.nil?
       # @version.update(all_images_size: @all_images_size, background_color: background_color, font_families: font_families )

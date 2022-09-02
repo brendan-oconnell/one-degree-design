@@ -4,7 +4,7 @@
       <% if @version.co2_renewable %>
         <p> How's your carbon footprint?</p>
       <% else %>
-        <p>Looks like your website is a tough job for the API, please refresh in a few seconds to get the API results</p>
+        <p>It's taking longer than expected to get your results - for larger or complex websites, it can take up to 30 seconds or more! Try refreshing this page in a few seconds.</p>
       <% end %>
   </div>
 
@@ -23,14 +23,14 @@
         </div>
         <div>
           <% if @version.cleaner_than.nil? %>
-            <p>CO2 consumption unknown yet</p>
+            <p>CO2 consumption unknown</p>
           <% elsif @version.cleaner_than > 0.5 %>
             <p>Cleaner than <strong class="green"><%= (@version.cleaner_than * 100).to_i %>% of sites tested!</strong></p>
           <% else %>
             <p>Dirtier than <strong class="red"><%= 100 - (@version.cleaner_than * 100).to_i %>% of sites tested.</strong></p>
           <% end %>
           <% if @version.green_hosting.nil? %>
-            <p>Green hosting unkown yet</p>
+            <p>Green hosting unkown</p>
           <% elsif @version.green_hosting %>
             <p>Your site is using green hosting!</p>
           <% else %>
@@ -47,7 +47,7 @@
             <p><strong><%= (@version.bytes/1000000).round(2) %> megabytes</strong></p>
             <p>The size of your site</p>
           <% else %>
-            <p>Size unknown yet</p>
+            <p>Size unknown</p>
           <% end %>
         </div>
       </div>
@@ -92,7 +92,7 @@
           Fonts
           <div class="card-category">
             <% if @version.font_families.nil? %>
-              <p><strong>The fonts could not be scraped</strong></p>
+              <p><strong>We couldn't find the fonts for your site.</strong></p>
               <br>
               <p>Fonts like <strong>Open Sans, Times New Roman, Georgia, Arial or Helvetica</strong>, to name a few, don't add any extra weight to your site. Hopefully you are using those!</p>
 
@@ -119,7 +119,7 @@
           Background Colors
           <div class="card-category">
             <% if @version.background_color.nil? %>
-              <p>Your background colors could not be scraped</p>
+              <p>We couldn't find the background colors for your site.</p>
             <% else %>
               <p>Most-used background colors on your site:</p>
               <div class="background-colors">
@@ -158,60 +158,59 @@
       <div class="analysis-banner">
         <h1>Reducing image file size</h1>
       </div>
+      <% if @version.photos.nil? || @version.photos == [] %>
+          <h1>Looks like it's taking longer than expected to analyze the images from your site. Try refreshing this page in a few seconds.</h1>
+      <% else %>
+        <div class="row analysis-row" style="padding-bottom: 8px">
+          <div class="analysis-card col-4">
+              <% if @version.photos && @version.photos %>
+                <img src="<%= eval(@version.photos[0])[:url] %>" alt="">
+              <% else %>
+                <img src="https://picsum.photos/500/500" alt="">
+              <% end %>
+          </div>
 
-      <div class="row analysis-row" style="padding-bottom: 8px">
-        <div class="analysis-card col-4">
-            <% if @version.photos && @version.photos %>
-              <img src="<%= eval(@version.photos[0])[:url] %>" alt="">
-            <% else %>
-              <img src="https://picsum.photos/500/500" alt="">
-            <% end %>
+          <div class="tip-card pe-0 col-8">
+            <div class="results">
+              <div class="current">
+                <h3>CURRENT SIZE</h3>
+                <p><%= eval(@version.photos[0])[:dimensions][0] %> x <%= eval(@version.photos[0])[:dimensions][1] %> px</p>
+              </div>
+              <div class="reduced">
+            <% if eval(@version.photos[0])[:dimensions][0] < 100 %>
+                <h3>REDUCED </h3>
+                <p><%= eval(@version.photos[0])[:dimensions][0] %> x <%= eval(@version.photos[0])[:dimensions][1] %> px</p>
+              </div>
+              <div class="smaller">
+                <h3>SMALLER</h3>
+                <p><strong>0%</strong></p>
+              </div>
+            </div>
+            <div class="solutions" data-dark-mode-target="image">
+              <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Great job!</h2>
+              <%# <p>This image is  <strong><%= eval(@version.photos[0])[:dimensions][0] x <%= eval(@version.photos[0])[:dimensions][1] pixels</strong></p>%>
+              <p>Your images are already really small! Nice work!</p>
+              <p class="mb-0"><a href="">Learn More</a></p>
+            </div>
+            <% else  %>
+              <h3>REDUCED</h3>
+              <p><%= eval(@version.photos[0])[:dimensions][0]/10 %> x <%= eval(@version.photos[0])[:dimensions][1]/10 %> px</p>
+            </div>
+              <div class="smaller">
+                <h3>SMALLER</h3>
+                <p><strong>90%</strong></p>
+              </div>
+            </div>
+            <div class="solutions" data-dark-mode-target="image">
+                    <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Use fewer pixels</h2>
+                    <%# <p>This image is  <strong><%= eval(@version.photos[0])[:dimensions][0] x <%= eval(@version.photos[0])[:dimensions][1] pixels</strong></p>%>
+                    <p>Are your image files larger than their container? Generally speaking, image pixel sizes should be no larger than their div container. For example, if your div is 500 x 400px but your image is 3000 x 2000 px, your user will never see the extra pixels, and your large file will increase your carbon footprint.</p>
+                    <p class="mb-0"><a href="">Learn More</a></p>
+            </div>
+          <% end %>
+          </div>
         </div>
-
-        <div class="tip-card pe-0 col-8">
-          <div class="results">
-            <div class="current">
-              <h3>CURRENT SIZE</h3>
-              <p><%= eval(@version.photos[0])[:dimensions][0] %> x <%= eval(@version.photos[0])[:dimensions][1] %> px</p>
-            </div>
-            <div class="reduced">
-          <% if eval(@version.photos[0])[:dimensions][0] < 100 %>
-              <h3>REDUCED </h3>
-              <p><%= eval(@version.photos[0])[:dimensions][0] %> x <%= eval(@version.photos[0])[:dimensions][1] %> px</p>
-            </div>
-            <div class="smaller">
-              <h3>SMALLER</h3>
-              <p><strong>0%</strong></p>
-            </div>
-          </div>
-          <div class="solutions" data-dark-mode-target="image">
-            <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Great job!</h2>
-            <%# <p>This image is  <strong><%= eval(@version.photos[0])[:dimensions][0] x <%= eval(@version.photos[0])[:dimensions][1] pixels</strong></p>%>
-            <p>Can't get much smaller than that, we have nothing more to teach you on image sizes young padawan, congrats!</p>
-            <p class="mb-0"><a href="">Learn More</a></p>
-          </div>
-          <% else  %>
-            <h3>REDUCED</h3>
-            <p><%= eval(@version.photos[0])[:dimensions][0]/10 %> x <%= eval(@version.photos[0])[:dimensions][1]/10 %> px</p>
-          </div>
-            <div class="smaller">
-              <h3>SMALLER</h3>
-              <p><strong>90%</strong></p>
-            </div>
-          </div>
-          <div class="solutions" data-dark-mode-target="image">
-                  <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Use fewer pixels</h2>
-                  <%# <p>This image is  <strong><%= eval(@version.photos[0])[:dimensions][0] x <%= eval(@version.photos[0])[:dimensions][1] pixels</strong></p>%>
-                  <p>Are your image files larger than their container? Generally speaking, image pixel sizes should be no larger than their div container. For example, if your div is 500 x 400px but your image is 3000 x 2000 px, your user will never see the extra pixels, and your large file will increase your carbon footprint.</p>
-                  <p class="mb-0"><a href="">Learn More</a></p>
-          </div>
-        <% end %>
-        </div>
-      </div>
     </div>
-
-
-
 
     <div class="row analysis-row">
       <div class="tip-card ps-0 col-8">
@@ -290,6 +289,7 @@
         </div>
       </div>
     </div>
+  <% end %>
 
 
 
@@ -310,7 +310,7 @@
               <% if @version.font_families %>
                 <p><%= @version.font_families[0] %>, <%= @version.font_families[1] %>, <%= @version.font_families[2] %> </p>
               <% else %>
-                <p>The fonts could not be scraped 🙈</p>
+                <p>We couldn't find the fonts for your site 🙈</p>
               <% end %>
             </div>
             <div class="smaller">

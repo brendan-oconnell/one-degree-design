@@ -4,35 +4,31 @@
         <h1>What's your <span class="highlight orange-highlight"  data-dark-mode-target="highlight">website's</span> carbon footprint?</h1>
         <p> Take concrete steps to make your site greener!</p>
     </div>
-    <div class="testyoursite text-center row">
-      <div class="col-12 mb-3">
+
+    <div class="cta-container container">
+      <div class="cta-text">
         <h2>Test your site now</h2>
       </div>
-      <div class="col-12 col-xl-6 col-lg-6 mx-auto w-100 ps-5 pe-5" >
-        <%# make a stimulus for the search %>
-        <%= simple_form_for([@website],
-                              data: { loading_spinner_target: "form",
-                              action: "submit->loading-spinner#spin",
-                              }) do |f| %>
-          <div class="search-form-control form-group">
-            <div class="search-bar d-flex w-100">
-              <div class="pe-0 mb-3 search-bar-http-www-text search-form-control flex-shrink-1">
-                <h3 class="p-0 m-0">https://www.</h3>
-              </div>
-              <div class="search-bar-content flex-grow-1">
-                <%= f.input :url, placeholder: "onedegreedesign.com", label: false, class:"border-start-0 search-input form-control " %>
-              </div>
-              <%= f.submit "Check your site ⟶", class: "btn btn-flat mb-3 ms-3 btn-search"  %>
-            </div>
+      <%= simple_form_for([@website],
+        data: { loading_spinner_target: "form",
+        action: "submit->loading-spinner#spin",
+        }) do |f| %>
+      <div class="cta-link row">
+          <div class="col-12 col-lg-8 search-form-control form-group cta-link-http">
+            <%= f.input :url, placeholder: "onedegreedesign.com", label: false, class:" search-input form-control " %>
           </div>
-        <% end %>
-      </div>
+          <div class="col-12 col-lg-4 search-form-control form-group cta-button">
+            <%= f.submit "Check your site ⟶", class: "btn btn-flat mb-3 btn-search"  %>
+          </div>
+        </div>
+      <% end %>
     </div>
 
   </div>
-  <div class="green-container-home black-background" data-dark-mode-target="green">
+  <div class="homepage-colored-half green-container-home black-background" data-dark-mode-target="green">
     <div class="spacer"></div>
-    <div class="container text-center text-light">
+    <div class="container text-center text-light mt-5 mb-3">
+      <br>
       <h1>Analysis will take 20 seconds or longer to complete</h1>
       <p>We're currently not able to analyze all websites. Here are a few examples that work well: <i>lewagon.com, marmiton.org, pollutingsite.com.</i></p>
     </div>

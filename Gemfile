@@ -32,7 +32,9 @@ gem 'fastimage'
 # guest accounts
 gem 'devise-guests'
 
+# TODO: these are for mailing things. It's probably a dependency of sidekiq. Can we delete them or disable that in Sidekiq?
 gem 'net-smtp', '~> 0.3.1'
+gem 'net-pop', '~> 0.1.0'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

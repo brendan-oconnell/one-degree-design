@@ -4,7 +4,7 @@
       <% if @version.co2_renewable %>
         <p> How's your carbon footprint?</p>
       <% else %>
-        <p>It's taking longer than expected to get your results - for larger or complex websites, it can take up to 30 seconds or more! Try refreshing this page in a few seconds.</p>
+        <p>It's taking a long time to get your results - for larger or complex websites, it can take up to 30 seconds or more! Try refreshing this page in a few seconds.</p>
       <% end %>
   </div>
 
@@ -178,19 +178,17 @@
               </div>
               <div class="reduced">
             <% if eval(@version.photos[0])[:dimensions][0] < 100 %>
-                <h3>REDUCED </h3>
-                <p><%= eval(@version.photos[0])[:dimensions][0] %> x <%= eval(@version.photos[0])[:dimensions][1] %> px</p>
+                <h3></h3>
+                <p></p>
               </div>
               <div class="smaller">
-                <h3>SMALLER</h3>
-                <p><strong>0%</strong></p>
+                <h3></h3>
+                <p><strong></strong></p>
               </div>
             </div>
             <div class="solutions" data-dark-mode-target="image">
               <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Great job!</h2>
-              <%# <p>This image is  <strong><%= eval(@version.photos[0])[:dimensions][0] x <%= eval(@version.photos[0])[:dimensions][1] pixels</strong></p>%>
               <p>Your images are already really small! Nice work!</p>
-              <p class="mb-0"><a href="">Learn More</a></p>
             </div>
             <% else  %>
               <h3>REDUCED</h3>
@@ -205,7 +203,7 @@
                     <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Use fewer pixels</h2>
                     <%# <p>This image is  <strong><%= eval(@version.photos[0])[:dimensions][0] x <%= eval(@version.photos[0])[:dimensions][1] pixels</strong></p>%>
                     <p>Are your image files larger than their container? Generally speaking, image pixel sizes should be no larger than their div container. For example, if your div is 500 x 400px but your image is 3000 x 2000 px, your user will never see the extra pixels, and your large file will increase your carbon footprint.</p>
-                    <p class="mb-0"><a href="">Learn More</a></p>
+                    <p class="mb-0"><a href="https://web.dev/serve-images-with-correct-dimensions/" target="blank">Learn More</a></p>
             </div>
           <% end %>
           </div>
@@ -237,7 +235,7 @@
           <div class="solutions" data-dark-mode-target="file">
             <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Use  efficient file types</h2>
             <p>Did you know some image file types are much more efficient than others? Web-optimized file types like WebP and AVIF can be dramatically smaller than commonly-used formats like jpg and png.</p>
-            <p><a href="https://jakearchibald.com/2020/avif-has-landed/">Learn More</a></p>
+            <p><a href="https://jakearchibald.com/2020/avif-has-landed/" target="blank">Learn More</a></p>
           </div>
         </div>
       </div>
@@ -284,7 +282,7 @@
             <div class="solutions" data-dark-mode-target="size">
               <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Compress images</h2>
               <p>Properly compressed images have little to no impact on user experience, and reduce your carbon footprint.</p>
-              <p><a href="">Learn More</a></p>
+              <p><a href="https://web.dev/compress-images/" target="blank">Learn More</a></p>
             </div>
         </div>
       </div>
@@ -347,7 +345,7 @@
           <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Reduce web font file size</h2>
           <%# <p>This image is  <strong><%= eval(@version.photos[0])[:dimensions][0] x <%= eval(@version.photos[0])[:dimensions][1] pixels</strong></p>%>
           <p>OK, we get it! You love your web fonts and don't want to change them. There's still lots you can do to reduce file size, page load times, and the carbon footprint of your site.</p>
-          <p><a href="">Learn More</a></p>
+          <p><a href="https://web.dev/reduce-webfont-size/" target="blank">Learn More</a></p>
           </div>
         </div>
 
@@ -400,7 +398,7 @@
               <div class="solutions" data-dark-mode-target="color">
                 <h2><i class="fa-solid fa-lightbulb" data-dark-mode-target="bulb"></i> Use  darker background colors</h2>
                 <p>Some background colors use a LOT more energy than others. For example, a black background can use up to 80% less energy on OLED screens! Choose cooler colors like black, red, or blue for backgrounds. Offer the user a “dark mode” button to switch to a dark background.</p>
-                <p><a href="https://jakearchibald.com/2020/avif-has-landed/">Learn More</a></p>
+                <p><a href="https://www.wholegraindigital.com/blog/dark-colour-web-design/" target="blank">Learn More</a></p>
               </div>
           </div>
         </div>

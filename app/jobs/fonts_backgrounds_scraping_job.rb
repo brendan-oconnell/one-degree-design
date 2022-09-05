@@ -37,7 +37,7 @@ def fonts_and_backgrounds_scraping(version, website)
     style_file = URI.open(stylesheet).read
 
     @font_families << style_file.scan(/font-family:(.{1,22})[",']/)
-    @backgrounds << style_file.scan(/background[-color]*:[#]?(\w{1,16});[. ]?/)
+    @backgrounds << style_file.scan(/background[-color]*:([#]?\w{1,16});[. ]?/)
   end
   @font_families.flatten!.map! { |font| font.downcase.gsub(/['"]/, "") }
   @backgrounds.flatten!

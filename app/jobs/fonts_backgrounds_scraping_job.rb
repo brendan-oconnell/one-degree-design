@@ -2,7 +2,6 @@ class FontsBackgroundsScrapingJob < ApplicationJob
   queue_as :default
 
   def perform(version, website)
-
     fonts_and_backgrounds_scraping(version, website)
   end
 end
@@ -37,14 +36,11 @@ def fonts_and_backgrounds_scraping(version, website)
     style_file = URI.open(stylesheet).read
 
     @font_families << style_file.scan(/font-family:(.{1,22})[",']/)
-    @backgrounds << style_file.scan(/background[-color]*:[#]?(\w{1,16});[. ]?/)
+    @backgrounds << style_file.scan(/background[-color]*:([#]?\w{1,16});[. ]?/)
   end
   @font_families.flatten!.map! { |font| font.downcase.gsub(/['"]/, "") }
   @backgrounds.flatten!
 
-  # COMMENTED BECAUSE WE SHOULD NOT REMOVE THE standard fonts if it is what they use?
-  # default_font_families = ["open sans", "times", "times new roman", "georgia", "serif", "Verdana", "Arial", "Helvetica", "sans-serif", "courier", "monospace", "lucida console", "cursive", "fantasy" ]
-  # @font_families.reject! { |font| default_font_families.include?(font.downcase) }
 
   @backgrounds.map! do |color|
     white_colors = ["white", "#ffffff"]

@@ -24,11 +24,13 @@ body {
 }
 
 .spacer{
-  height: 10em;
+  height: 2em;
   width: 100%;
   background-color: transparent;
+  @media (max-width: 987px) {
+    height: 6em;
+  }
 }
-
 
 .green {
   color: $cgreen;

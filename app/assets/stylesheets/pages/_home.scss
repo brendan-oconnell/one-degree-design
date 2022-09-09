@@ -11,5 +11,15 @@
   position: relative;
   bottom: 0;
   top: 57px;
-  min-height: 67vh;
+  min-height: 44vh;
+  font-size: 20px;
+    font-style: normal;
+    font-weight: 200;
+    font-size: 22px;
+  @media (min-width: 1450px) and (max-width: 1600px) {
+    min-height: 50vh;
+  }
+  @media (min-width: 1601px) and (max-width: 2000px) {
+     min-height: 60vh;
+    }
 }

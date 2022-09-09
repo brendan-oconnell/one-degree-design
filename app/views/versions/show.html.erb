@@ -10,8 +10,8 @@
 
 
   <div class="p-0 m-0 w-100 position-absolute card-stat-container">
-    <div class="card-stat">
-      <div class="card-hosting">
+    <div class="card-stat row">
+      <div class="card-hosting col-12 col-md-6">
         <div>
           <% if @version.cleaner_than.nil? %>
             <h1> <i class="fa-solid fa-question"></i> </h1>
@@ -38,7 +38,7 @@
           <% end %>
         </div>
       </div>
-      <div class="card-megabytes">
+      <div class="card-megabytes col-12 col-md-6">
         <div>
           <h1 style="font-size: 3.5rem;">💻</h1>
         </div>
@@ -243,10 +243,10 @@
       </div>
 
       <div class="analysis-card col-4">
-        <% if @version.photos[0] %>
+        <% if @version.photos[1] %>
           <img src="<%= eval(@version.photos[1])[:url] %>" alt="">
         <% else %>
-          <img src="https://picsum.photos/500/500" alt="">
+
         <% end %>
       </div>
 
@@ -254,10 +254,10 @@
 
     <div class="row analysis-row">
       <div class="analysis-card col-4">
-          <% if @version.photos[0] %>
+          <% if @version.photos[2] %>
             <img src="<%= eval(@version.photos[2])[:url] %>" alt="">
           <% else %>
-            <img src="https://picsum.photos/500/500" alt="">
+
           <% end %>
 
       </div>
@@ -267,7 +267,7 @@
           <div class="results">
             <div class="current">
               <h3>APPROX. FILE SIZE</h3>
-              <% if @version.photos[1] %>
+              <% if @version.photos[2] %>
                 <p><%= eval(@version.photos[2])[:size]/5000 %>kb</p>
               <% else %>
                 <p>file size unknown</p>
@@ -364,10 +364,10 @@
 
 
             <div class="row analysis-row">
-        <div class="tip-card ps-0 col-8">
+        <div class="tip-card ps-0 col-12 col-lg-8">
           <div class="file">
-          <div class="results">
-            <div class="current">
+          <div class="results row">
+            <div class="current col-12 col-lg-6">
               <% if @version.background_color %>
                 <h3>CURRENT BACKGROUND COLORS</h3>
                 <div class="background-color-container d-flex justify-content-center">
@@ -378,7 +378,7 @@
               <% end %>
             </div>
 
-            <div class="reduced">
+            <div class="reduced col-12 col-lg-6">
               <h3>RECOMMENDED COLORS</h3>
                 <% if @version.background_color %>
                   <div class="background-color-container d-flex justify-content-center">
@@ -405,7 +405,7 @@
           </div>
         </div>
 
-        <div class="analysis-card col-4" style="margin-top: 32px;">
+        <div class="analysis-card col-12 col-lg-4" style="margin-top: 32px;">
           <%= image_tag "brightness.PNG" %>
         </div>
 

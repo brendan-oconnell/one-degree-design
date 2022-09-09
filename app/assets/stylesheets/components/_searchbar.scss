@@ -4,7 +4,9 @@
   margin: 0 auto;
   position: absolute;
 
-
+  left: 14%;
+  right: 14%;
+  width: 72%;
 
   //old
   // right: 16%;
@@ -14,6 +16,8 @@
   background-color: #D8E1E9;
   border-radius: 7px;
   padding: 2.5rem;
+  padding-top: 2.0rem;
+  padding-bottom: 1rem;
 
   input {
     font-size: 1.5rem;
@@ -21,13 +25,15 @@
     border-radius: 10px ;
   }
   @media (max-width: 576px) {
+    left: 0%;
+    right: 0%;
     padding: 3rem;
     width: 90%;
   }
 }
 
 .cta-text{
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
 }
 
 .cta-link{

@@ -2,7 +2,6 @@ class FontsBackgroundsScrapingJob < ApplicationJob
   queue_as :default
 
   def perform(version, website)
-
     html_file = URI.open(website.url).read
     html_doc = Nokogiri::HTML(html_file)
 
@@ -28,17 +27,20 @@ end
 
 def fonts_and_backgrounds_scraping(stylesheets)
 
+  font_families = []
+  backgrounds = []
+
   stylesheets.each do |stylesheet|
     style_file = URI.open(stylesheet).read
 
-    @font_families = style_file.scan(/font-family: ?['"]?([\w*[\s-]?]*)/).flatten
-    @backgrounds = style_file.scan(/background[-color]*:([#]?\w{1,16});[. ]?/).flatten
+    font_families << style_file.scan(/font-family: ?['"]?([\w*[\s-]?]*)/)
+    backgrounds << style_file.scan(/background[-color]*:([#]?\w{1,16});[. ]?/)
   end
 
-  remove_duplicate_colors(@backgrounds) unless @backgrounds.nil?
+  backgrounds = remove_duplicate_colors(backgrounds) unless backgrounds.nil?
 
-  @main_background_colors = sort_mains(@backgrounds)
-  @main_font_families = sort_mains(@font_families)
+  @main_background_colors = sort_mains(backgrounds.flatten)
+  @main_font_families = sort_mains(font_families.flatten)
 end
 
 def remove_duplicate_colors(backgrounds)
@@ -55,8 +57,6 @@ def remove_duplicate_colors(backgrounds)
 end
 
 def sort_mains(array)
-  print "ARRAY"
-  print array
   sorted_array = array.sort_by { |element| array.count(element) }.reverse.uniq
   return sorted_array.first(3)
 end

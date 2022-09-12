@@ -19,12 +19,13 @@ class WebsitesController < ApplicationController
     if @website.valid?
       @website.save
       create_version(@website)
-
+      redirect_to version_path(@version)
       # version_scraped()
 
     else
       redirect_to scrapingerror_path
     end
+
   end
 
   private
@@ -35,29 +36,28 @@ class WebsitesController < ApplicationController
 
   def create_version(website)
     last_version = Version.find_by_website_id(@website.id)
-
-    # reuse_recent_version(last_version, url)
+    url = @website.url
+    reuse_recent_version(last_version, url)
     @version = Version.new
     @version.update(website_id: website.id)
 
     FontsBackgroundsScrapingJob.perform_later(@version, @website)
-    # ImageScrapingJob.perform_later(@version, @website)
-    # CarbonApiJob.perform_later(website.url, @version)
-    sleep 18
+    ImageScrapingJob.perform_later(@version, @website)
+    CarbonApiJob.perform_later(website.url, @version)
+    sleep 20
   end
 
-  # Check with Brendan if still relevant before deleting
-
-  # def version_scraped()
-  #   if @scraped_successfully == true
-  #     @version.save
-  #     redirect_to version_path(@version)
-  #   else
-  #     @version.destroy
-  #     redirect_to scrapingerror_path
-  #   end
+  # Check with Brendan if still relevant before deleting this section
+  def version_scraped()
+    if @scraped_successfully == true
+      @version.save
+      redirect_to version_path(@version)
+    else
+      @version.destroy
+      redirect_to scrapingerror_path
+    end
+  end
   # end
-
 
   def reuse_recent_version(last_version, url)
     # Pseudo: reuse the version if the new request is less than 24h

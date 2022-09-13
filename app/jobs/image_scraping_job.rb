@@ -6,17 +6,21 @@ class ImageScrapingJob < ApplicationJob
   queue_as :default
 
   def perform(version, website)
-    # Do something later
-    image_scraping(version, website)
+
+    html_file = URI.open(website.url).read
+    html_doc = Nokogiri::HTML(html_file)
+
+    image_scraping(version, html_doc)
   end
 end
 
 private
-def image_scraping(version, website)
-  html_file = URI.open(website.url).read
-  html_doc = Nokogiri::HTML(html_file)
+
+
+def image_scraping(version, html_doc)
+
   @photos = []
-  # Parallel.each(html_doc.search("img")) { |image|
+
   html_doc.search("img").each do |image|
     # added in code for lazy loading. If page has lazy loading, there won't be an image URL and it should be skipped.
     # e.g. nytimes.com
@@ -38,22 +42,12 @@ def image_scraping(version, website)
           dimensions: dimensions,
           type: type
         }
-          # query = Cloudinary::Uploader.upload(src_value)
-          # @photos << {
-          #   width: query["width"],
-          #   height: query["height"],
-          #   bytes: query["bytes"],
-          #   url: query["url"]
-          # }
+
       end
     end
   end
-  #}
-  @photos.sort_by! { |photo| photo[:size] }
-  version.update(photos: @photos.reverse.first(3))
-  # some sites e.g. websitecarbon.com return an empty array for @photos, because of the way photos are displayed.
-  # if this happens, assign scraped_succssfully as false, which will cause them to be redirected to scraping error page.
-  if version.photos == []
-    @scraped_successfully = false
-  end
+
+  main_photos = @photos.sort_by! { |photo| photo[:size] }.reverse.first(3)
+  version.update(photos: main_photos)
+
 end

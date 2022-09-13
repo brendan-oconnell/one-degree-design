@@ -2,51 +2,49 @@ class FontsBackgroundsScrapingJob < ApplicationJob
   queue_as :default
 
   def perform(version, website)
+    html_file = URI.open(website.url).read
+    html_doc = Nokogiri::HTML(html_file)
 
-    fonts_and_backgrounds_scraping(version, website)
+    stylesheets = stylesheets_scraping(html_doc, website)
+    fonts_and_backgrounds_scraping(stylesheets)
+
+    version.update(background_color: @main_background_colors, font_families: @main_font_families )
   end
 end
 
 private
 
-def fonts_and_backgrounds_scraping(version, website)
-  html_file = URI.open(website.url).read
-  html_doc = Nokogiri::HTML(html_file)
-  stylesheet_links = []
-  stylesheet_corrected_links = []
-  # add all stylesheets to array
+def stylesheets_scraping(html_doc, website)
+  stylesheets = []
+
   html_doc.search("link").each do |link|
-    stylesheet_links << link.attributes["href"].value if link.attributes["rel"].value == "stylesheet"
+    stylesheets << link.attributes["href"].value if link.attributes["rel"].value == "stylesheet"
   end
-  # if stylesheet begins with https://www, don't do anything with it.
-  stylesheet_links.each do |stylesheet|
-    if stylesheet.start_with?("http")
-      stylesheet_corrected_links << stylesheet
-    else
-      modified_stylesheet_url = stylesheet.insert(0, website.url)
-      stylesheet_corrected_links << modified_stylesheet_url
-    end
-  end
+  # removed the part that corrected the stylesheet url, seemed to have no purpose, check with Brendan
+  return stylesheets
+end
 
 
+def fonts_and_backgrounds_scraping(stylesheets)
 
-  @font_families = []
-  @backgrounds = []
+  font_families = []
+  backgrounds = []
 
-  stylesheet_corrected_links.each do |stylesheet|
+  stylesheets.each do |stylesheet|
     style_file = URI.open(stylesheet).read
 
-    @font_families << style_file.scan(/font-family:(.{1,22})[",']/)
-    @backgrounds << style_file.scan(/background[-color]*:([#]?\w{1,16});[. ]?/)
+    font_families << style_file.scan(/font-family: ?['"]?([\w*[\s-]?]*)/)
+    backgrounds << style_file.scan(/background[-color]*:([#]?\w{1,16});[. ]?/)
   end
-  @font_families.flatten!.map! { |font| font.downcase.gsub(/['"]/, "") }
-  @backgrounds.flatten!
 
-  # COMMENTED BECAUSE WE SHOULD NOT REMOVE THE standard fonts if it is what they use?
-  # default_font_families = ["open sans", "times", "times new roman", "georgia", "serif", "Verdana", "Arial", "Helvetica", "sans-serif", "courier", "monospace", "lucida console", "cursive", "fantasy" ]
-  # @font_families.reject! { |font| default_font_families.include?(font.downcase) }
+  backgrounds = remove_duplicate_colors(backgrounds) unless backgrounds.nil?
 
-  @backgrounds.map! do |color|
+  @main_background_colors = sort_mains(backgrounds.flatten)
+  @main_font_families = sort_mains(font_families.flatten)
+end
+
+def remove_duplicate_colors(backgrounds)
+    backgrounds.map! do |color|
     white_colors = ["white", "#ffffff"]
     if white_colors.include?(color)
       color = "#fff"
@@ -54,13 +52,11 @@ def fonts_and_backgrounds_scraping(version, website)
       color = color
     end
   end
-  @backgrounds.reject! { |color| color == "transparent" }
+  backgrounds.reject! { |color| color == "transparent" }
+  return backgrounds
+end
 
-
-
-  @font_families.sort_by! { |font| @font_families.count(font) }.reverse!.uniq!
-  @backgrounds.sort_by! { |color| @backgrounds.count(color) }.reverse!.uniq!
-  background_color = @backgrounds.first(3)
-  font_families = @font_families.first(3)
-  version.update(background_color: background_color, font_families: font_families )
+def sort_mains(array)
+  sorted_array = array.sort_by { |element| array.count(element) }.reverse.uniq
+  return sorted_array.first(3)
 end

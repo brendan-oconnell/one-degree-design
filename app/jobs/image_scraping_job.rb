@@ -53,6 +53,6 @@ def control_link_validity(link)
 end
 
 def sort_main_photos(photos)
-  sorted_photos = photos.sort_by { |photos| photo[:size] }.reverse.uniq
+  sorted_photos = photos.sort_by { |photo| photo[:size] }.reverse.uniq
   return sorted_photos.first(3)
 end

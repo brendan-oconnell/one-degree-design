@@ -28,13 +28,11 @@ def image_scraping(version, html_doc)
     # so don't include it. hence the unless.
     unless image.attributes["alt"].nil? || image.attributes["loading"]
       src_value = image.attributes["data-src"] ? image.attributes["data-src"].value : image.attributes["src"].value
-      if src_value.start_with?("http")
-      else
-        src_value.insert(0, website.url)
-      end
-      dimensions = FastImage.size(src_value)
+      link = control_link_validity(src_value)
+
+      dimensions = FastImage.size(link)
       if dimensions
-        type = FastImage.type(src_value)
+        type = FastImage.type(link)
         size = dimensions[0] * dimensions[1]
         @photos << {
           url: src_value,
@@ -42,12 +40,20 @@ def image_scraping(version, html_doc)
           dimensions: dimensions,
           type: type
         }
-
       end
     end
   end
 
-  main_photos = @photos.sort_by! { |photo| photo[:size] }.reverse.first(3)
+  main_photos = sort_mains(@photos)
   version.update(photos: main_photos)
+end
 
+
+def control_link_validity(link)
+  link.start_with?("http") ? link : link.insert(0, @website.url)
+end
+
+def sort_mains(array)
+  sorted_array = array.sort_by { |element| array.count(element) }.reverse.uniq
+  return sorted_array.first(3)
 end

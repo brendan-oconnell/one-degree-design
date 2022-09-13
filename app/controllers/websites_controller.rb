@@ -2,7 +2,6 @@ require "json"
 
 class WebsitesController < ApplicationController
 
-
   def create
     # Pseudo: create the website if new for the user otherwise a new version of the website
     user_url = "https://www.#{website_params[:url]}"
@@ -20,7 +19,6 @@ class WebsitesController < ApplicationController
       @website.save
       create_version(@website)
       redirect_to version_path(@version)
-      # version_scraped()
 
     else
       redirect_to scrapingerror_path
@@ -38,26 +36,14 @@ class WebsitesController < ApplicationController
     last_version = Version.find_by_website_id(@website.id)
     url = @website.url
     reuse_recent_version(last_version, url)
-    @version = Version.new
-    @version.update(website_id: website.id)
+    # @version = Version.new
+    # @version.update(website_id: website.id)
 
     FontsBackgroundsScrapingJob.perform_later(@version, @website)
     ImageScrapingJob.perform_later(@version, @website)
     CarbonApiJob.perform_later(website.url, @version)
     sleep 20
   end
-
-  # Check with Brendan if still relevant before deleting this section
-  def version_scraped()
-    if @scraped_successfully == true
-      @version.save
-      redirect_to version_path(@version)
-    else
-      @version.destroy
-      redirect_to scrapingerror_path
-    end
-  end
-  # end
 
   def reuse_recent_version(last_version, url)
     # Pseudo: reuse the version if the new request is less than 24h

@@ -19,11 +19,15 @@ def stylesheets_scraping(html_doc, website)
 
   html_doc.search("link").each do |link|
     stylesheets << link.attributes["href"].value if link.attributes["rel"].value == "stylesheet"
+    # if stylesheet begins with https://www, don't do anything with it.
+    stylesheets.map! { |stylesheet| control_link_validity(stylesheet) }
   end
-  # removed the part that corrected the stylesheet url, seemed to have no purpose, check with Brendan
   return stylesheets
 end
 
+def control_link_validity(link)
+ link.start_with?("http") ? link : link.insert(0, @website.url)
+end
 
 def fonts_and_backgrounds_scraping(stylesheets)
 

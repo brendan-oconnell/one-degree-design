@@ -39,10 +39,10 @@ class WebsitesController < ApplicationController
     # @version = Version.new
     # @version.update(website_id: website.id)
 
-    FontsBackgroundsScrapingJob.perform_later(@version, @website)
+    # FontsBackgroundsScrapingJob.perform_later(@version, @website)
     ImageScrapingJob.perform_later(@version, @website)
-    CarbonApiJob.perform_later(website.url, @version)
-    sleep 20
+    # CarbonApiJob.perform_later(website.url, @version)
+    sleep 10
   end
 
   def reuse_recent_version(last_version, url)

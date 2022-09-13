@@ -29,7 +29,6 @@ def image_scraping(version, html_doc)
     unless image.attributes["alt"].nil? || image.attributes["loading"]
       src_value = image.attributes["data-src"] ? image.attributes["data-src"].value : image.attributes["src"].value
       link = control_link_validity(src_value)
-
       dimensions = FastImage.size(link)
       if dimensions
         type = FastImage.type(link)
@@ -55,5 +54,6 @@ end
 
 def sort_mains(array)
   sorted_array = array.sort_by { |element| array.count(element) }.reverse.uniq
+  byebug
   return sorted_array.first(3)
 end

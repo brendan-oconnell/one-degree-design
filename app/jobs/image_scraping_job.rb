@@ -43,7 +43,7 @@ def image_scraping(version, html_doc)
     end
   end
 
-  main_photos = sort_mains(@photos)
+  main_photos = sort_main_photos(@photos)
   version.update(photos: main_photos)
 end
 
@@ -52,8 +52,7 @@ def control_link_validity(link)
   link.start_with?("http") ? link : link.insert(0, @website.url)
 end
 
-def sort_mains(array)
-  sorted_array = array.sort_by { |element| array.count(element) }.reverse.uniq
-  byebug
-  return sorted_array.first(3)
+def sort_main_photos(photos)
+  sorted_photos = photos.sort_by { |photos| photo[:size] }.reverse.uniq
+  return sorted_photos.first(3)
 end

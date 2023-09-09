@@ -10,25 +10,27 @@ class ImageScrapingJob < ApplicationJob
     html_file = URI.open(website.url).read
     html_doc = Nokogiri::HTML(html_file)
 
-    image_scraping(version, html_doc)
+    image_scraping(version, html_doc, website.url)
   end
 end
 
 private
 
 
-def image_scraping(version, html_doc)
+def image_scraping(version, html_doc, url)
 
   @photos = []
 
   html_doc.search("img").each do |image|
-    # added in code for lazy loading. If page has lazy loading, there won't be an image URL and it should be skipped.
+    # if page has lazy loading, there won't be an image URL and it should be skipped.
     # e.g. nytimes.com
     # if image.attributes["loading"] exists and has a value (e.g. "lazy"), we can't scrape that image.
-    # so don't include it. hence the unless.
+    # so don't include it.
     unless image.attributes["alt"].nil? || image.attributes["loading"]
       src_value = image.attributes["data-src"] ? image.attributes["data-src"].value : image.attributes["src"].value
-      link = control_link_validity(src_value)
+      link = control_link_validity(src_value, url)
+      # https://rubygems.org/gems/fastimage/versions/2.2.5
+      # approximates image size by quickly grabbing dimensions
       dimensions = FastImage.size(link)
       if dimensions
         type = FastImage.type(link)
@@ -48,8 +50,8 @@ def image_scraping(version, html_doc)
 end
 
 
-def control_link_validity(link)
-  link.start_with?("http") ? link : link.insert(0, @website.url)
+def control_link_validity(link, web_url)
+  link.start_with?("http") ? link : link.insert(0, web_url)
 end
 
 def sort_main_photos(photos)

@@ -1,3 +1,4 @@
+require "pry-byebug"
 class FontsBackgroundsScrapingJob < ApplicationJob
   queue_as :default
 
@@ -16,17 +17,17 @@ private
 
 def stylesheets_scraping(html_doc, website)
   stylesheets = []
-
   html_doc.search("link").each do |link|
     stylesheets << link.attributes["href"].value if link.attributes["rel"].value == "stylesheet"
-    # if stylesheet begins with https://www, don't do anything with it.
-    stylesheets.map! { |stylesheet| control_link_validity(stylesheet) }
+    stylesheets.map! { |stylesheet| control_link_validity(stylesheet, website.url) }
   end
   return stylesheets
 end
 
-def control_link_validity(link)
- link.start_with?("http") ? link : link.insert(0, @website.url)
+def control_link_validity(link, url)
+  # if stylesheet is a full link, (e.g. https://www.nytimes.com/assets/example.css) leave as is
+  # if a relative link, add beginning of URL (e.g. https://www.nytimes.com) so it can be properly scraped
+ link.start_with?("http") ? link : link.insert(0, url)
 end
 
 def fonts_and_backgrounds_scraping(stylesheets)

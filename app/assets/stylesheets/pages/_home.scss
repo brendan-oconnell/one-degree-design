@@ -5,6 +5,15 @@
   padding-right: 2vw;
 }
 
+.homepage-links a {
+  color: black;
+  opacity: 0.55;
+  text-decoration: none;
+}
+.homepage-links a:hover {
+  opacity: 1;
+}
+
 .green-container-home {
   background-color: #678D58;
   z-index: 0;

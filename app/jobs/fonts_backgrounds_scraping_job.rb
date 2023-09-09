@@ -1,4 +1,3 @@
-require "pry-byebug"
 class FontsBackgroundsScrapingJob < ApplicationJob
   queue_as :default
 
